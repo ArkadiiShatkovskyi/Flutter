@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_app/pages/InfoPage.dart';
+import 'package:job_app/items/StyleSettings.dart';
 
 class DrawerCard extends StatelessWidget{
   final String drawerFont;
@@ -34,33 +35,43 @@ class DrawerCard extends StatelessWidget{
           }else if(text == "Account"){
             //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignInSignUp()));
           }else if(text == "Close"){
-            //_showExitDialon(context);
+            _showExitDialon(context);
           }
         }
     ),
     );
   }
 
-  void _showExitDialon(BuildContext context){
-    showDialog(context: context,
-        builder: (BuildContext context){
+  void _showExitDialon(BuildContext context) async {
+    showDialog(
+        context: context,
+        builder: (context){
           return AlertDialog(
-            title: new Text("Exit"),
-            content: new Text("Are you sure you wanna exit?"),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            title: const Text("Exit from application",),
+            content: const Text("Are you sure you want exit from application?"),
             actions: <Widget>[
-              // usually buttons at the bottom of the dialog
               new FlatButton(
-                child: new Text("Exit"),
-                onPressed: () {
-                  exit(0);
-                },
-              ),
+                  textColor: styleColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  onPressed: (){
+                    exit(0);
+                  },
+                  child: const Text("Yes", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,)),
               new FlatButton(
-                child: new Text("Cancel"),
-                onPressed: (){
-                  Navigator.of(context).pop();
-                },
-              )
+                  color: styleColor,
+                  textColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  onPressed: (){
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("No", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,)),
             ],
           );
         }
