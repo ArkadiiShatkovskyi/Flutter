@@ -91,7 +91,41 @@ class _MainPageState extends State<MainPage>{
     super.initState();
   }
 
+
+
   void _signOut() async {
-    _db.signOut(context);
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          title: const Text("Log out?"),
+          content: const Text("You will be logged out from this account"),
+          actions: <Widget>[
+            new FlatButton(
+                textColor: styleColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                onPressed: (){
+                  _db.signOut(context);
+                },
+                child: const Text("Yes", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,)),
+            new FlatButton(
+                color: styleColor,
+                textColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                onPressed: (){
+                  Navigator.of(context).pop();
+                },
+                child: const Text("No", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,)),
+          ],
+        );
+      }
+    );
   }
 }
