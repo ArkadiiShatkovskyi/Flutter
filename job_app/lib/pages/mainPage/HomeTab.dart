@@ -13,6 +13,7 @@ class _HomeTabState extends State<HomeTab>{
 
   String _user = "1";
   Authorization _db = new Authorization();
+  var _selectedItem = null;
 
 
   @override
@@ -33,30 +34,29 @@ class _HomeTabState extends State<HomeTab>{
     return StreamBuilder(
         stream: Firestore.instance.collection(_user).snapshots(),
         builder: (context, snapshot){
-//          if(!snapshot.hasData) return const Text('Loading...');
           if(!snapshot.hasData) return Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(styleColor)));
           return SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child:  DataTable(
-            columnSpacing: 15,
-            columns: [
-              DataColumn(
-                label: const Text("Date"),
-              ),
-              DataColumn(
-                label: const Text("Start time"),
-              ),
-              DataColumn(
-                label: const Text("End time"),
-              ),
-              DataColumn(
-                label: const Text("Work time"),
-              ),
-              DataColumn(
-                label: const Text("Rate"),
-              ),
-            ],
-            rows: _createRows(snapshot.data)),);
+                  columnSpacing: 15,
+                  columns: [
+                    DataColumn(
+                      label: const Text("Date"),
+                    ),
+                    DataColumn(
+                      label: const Text("Start time"),
+                    ),
+                    DataColumn(
+                      label: const Text("End time"),
+                    ),
+                    DataColumn(
+                      label: const Text("Work time"),
+                    ),
+                    DataColumn(
+                      label: const Text("Rate"),
+                    ),
+                  ],
+                  rows: _createRows(snapshot.data)),);
         });
   }
 
