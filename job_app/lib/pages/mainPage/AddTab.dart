@@ -156,5 +156,20 @@ class _AddTabState extends State<AddTab>{
           'workTime': workTime,
           'rate': double.parse(_rateController.text),
         });
+    showDialog(
+        context: context,
+        builder: (context) {
+          Future.delayed(Duration(milliseconds: 500), () {
+            Navigator.of(context).pop(true);
+          });
+          return AlertDialog(
+//            backgroundColor: styleColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            title: const Text('Info',),
+            content: const Text('Record was added to database',),
+          );
+        });
   }
 }
