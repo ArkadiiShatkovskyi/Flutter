@@ -4,24 +4,27 @@ import 'package:job_app/items/StyleSettings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:job_app/pages/authorizationPage/Authorization.dart';
 
-class AddTab extends StatefulWidget{
+class AddTab extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _AddTabState();
 }
 
-class _AddTabState extends State<AddTab>{
+class _AddTabState extends State<AddTab> {
   TimeOfDay _strTime = TimeOfDay.now();
   TimeOfDay _endTime = TimeOfDay.now();
-  DateTime _date =  DateTime.now();
+  DateTime _date = DateTime.now();
   TextEditingController _rateController = TextEditingController();
   String _user;
+  double _defaultRate = 15.0;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    Authorization _db = new Authorization();
-    _db.getUser().then((currUser) {this._user = currUser.uid;});
-    _rateController.text = defaultRate.toString();
+    Authorization _db = Authorization();
+    _db.getUser().then((currUser) {
+      this._user = currUser.uid;
+    });
+//    _rateController.text = _defaultRate.toString();
   }
 
   @override
@@ -29,84 +32,144 @@ class _AddTabState extends State<AddTab>{
     return _createBody();
   }
 
-  Widget _createBody(){
-    return GridView.count(
-      physics: NeverScrollableScrollPhysics(),
-      crossAxisCount: 5,
-      children: <Widget>[
-        const Text(""),
-        const Text(""),
-        const Center(child:Text("Add work", style: TextStyle(fontSize: 18))),
-        const Text(""),
-        const Text(""),
-
-        const Text(""),
-        Center(child:Text("Choose start time", style: TextStyle(fontSize: 16))),
-        Center(child:Text(_strTime.toString().substring(10, 15))),
-        IconButton(
-          icon: Icon(AntIcons.clock_circle_outline, semanticLabel: "test",),
-          iconSize: 40,
-          color: styleColor,
-          onPressed: (){
-            _showStartTimePicker(context);
-          },
-        ),
-        const Text(""),
-
-        const Text(""),
-        const Center(child:Text("Choose end time", style: TextStyle(fontSize: 16))),
-        Center(child:Text(_endTime.toString().substring(10, 15))),
-        IconButton(
-          icon: Icon(AntIcons.clock_circle_outline),
-          iconSize: 40,
-          color: styleColor,
-          onPressed: (){
-            _showEndTimePicker(context);
-          },
-        ),
-        const Text(""),
-
-        const Text(""),
-        const Center(child:Text("Choose date", style: TextStyle(fontSize: 16))),
-        Center(child:Text(_date.toString().substring(5, 10))),
-        IconButton(
-          icon: Icon(AntIcons.calendar_outline),
-          iconSize: 40,
-          color: styleColor,
-          onPressed: (){
-            _showDatePicker(context);
-          },
-        ),
-        const Text(""),
-
-        const Text(""),
-        Center(child:Text("Write your rate", style: TextStyle(fontSize: 16))),
-        const Text(""),
-        Center(child: TextField(
-          controller: _rateController,
-          obscureText: false,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-            labelText: 'Rate',
+  Widget _createBody() {
+    return Container(
+      child: ListView(
+        physics: NeverScrollableScrollPhysics(),
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(
+              top: 15,
+              bottom: 15,
+            ),
+            child: Center(
+                child: const Text("Add work", style: TextStyle(fontSize: 18))),
           ),
-        )
-        ),
-        const Text(""),
-
-
-        const Text(""),
-        const Text(""),
-        IconButton(
-          icon: Icon(AntIcons.save),
-          iconSize: 40,
-          color: styleColor,
-          onPressed: (){
-            _addHours();
-          },
-        ),
-        const Text(""),
-        const Text(""),
-      ],
+          Divider(
+            height: 10,
+            color: styleColor,
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 25, right: 15),
+                width: 200,
+                child: Text(
+                  "Choose start time",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 15,
+                ),
+                width: 100,
+                child: Text(_strTime.toString().substring(10, 15)),
+              ),
+              IconButton(
+                icon: Icon(
+                  AntIcons.clock_circle_outline,
+                  semanticLabel: "test",
+                ),
+                iconSize: 40,
+                color: styleColor,
+                onPressed: () {
+                  _showStartTimePicker(context);
+                },
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 25, right: 15),
+                width: 200,
+                child: const Text("Choose end time",
+                    style: TextStyle(fontSize: 16)),
+              ),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 15,
+                ),
+                width: 100,
+                child: Text(_endTime.toString().substring(10, 15)),
+              ),
+              IconButton(
+                icon: Icon(AntIcons.clock_circle_outline),
+                iconSize: 40,
+                color: styleColor,
+                onPressed: () {
+                  _showEndTimePicker(context);
+                },
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 25, right: 15),
+                width: 200,
+                child:
+                    const Text("Choose date", style: TextStyle(fontSize: 16)),
+              ),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 15,
+                ),
+                width: 100,
+                child: Text(_date.toString().substring(5, 10)),
+              ),
+              IconButton(
+                icon: Icon(AntIcons.calendar_outline),
+                iconSize: 40,
+                color: styleColor,
+                onPressed: () {
+                  _showDatePicker(context);
+                },
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 25, right: 15),
+                width: 200,
+                child: const Text("Write your rate",
+                    style: TextStyle(fontSize: 16)),
+              ),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 15,
+                ),
+                width: 100,
+                child: Text(_defaultRate.toString()),
+              ),
+              Container(
+                width: 60,
+                child: TextField(
+                  maxLength: 15,
+                  controller: _rateController,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    labelText: 'Rate',
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Center(
+              child: IconButton(
+            icon: Icon(AntIcons.save),
+            iconSize: 40,
+            color: styleColor,
+            onPressed: () {
+              _addHours();
+            },
+          )),
+        ],
+      ),
     );
   }
 
@@ -145,31 +208,19 @@ class _AddTabState extends State<AddTab>{
       });
   }
 
-  void _addHours() async{
-    double workTime = (_endTime.hour + _endTime.minute/60.0) - (_strTime.hour + _strTime.minute/60.0);
-    await Firestore.instance.collection(_user)
-        .add(
-        {
-          'date': _date.toString().substring(5, 10),
-          'strTime': _strTime.toString().substring(10, 15),
-          'endTime': _endTime.toString().substring(10, 15),
-          'workTime': workTime,
-          'rate': double.parse(_rateController.text),
-        });
-    showDialog(
-        context: context,
-        builder: (context) {
-          Future.delayed(Duration(milliseconds: 500), () {
-            Navigator.of(context).pop(true);
-          });
-          return AlertDialog(
-//            backgroundColor: styleColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            title: const Text('Info',),
-            content: const Text('Record was added to database',),
-          );
-        });
+  void _addHours() async {
+    double workTime = (_endTime.hour + _endTime.minute / 60.0) -
+        (_strTime.hour + _strTime.minute / 60.0);
+    await Firestore.instance.collection(_user).add({
+      'date': _date.toString().substring(5, 10),
+      'strTime': _strTime.toString().substring(10, 15),
+      'endTime': _endTime.toString().substring(10, 15),
+      'workTime': workTime,
+      'rate': _rateController.text == "" ? _defaultRate : double.parse(_rateController.text),
+    });
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text('Work was added.'),
+      backgroundColor: styleColor,
+    ));
   }
 }
