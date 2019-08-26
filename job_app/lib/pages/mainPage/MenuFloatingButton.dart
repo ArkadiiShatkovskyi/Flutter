@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:job_app/items/StyleSettings.dart';
 import "package:ant_icons/ant_icons.dart";
 
-class FancyFab extends StatefulWidget {/*
+class FancyFab extends StatefulWidget {
+  /*
   final Function() onPressed;
   final String tooltip;
   final IconData icon;
@@ -26,10 +27,10 @@ class _FancyFabState extends State<FancyFab>
   @override
   void initState() {
     _animationController =
-    AnimationController(vsync: this, duration: Duration(milliseconds: 200))
-      ..addListener(() {
-        setState(() {});
-      });
+        AnimationController(vsync: this, duration: Duration(milliseconds: 200))
+          ..addListener(() {
+            setState(() {});
+          });
     _animateIcon =
         Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
     _buttonColor = ColorTween(
@@ -72,7 +73,7 @@ class _FancyFabState extends State<FancyFab>
     isOpened = !isOpened;
   }
 
-  void _test(){
+  void _test() {
     print('here');
   }
 

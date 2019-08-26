@@ -8,34 +8,32 @@ import 'package:job_app/pages/mainPage/AddTab.dart';
 import 'package:job_app/pages/mainPage/SummaryTab.dart';
 import 'package:job_app/pages/mainPage/MenuFloatingButton.dart';
 
-
-class MainPage extends StatefulWidget{
+class MainPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage>{
+class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  Authorization _db = new Authorization();
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  Authorization _db = Authorization();
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
-    HomeTab(),        //DATA TABLE TAB
-    SummaryTab(),     //SUMMARY TAB
-    AddTab(),         //ADD TAB
+    HomeTab(), //DATA TABLE TAB
+    SummaryTab(), //SUMMARY TAB
+    AddTab(), //ADD TAB
 //    FancyFab(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          accentColor: styleColor,
-          primaryColor: styleColor),
+      theme: ThemeData(accentColor: styleColor, primaryColor: styleColor),
       debugShowCheckedModeBanner: false,
       home: WillPopScope(
         onWillPop: () async => false,
-        child:Scaffold(
+        child: Scaffold(
           drawer: MenuDrawer(2),
           bottomNavigationBar: BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
@@ -60,8 +58,8 @@ class _MainPageState extends State<MainPage>{
             title: Text("Your work"),
             backgroundColor: styleColor,
             actions: <Widget>[
-              new FlatButton(
-                  child: new Icon(AntIcons.logout_outline, color: Colors.white),
+              FlatButton(
+                  child: Icon(AntIcons.logout_outline, color: Colors.white),
                   onPressed: _signOut)
             ],
           ),
@@ -87,45 +85,50 @@ class _MainPageState extends State<MainPage>{
   }
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
 
-
-
   void _signOut() async {
     showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          title: const Text("Log out?"),
-          content: const Text("You will be logged out from this account"),
-          actions: <Widget>[
-            new FlatButton(
-                textColor: styleColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                onPressed: (){
-                  _db.signOut(context);
-                },
-                child: const Text("Yes", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,)),
-            new FlatButton(
-                color: styleColor,
-                textColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                onPressed: (){
-                  Navigator.of(context).pop();
-                },
-                child: const Text("No", overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,)),
-          ],
-        );
-      }
-    );
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            title: const Text("Log out?"),
+            content: const Text("You will be logged out from this account"),
+            actions: <Widget>[
+              FlatButton(
+                  textColor: styleColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  onPressed: () {
+                    _db.signOut(context);
+                  },
+                  child: const Text(
+                    "Yes",
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                  )),
+              FlatButton(
+                  color: styleColor,
+                  textColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    "No",
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                  )),
+            ],
+          );
+        });
   }
 }

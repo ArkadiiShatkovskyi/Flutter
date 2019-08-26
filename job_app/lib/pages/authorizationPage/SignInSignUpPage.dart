@@ -6,76 +6,83 @@ import 'package:ant_icons/ant_icons.dart';
 import 'package:job_app/pages/mainPage/MainPage.dart';
 import 'package:job_app/pages/authorizationPage/Authorization.dart';
 
-
-class SignInSignUp extends StatefulWidget{
+class SignInSignUp extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new _LogInSignUpState();
+  State<StatefulWidget> createState() => _LogInSignUpState();
 }
 
 enum FormMode { LOGIN, SIGNUP }
 
-class _LogInSignUpState extends State<SignInSignUp>{
-
+class _LogInSignUpState extends State<SignInSignUp> {
   FormMode _formMode;
-  Authorization _db = new Authorization();
+  Authorization _db = Authorization();
 
   String _pageText = "Sign In";
   String _secondButtonText = "Create an account";
   bool _isLoading = false;
 
-  TextEditingController _emailTextController = new TextEditingController();
-  TextEditingController _passwordTextController = new TextEditingController();
+  TextEditingController _emailTextController = TextEditingController();
+  TextEditingController _passwordTextController = TextEditingController();
 
   final navigatorKey = GlobalKey<NavigatorState>();
 
   @override
-    Widget build(BuildContext context) => MaterialApp(
-          navigatorKey: navigatorKey,
-          debugShowCheckedModeBanner: false,
-          home: WillPopScope(
-            onWillPop: () async => false,
-            child: Scaffold(
-              appBar: AppBar(
-                title: Text(_pageText),
-                backgroundColor: styleColor,
-              ),
-              body: Center(
-                child: Container(
-                  margin: EdgeInsets.only(top: 40),
-                  child: _showBody(),
-                ),
-              ),
+  Widget build(BuildContext context) => MaterialApp(
+      navigatorKey: navigatorKey,
+      debugShowCheckedModeBanner: false,
+      home: WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(_pageText),
+            backgroundColor: styleColor,
+          ),
+          body: Center(
+            child: Container(
+              margin: EdgeInsets.only(top: 40),
+              child: _showBody(),
             ),
-          )
-      );
+          ),
+        ),
+      ));
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _formMode = FormMode.LOGIN;
-    _db.getUser().then((user){
-      if(user != null){
-        navigatorKey.currentState.push(MaterialPageRoute(builder: (context) => MainPage()));
+    _db.getUser().then((user) {
+      if (user != null) {
+        navigatorKey.currentState
+            .push(MaterialPageRoute(builder: (context) => MainPage()));
       }
     });
   }
 
-  Widget _showCircularProgress(){
+  Widget _showCircularProgress() {
     if (_isLoading) {
-      return Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(styleColor)));
-    } return Container(height: 0.0, width: 0.0,);
-
+      return Center(
+          child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(styleColor)));
+    }
+    return Container(
+      height: 0.0,
+      width: 0.0,
+    );
   }
 
-  void signUpWithEmail() async{
+  void signUpWithEmail() async {
     setState(() {
       _isLoading = true;
     });
-    _db.signUpWithEmail(_emailTextController.text, _passwordTextController.text).then((answer){
-      if(answer == true){
-        Navigator.push(context ,MaterialPageRoute(builder: (context) => SignInSignUp()));
+    _db
+        .signUpWithEmail(
+            _emailTextController.text, _passwordTextController.text)
+        .then((answer) {
+      if (answer == true) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SignInSignUp()));
         _formMode = FormMode.LOGIN;
-      }else{
+      } else {
         //show message try again
       }
     });
@@ -84,15 +91,19 @@ class _LogInSignUpState extends State<SignInSignUp>{
     });
   }
 
-  void signInWithEmail() async{
+  void signInWithEmail() async {
     _db.setIsLoading();
     setState(() {
       _isLoading = _db.setToLoad();
     });
-    _db.signInWithEmail(_emailTextController.text, _passwordTextController.text, navigatorKey).then((answer){
-      if(answer == true){
-        navigatorKey.currentState.push(MaterialPageRoute(builder: (context) => MainPage()));
-      }else{
+    _db
+        .signInWithEmail(_emailTextController.text,
+            _passwordTextController.text, navigatorKey)
+        .then((answer) {
+      if (answer == true) {
+        navigatorKey.currentState
+            .push(MaterialPageRoute(builder: (context) => MainPage()));
+      } else {
         //show message try again
         setState(() {
           _isLoading = _db.setToLoad();
@@ -104,14 +115,20 @@ class _LogInSignUpState extends State<SignInSignUp>{
     });
   }
 
-  Widget _showBody(){
+  Widget _showBody() {
     return ListView(
       children: <Widget>[
         _showImage(),
         _showEmailField(),
-        new Divider(color: Colors.transparent, height: 5.0,),
+        Divider(
+          color: Colors.transparent,
+          height: 5.0,
+        ),
         _showPasswordField(),
-        new Divider(color: Colors.transparent, height: 10.0,),
+        Divider(
+          color: Colors.transparent,
+          height: 10.0,
+        ),
         _showMainButton(),
         _showSecondButton(),
         _showCircularProgress(),
@@ -119,7 +136,7 @@ class _LogInSignUpState extends State<SignInSignUp>{
     );
   }
 
-  Widget _showImage(){
+  Widget _showImage() {
     return Container(
       width: 250,
       height: 250,
@@ -132,7 +149,7 @@ class _LogInSignUpState extends State<SignInSignUp>{
     );
   }
 
-  Widget _showEmailField(){
+  Widget _showEmailField() {
     return Container(
       margin: EdgeInsets.only(left: 40.0, right: 40.0),
       child: TextFormField(
@@ -149,7 +166,7 @@ class _LogInSignUpState extends State<SignInSignUp>{
     );
   }
 
-  Widget _showPasswordField(){
+  Widget _showPasswordField() {
     return Container(
       margin: EdgeInsets.only(left: 40.0, right: 40.0),
       child: TextFormField(
@@ -166,52 +183,52 @@ class _LogInSignUpState extends State<SignInSignUp>{
     );
   }
 
-  Widget _showMainButton(){
+  Widget _showMainButton() {
     return Container(
       margin: EdgeInsets.only(left: 75, right: 75),
-      child: new RaisedButton(
+      child: RaisedButton(
         color: styleColor,
         textColor: Colors.white,
         padding: EdgeInsets.all(20.0),
-        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0)),
         onPressed: () {
-          if(_formMode == FormMode.SIGNUP){
+          if (_formMode == FormMode.SIGNUP) {
             setState(() {
               signUpWithEmail();
             });
-          }else{
+          } else {
             setState(() {
               signInWithEmail();
             });
           }
         },
-        child: Text(_pageText,
-          style: new TextStyle(fontSize:15),
+        child: Text(
+          _pageText,
+          style: TextStyle(fontSize: 15),
         ),
       ),
     );
   }
 
-  Widget _showSecondButton(){
-    return new FlatButton(
-      child: new Text(_secondButtonText,
-          style:
-          new TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300)),
-      onPressed: (){
-        if(_pageText == "Sign In"){
-          setState(() {
-            _formMode = FormMode.SIGNUP;
-            _pageText = "Sign Up";
-            _secondButtonText = "Already have an account? Sign In";
-          });
-        }else{
-          setState(() {
-            _formMode = FormMode.LOGIN;
-            _pageText = "Sign In";
-            _secondButtonText = "Create an account";
-          });
-        }
-      }
-    );
+  Widget _showSecondButton() {
+    return FlatButton(
+        child: Text(_secondButtonText,
+            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300)),
+        onPressed: () {
+          if (_pageText == "Sign In") {
+            setState(() {
+              _formMode = FormMode.SIGNUP;
+              _pageText = "Sign Up";
+              _secondButtonText = "Already have an account? Sign In";
+            });
+          } else {
+            setState(() {
+              _formMode = FormMode.LOGIN;
+              _pageText = "Sign In";
+              _secondButtonText = "Create an account";
+            });
+          }
+        });
   }
 }

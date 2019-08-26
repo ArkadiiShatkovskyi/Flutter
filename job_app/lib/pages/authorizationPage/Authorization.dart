@@ -4,19 +4,18 @@ import 'package:job_app/pages/authorizationPage/SignInSignUpPage.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
-class Authorization{
-
+class Authorization {
   String user;
   bool _isLoading = false;
 
-  Future<bool> signInWithEmail(email, password, navigatorKey) async{
+  Future<bool> signInWithEmail(email, password, navigatorKey) async {
     FirebaseUser user;
-    try{
+    try {
       user = await _auth.signInWithEmailAndPassword(
-          email: email,
-          password: password,
+        email: email,
+        password: password,
       );
-    }catch(e){
+    } catch (e) {
       this._isLoading = false;
       print(e.toString());
       print("wrong pass");
@@ -31,42 +30,42 @@ class Authorization{
       //await widget.auth.signOut();
     } catch (e) {
       print(e);
-    }finally{
-      FirebaseAuth.instance.currentUser().then((firebaseUser){
-        if(firebaseUser == null)
-        {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  SignInSignUp()));
+    } finally {
+      FirebaseAuth.instance.currentUser().then((firebaseUser) {
+        if (firebaseUser == null) {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => SignInSignUp()));
         }
       });
     }
   }
 
-  Future<bool> signUpWithEmail(email, password) async{
+  Future<bool> signUpWithEmail(email, password) async {
     FirebaseUser user;
-    try{
+    try {
       user = await _auth.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
+        email: email,
+        password: password,
       );
-    }catch(e){
+    } catch (e) {
       print(e.toString());
     }
     return user != null;
   }
 
-  Future<FirebaseUser> getUser() async{
+  Future<FirebaseUser> getUser() async {
     return await _auth.currentUser();
   }
 
-  bool setToLoad(){
+  bool setToLoad() {
     return _isLoading;
   }
 
-  void setIsLoading(){
+  void setIsLoading() {
     this._isLoading = true;
   }
 
-  /*Future<List<WorkDay>> getData(user) async{
+/*Future<List<WorkDay>> getData(user) async{
     List<WorkDay> tempList = new List();
     List<DocumentSnapshot> test;
     try{
