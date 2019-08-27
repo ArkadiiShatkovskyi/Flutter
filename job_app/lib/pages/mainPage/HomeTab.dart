@@ -68,7 +68,9 @@ class _HomeTabState extends State<HomeTab> {
         DataCell(Text(documentSnapshot['date'].toString())),
         DataCell(Text(documentSnapshot['strTime'].toString())),
         DataCell(Text(documentSnapshot['endTime'].toString())),
-        DataCell(Text(documentSnapshot['workTime'].toString())),
+        DataCell(Text(documentSnapshot['workTime'].toString().length > 4
+            ? documentSnapshot['workTime'].toString().substring(0, 4)
+            : documentSnapshot['workTime'].toString())),
         DataCell(Text(documentSnapshot['rate'].toString())),
       ]);
     }).toList();
