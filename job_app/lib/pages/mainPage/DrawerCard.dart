@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_app/pages/InfoPage.dart';
 import 'package:job_app/items/StyleSettings.dart';
+import 'package:job_app/pages/AccountPage.dart';
+import 'package:job_app/pages/SettingPage.dart';
 
 class DrawerCard extends StatelessWidget {
   final String drawerFont;
@@ -37,7 +39,11 @@ class DrawerCard extends StatelessWidget {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => InfoWidget()));
             } else if (text == "Account") {
-              //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignInSignUp()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => AccountPage()));
+            } else if (text == "Settings") {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => SettingPage()));
             } else if (text == "Close") {
               _showExitDialon(context);
             }
