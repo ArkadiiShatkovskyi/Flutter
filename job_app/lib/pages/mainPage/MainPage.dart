@@ -3,7 +3,7 @@ import 'package:job_app/items/StyleSettings.dart';
 import "package:ant_icons/ant_icons.dart";
 import 'package:job_app/pages/authorizationPage/Authorization.dart';
 import 'package:job_app/pages/mainPage/HomeTab.dart';
-import 'package:job_app/pages/mainPage/MenuDrawer.dart';
+import 'package:job_app/pages/mainPage/DrawerMenu.dart';
 import 'package:job_app/pages/mainPage/AddTab.dart';
 import 'package:job_app/pages/mainPage/SummaryTab.dart';
 import 'package:job_app/pages/mainPage/MenuFloatingButton.dart';
@@ -66,13 +66,6 @@ class _MainPageState extends State<MainPage> {
           body: _widgetOptions.elementAt(_selectedIndex),
           key: scaffoldKey,
           floatingActionButton: FancyFab(),
-          /*floatingActionButton: FloatingActionButton(
-              backgroundColor: styleColor,
-              child: Center(
-                  child:Icon(AntIcons.form)
-              ),
-              onPressed: () {}
-          ),*/
         ),
       ),
     );
