@@ -80,7 +80,7 @@ class _SummaryTabState extends State<SummaryTab> {
                           width: 170,
                         ),
                         Text(
-                          _listOfWorkTimePerRate[index].toString(),
+                          _listOfWorkTimePerRate[index].toStringAsFixed(2),
                           style: TextStyle(fontSize: 16),
                         )
                       ],
@@ -104,7 +104,7 @@ class _SummaryTabState extends State<SummaryTab> {
                     width: 170,
                   ),
                   Text(
-                    _listOfSalaryPerRate[index].toString(),
+                    _listOfSalaryPerRate[index].toStringAsFixed(2),
                     style: TextStyle(fontSize: 16),
                   )
                 ],
