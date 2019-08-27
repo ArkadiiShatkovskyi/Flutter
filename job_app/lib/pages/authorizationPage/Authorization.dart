@@ -64,26 +64,4 @@ class Authorization {
   void setIsLoading() {
     this._isLoading = true;
   }
-
-/*Future<List<WorkDay>> getData(user) async{
-    List<WorkDay> tempList = new List();
-    List<DocumentSnapshot> test;
-    try{
-      Firestore _db = Firestore.instance;
-      _db.collection('hoursDB')
-          .where('user', isEqualTo: user)
-          .snapshots()
-          .listen((data) =>
-          data.documents.forEach((doc){
-            print("us: " + doc['user'].toString());
-            t.add(doc['date']);
-            tempList.add(new WorkDay(doc['strHour'].toDouble(), doc['endHour'].toDouble(), doc['workHours'].toDouble(), doc['date'], doc['rate'].toDouble()));
-          }));
-    }catch(e){
-      print(e);
-    }finally{
-      // ignore: control_flow_in_finally
-      return tempList;
-    }
-  }*/
 }
