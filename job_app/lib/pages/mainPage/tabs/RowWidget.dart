@@ -1,27 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:job_app/items/StyleSettings.dart';
 
-class TextContainer extends StatelessWidget{
+// ignore: must_be_immutable
+class RowWidget extends StatelessWidget {
+  final icon;
+  final title;
+  final hint;
+  final function;
+  var controller;
+  var textInputHint;
 
-  Widget _child;
-  var _padding;
-  var _width;
-  var _style;
-  var _text;
+  RowWidget(this.title, this.hint, this.icon, this.function);
 
-  TextContainer(child, {padding = 0, width = 0, style = 0, text = 0}){
-    this._child = child;
-    this._padding = padding;
-    this._width = width;
-    this._style = style;
-    this._text = text;
-  }
+  RowWidget.textInput(this.title, this.hint,
+      this.controller, this.textInputHint, {this.icon = 0, this.function = 0});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      if(this._padding != 0) padding: _padding,
-
-    );
+    if (controller != null) {
+      return Row(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(left: 25, right: 15),
+            width: 200,
+            child: Text(title, style: TextStyle(fontSize: 16)),
+          ),
+          Container(
+            padding: EdgeInsets.only(
+              left: 15,
+            ),
+            width: 100,
+            child: Text(hint),
+          ),
+          Container(
+            width: 60,
+            child: TextField(
+              maxLength: 15,
+              controller: controller,
+              obscureText: false,
+              decoration: InputDecoration(
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                labelText: textInputHint,
+              ),
+            ),
+          ),
+        ],
+      );
+    } else {
+      return Row(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(left: 25, right: 15),
+            width: 200,
+            child: Text(
+              title,
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(
+              left: 15,
+            ),
+            width: 100,
+            child: Text(hint),
+          ),
+          IconButton(
+            icon: Icon(
+              icon,
+            ),
+            iconSize: 40,
+            color: styleColor,
+            onPressed: () {
+              function(context);
+            },
+          ),
+        ],
+      );
+    }
   }
-
 }
