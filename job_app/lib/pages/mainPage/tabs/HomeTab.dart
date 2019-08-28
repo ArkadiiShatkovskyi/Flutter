@@ -38,7 +38,7 @@ class _HomeTabState extends State<HomeTab> {
           return SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: DataTable(
-                columnSpacing: 15,
+                columnSpacing: 5,
                 columns: [
                   DataColumn(
                     label: const Text("Date"),
@@ -64,16 +64,56 @@ class _HomeTabState extends State<HomeTab> {
   List<DataRow> _createRows(QuerySnapshot snapshot) {
     List<DataRow> newList =
         snapshot.documents.map((DocumentSnapshot documentSnapshot) {
-      return DataRow(cells: [
-        DataCell(Text(documentSnapshot['date'].toString())),
-        DataCell(Text(documentSnapshot['strTime'].toString())),
-        DataCell(Text(documentSnapshot['endTime'].toString())),
-        DataCell(Text(documentSnapshot['workTime'].toString().length > 4
-            ? documentSnapshot['workTime'].toString().substring(0, 4)
-            : documentSnapshot['workTime'].toString())),
-        DataCell(Text(documentSnapshot['rate'].toString())),
-      ]);
+      return DataRow(
+          selected: _selectedItem == documentSnapshot.documentID,
+          onSelectChanged: (bool selected) {
+            if (selected) {
+              setState(() {
+                _selectedItem = documentSnapshot.documentID;
+              });
+            }else{
+              setState(() {
+                _selectedItem = null;
+              });
+            }
+          },
+          cells: [
+            DataCell(Center(child: Text(documentSnapshot['date'].toString()))),
+            DataCell(
+                Center(child: Text(documentSnapshot['strTime'].toString()))),
+            DataCell(
+                Center(child: Text(documentSnapshot['endTime'].toString()))),
+            DataCell(Center(
+                child: Text(documentSnapshot['workTime'].toString().length > 4
+                    ? documentSnapshot['workTime'].toString().substring(0, 4)
+                    : documentSnapshot['workTime'].toString()))),
+            DataCell(
+              Center(child: Text(documentSnapshot['rate'].toString())),
+            ),
+          ]);
     }).toList();
     return newList;
+  }
+
+  void _deleteSelectedItem(){
+    if(_selectedItem == null){
+      _showShackBarMessage('Item was not choosen');
+    }else{
+      Firestore.instance
+          .collection('testcrud')
+          .document(_selectedItem)
+          .delete()
+          .catchError((e) {
+        print(e);
+      });
+      _showShackBarMessage('Item was deleted');
+    }
+  }
+
+  void _showShackBarMessage(String message){
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      backgroundColor: styleColor,
+    ));
   }
 }
