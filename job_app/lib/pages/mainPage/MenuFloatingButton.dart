@@ -2,19 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:job_app/items/StyleSettings.dart';
 import "package:ant_icons/ant_icons.dart";
 
-class FancyFab extends StatefulWidget {
-  /*
-  final Function() onPressed;
-  final String tooltip;
-  final IconData icon;
-
-  FancyFab({this.onPressed, this.tooltip, this.icon});
-*/
+class MenuFloatingButton extends StatefulWidget {
   @override
-  _FancyFabState createState() => _FancyFabState();
+  _MenuFloatingButtonState createState() => _MenuFloatingButtonState();
 }
 
-class _FancyFabState extends State<FancyFab>
+class _MenuFloatingButtonState extends State<MenuFloatingButton>
     with SingleTickerProviderStateMixin {
   bool isOpened = false;
   AnimationController _animationController;
@@ -82,8 +75,8 @@ class _FancyFabState extends State<FancyFab>
       child: FloatingActionButton(
         heroTag: 2,
         onPressed: _test,
-        tooltip: 'Add',
-        child: Icon(Icons.add),
+        tooltip: 'Delete',
+        child: Icon(Icons.delete_outline),
       ),
     );
   }
