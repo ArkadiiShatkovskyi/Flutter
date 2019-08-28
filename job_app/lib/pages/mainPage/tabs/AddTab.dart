@@ -3,6 +3,7 @@ import 'package:ant_icons/ant_icons.dart';
 import 'package:job_app/items/StyleSettings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:job_app/pages/authorizationPage/Authorization.dart';
+import 'package:job_app/pages/mainPage/tabs/RowWidget.dart';
 
 class AddTab extends StatefulWidget {
   @override
@@ -49,116 +50,14 @@ class _AddTabState extends State<AddTab> {
             height: 10,
             color: styleColor,
           ),
-          Row(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(left: 25, right: 15),
-                width: 200,
-                child: Text(
-                  "Choose start time",
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(
-                  left: 15,
-                ),
-                width: 100,
-                child: Text(_strTime.toString().substring(10, 15)),
-              ),
-              IconButton(
-                icon: Icon(
-                  AntIcons.clock_circle_outline,
-                  semanticLabel: "test",
-                ),
-                iconSize: 40,
-                color: styleColor,
-                onPressed: () {
-                  _showStartTimePicker(context);
-                },
-              ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(left: 25, right: 15),
-                width: 200,
-                child: const Text("Choose end time",
-                    style: TextStyle(fontSize: 16)),
-              ),
-              Container(
-                padding: EdgeInsets.only(
-                  left: 15,
-                ),
-                width: 100,
-                child: Text(_endTime.toString().substring(10, 15)),
-              ),
-              IconButton(
-                icon: Icon(AntIcons.clock_circle_outline),
-                iconSize: 40,
-                color: styleColor,
-                onPressed: () {
-                  _showEndTimePicker(context);
-                },
-              ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(left: 25, right: 15),
-                width: 200,
-                child:
-                    const Text("Choose date", style: TextStyle(fontSize: 16)),
-              ),
-              Container(
-                padding: EdgeInsets.only(
-                  left: 15,
-                ),
-                width: 100,
-                child: Text(_date.toString().substring(5, 10)),
-              ),
-              IconButton(
-                icon: Icon(AntIcons.calendar_outline),
-                iconSize: 40,
-                color: styleColor,
-                onPressed: () {
-                  _showDatePicker(context);
-                },
-              ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(left: 25, right: 15),
-                width: 200,
-                child: const Text("Write your rate",
-                    style: TextStyle(fontSize: 16)),
-              ),
-              Container(
-                padding: EdgeInsets.only(
-                  left: 15,
-                ),
-                width: 100,
-                child: Text(_defaultRate.toString()),
-              ),
-              Container(
-                width: 60,
-                child: TextField(
-                  maxLength: 15,
-                  controller: _rateController,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    labelText: 'Rate',
-                  ),
-                ),
-              ),
-            ],
-          ),
+          RowWidget("Choose start time", _strTime.toString().substring(10, 15),
+              AntIcons.clock_circle_outline, _showStartTimePicker),
+          RowWidget("Choose end time", _endTime.toString().substring(10, 15),
+              AntIcons.clock_circle_outline, _showEndTimePicker),
+          RowWidget("Choose date", _date.toString().substring(5, 10),
+              AntIcons.calendar_outline, _showDatePicker),
+          RowWidget.textInput("Write your rate", _defaultRate.toString(),
+              _rateController, 'Rate'),
           Center(
               child: IconButton(
             icon: Icon(AntIcons.save),
@@ -216,7 +115,9 @@ class _AddTabState extends State<AddTab> {
       'strTime': _strTime.toString().substring(10, 15),
       'endTime': _endTime.toString().substring(10, 15),
       'workTime': workTime,
-      'rate': _rateController.text == "" ? _defaultRate : double.parse(_rateController.text),
+      'rate': _rateController.text == ""
+          ? _defaultRate
+          : double.parse(_rateController.text),
     });
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text('Work was added.'),
