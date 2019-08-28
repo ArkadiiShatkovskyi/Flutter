@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:job_app/pages/mainPage/DrawerCard.dart';
+import 'package:job_app/pages/mainPage/drawer/DrawerCard.dart';
 import 'package:job_app/items/StyleSettings.dart';
 import 'package:ant_icons/ant_icons.dart';
 
