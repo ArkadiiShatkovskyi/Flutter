@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:job_app/items/StyleSettings.dart';
 import "package:ant_icons/ant_icons.dart";
 
+// ignore: must_be_immutable
 class MenuFloatingButton extends StatefulWidget {
+  Function _deleteFunction;
+
+  MenuFloatingButton(this._deleteFunction);
+
   @override
-  _MenuFloatingButtonState createState() => _MenuFloatingButtonState();
+  _MenuFloatingButtonState createState() => _MenuFloatingButtonState(_deleteFunction);
 }
 
 class _MenuFloatingButtonState extends State<MenuFloatingButton>
@@ -16,6 +21,9 @@ class _MenuFloatingButtonState extends State<MenuFloatingButton>
   Animation<double> _translateButton;
   Curve _curve = Curves.easeOut;
   double _fabHeight = 56.0;
+  Function _deleteFunction;
+
+  _MenuFloatingButtonState(this._deleteFunction);
 
   @override
   void initState() {
@@ -74,7 +82,7 @@ class _MenuFloatingButtonState extends State<MenuFloatingButton>
     return Container(
       child: FloatingActionButton(
         heroTag: 2,
-        onPressed: _test,
+        onPressed: _deleteFunction,
         tooltip: 'Delete',
         child: Icon(Icons.delete_outline),
       ),
