@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:job_app/pages/authorizationPage/Authorization.dart';
 import 'package:job_app/items/StyleSettings.dart';
+import 'package:job_app/pages/mainPage/MenuFloatingButton.dart';
 
 // ignore: must_be_immutable
 class DataTab extends StatefulWidget {
 
-  _DataTabState state =_DataTabState();
-
   @override
-  State<StatefulWidget> createState() => state;
+  State<StatefulWidget> createState() => _DataTabState();
 }
 
 class _DataTabState extends State<DataTab> {
@@ -32,6 +31,44 @@ class _DataTabState extends State<DataTab> {
   }
 
   @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: StreamBuilder(
+          stream: Firestore.instance.collection(_user).snapshots(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData)
+              return Center(
+                  child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(styleColor)));
+            return SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: DataTable(
+                  columnSpacing: 5,
+                  columns: [
+                    DataColumn(
+                      label: const Text("Date"),
+                    ),
+                    DataColumn(
+                      label: const Text("Start time"),
+                    ),
+                    DataColumn(
+                      label: const Text("End time"),
+                    ),
+                    DataColumn(
+                      label: const Text("Work time"),
+                    ),
+                    DataColumn(
+                      label: const Text("Rate"),
+                    ),
+                  ],
+                  rows: _createRows(snapshot.data)),
+            );
+          }),
+      floatingActionButton: MenuFloatingButton(),
+    );
+  }
+
+  /*@override
   Widget build(BuildContext context) {
     return StreamBuilder(
         stream: Firestore.instance.collection(_user).snapshots(),
@@ -64,7 +101,7 @@ class _DataTabState extends State<DataTab> {
                 rows: _createRows(snapshot.data)),
           );
         });
-  }
+  }*/
 
   List<DataRow> _createRows(QuerySnapshot snapshot) {
     List<DataRow> newList =

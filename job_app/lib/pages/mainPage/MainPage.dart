@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:job_app/items/StyleSettings.dart';
 import "package:ant_icons/ant_icons.dart";
 import 'package:job_app/pages/authorizationPage/Authorization.dart';
-import 'package:job_app/pages/mainPage/tabs/DataTab.dart';
+import 'package:job_app/pages/mainPage/tabs/dataTab/DataTab.dart';
 import 'package:job_app/pages/mainPage/drawer/DrawerMenu.dart';
 import 'package:job_app/pages/mainPage/tabs/AddTab.dart';
 import 'package:job_app/pages/mainPage/tabs/SummaryTab.dart';
-import 'package:job_app/pages/mainPage/MenuFloatingButton.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -15,7 +14,6 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
-  Function _deleteButtonFunction;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   Authorization _db = Authorization();
   static const TextStyle optionStyle =
@@ -25,10 +23,8 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    DataTab dataTab = DataTab();
-    _deleteButtonFunction = dataTab.state.deleteSelectedItems;
     _widgetOptions = <Widget>[
-      dataTab, //DATA TABLE TAB
+      DataTab(), //DATA TABLE TAB
       SummaryTab(), //SUMMARY TAB
       AddTab(), //ADD TAB
     ];
@@ -74,7 +70,6 @@ class _MainPageState extends State<MainPage> {
           ),
           body: _widgetOptions.elementAt(_selectedIndex),
           key: scaffoldKey,
-          floatingActionButton: MenuFloatingButton(_deleteButtonFunction),
         ),
       ),
     );
