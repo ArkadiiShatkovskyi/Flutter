@@ -4,18 +4,26 @@ import 'package:job_app/pages/authorizationPage/Authorization.dart';
 import 'package:job_app/items/StyleSettings.dart';
 
 class HomeTab extends StatefulWidget {
+
+  var _state = new _HomeTabState();
+
+  Function getDeleteFunction(){
+    return _state.deleteSelectedItems;
+  }
+
   @override
-  State<StatefulWidget> createState() => _HomeTabState();
+  State<StatefulWidget> createState() => _state;
 }
 
 class _HomeTabState extends State<HomeTab> {
   String _user = "1";
   Authorization _db = Authorization();
-  var _selectedItem = null;
+  List<String> _selectedItem;
 
   @override
   void initState() {
     super.initState();
+    _selectedItem = List();
     _getUser();
   }
 
@@ -65,15 +73,15 @@ class _HomeTabState extends State<HomeTab> {
     List<DataRow> newList =
         snapshot.documents.map((DocumentSnapshot documentSnapshot) {
       return DataRow(
-          selected: _selectedItem == documentSnapshot.documentID,
+          selected: _selectedItem.indexOf(documentSnapshot.documentID) != -1,
           onSelectChanged: (bool selected) {
             if (selected) {
               setState(() {
-                _selectedItem = documentSnapshot.documentID;
+                _selectedItem.add(documentSnapshot.documentID);
               });
-            }else{
+            } else {
               setState(() {
-                _selectedItem = null;
+                _selectedItem.remove(documentSnapshot.documentID);
               });
             }
           },
@@ -95,22 +103,22 @@ class _HomeTabState extends State<HomeTab> {
     return newList;
   }
 
-  void _deleteSelectedItem(){
-    if(_selectedItem == null){
-      _showShackBarMessage('Item was not choosen');
-    }else{
-      Firestore.instance
-          .collection('testcrud')
-          .document(_selectedItem)
-          .delete()
-          .catchError((e) {
-        print(e);
-      });
-      _showShackBarMessage('Item was deleted');
-    }
+  void deleteSelectedItems() {
+    if (_selectedItem.length > 0)
+      for (int index = 0; index < _selectedItem.length; index++) {
+        Firestore.instance
+            .collection('testcrud')
+            .document(_selectedItem[index])
+            .delete()
+            .catchError((e) {
+          print(e);
+        });
+        _showShackBarMessage('Item was deleted');
+      }
+    else _showShackBarMessage('Choose items to delete');
   }
 
-  void _showShackBarMessage(String message){
+  void _showShackBarMessage(String message) {
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text(message),
       backgroundColor: styleColor,
