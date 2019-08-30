@@ -120,6 +120,7 @@ class _AddTabState extends State<AddTab> {
           : double.parse(_rateController.text),
     });
     Scaffold.of(context).showSnackBar(SnackBar(
+      duration: Duration(seconds: 1),
       content: Text('Work was added.'),
       backgroundColor: styleColor,
     ));
