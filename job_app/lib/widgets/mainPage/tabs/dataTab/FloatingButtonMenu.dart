@@ -3,16 +3,16 @@ import 'package:job_app/items/StyleSettings.dart';
 import "package:ant_icons/ant_icons.dart";
 
 // ignore: must_be_immutable
-class MenuFloatingButton extends StatefulWidget {
+class FloatingButtonMenu extends StatefulWidget {
   Function _deleteFunction;
 
-  MenuFloatingButton(this._deleteFunction);
+  FloatingButtonMenu(this._deleteFunction);
 
   @override
-  _MenuFloatingButtonState createState() => _MenuFloatingButtonState(_deleteFunction);
+  _FloatingButtonMenuState createState() => _FloatingButtonMenuState(_deleteFunction);
 }
 
-class _MenuFloatingButtonState extends State<MenuFloatingButton>
+class _FloatingButtonMenuState extends State<FloatingButtonMenu>
     with SingleTickerProviderStateMixin {
   bool isOpened = false;
   AnimationController _animationController;
@@ -23,7 +23,7 @@ class _MenuFloatingButtonState extends State<MenuFloatingButton>
   double _fabHeight = 56.0;
   Function _deleteFunction;
 
-  _MenuFloatingButtonState(this._deleteFunction);
+  _FloatingButtonMenuState(this._deleteFunction);
 
   @override
   void initState() {
