@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../pages/mainPage/MainPage.dart';
+import '../widgets/mainPage/MainPage.dart';
 import '../items/StyleSettings.dart';
 
 class InfoWidget extends StatelessWidget {
