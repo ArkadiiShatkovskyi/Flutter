@@ -3,8 +3,8 @@ import 'package:ant_icons/ant_icons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:job_app/items/StyleSettings.dart';
-import 'package:job_app/pages/authorizationPage/Authorization.dart';
-import 'package:job_app/pages/mainPage/tabs/RowWidget.dart';
+import 'package:job_app/widgets/authorizationPage/Authorization.dart';
+import 'package:job_app/widgets/mainPage/tabs/RowWidget.dart';
 
 class AddTab extends StatefulWidget {
   @override
