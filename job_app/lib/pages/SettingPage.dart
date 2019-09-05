@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:job_app/items/StyleSettings.dart';
-import 'package:job_app/pages/mainPage/MainPage.dart';
+
+import '../items/StyleSettings.dart';
+import '../pages/mainPage/MainPage.dart';
 
 class SettingPage extends StatefulWidget {
   @override

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:job_app/items/StyleSettings.dart';
 import "package:ant_icons/ant_icons.dart";
-import 'package:job_app/pages/authorizationPage/Authorization.dart';
-import 'package:job_app/pages/mainPage/tabs/dataTab/DataTab.dart';
-import 'package:job_app/pages/mainPage/drawer/DrawerMenu.dart';
-import 'package:job_app/pages/mainPage/tabs/AddTab.dart';
-import 'package:job_app/pages/mainPage/tabs/SummaryTab.dart';
+
+import '../authorizationPage/Authorization.dart';
+import '../mainPage/tabs/dataTab/DataTab.dart';
+import '../mainPage/drawer/DrawerMenu.dart';
+import '../mainPage/tabs/AddTab.dart';
+import '../mainPage/tabs/SummaryTab.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 0;
+  int _selectedTabIndex = 0;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   Authorization _db = Authorization();
   static const TextStyle optionStyle =
@@ -55,7 +56,7 @@ class _MainPageState extends State<MainPage> {
                 title: Text('Add work'),
               ),
             ],
-            currentIndex: _selectedIndex,
+            currentIndex: _selectedTabIndex,
             selectedItemColor: styleColor,
             onTap: _onItemTapped,
           ),
@@ -68,7 +69,7 @@ class _MainPageState extends State<MainPage> {
                   onPressed: _signOut)
             ],
           ),
-          body: _widgetOptions.elementAt(_selectedIndex),
+          body: _widgetOptions.elementAt(_selectedTabIndex),
           key: scaffoldKey,
         ),
       ),
@@ -77,7 +78,7 @@ class _MainPageState extends State<MainPage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _selectedTabIndex = index;
     });
   }
 
