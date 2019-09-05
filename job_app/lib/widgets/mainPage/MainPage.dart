@@ -5,8 +5,9 @@ import "package:ant_icons/ant_icons.dart";
 import '../authorizationPage/Authorization.dart';
 import '../mainPage/tabs/dataTab/DataTab.dart';
 import '../mainPage/drawer/DrawerMenu.dart';
-import '../mainPage/tabs/AddTab.dart';
-import '../mainPage/tabs/SummaryTab.dart';
+import 'tabs/addTab/AddTab.dart';
+import 'tabs/summaryTab/SummaryTab.dart';
+import './ConfirmLogOutDialog.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -29,7 +30,6 @@ class _MainPageState extends State<MainPage> {
       SummaryTab(), //SUMMARY TAB
       AddTab(), //ADD TAB
     ];
-
   }
 
   @override
@@ -86,42 +86,11 @@ class _MainPageState extends State<MainPage> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            title: const Text("Log out?"),
-            content: const Text("You will be logged out from this account"),
-            actions: <Widget>[
-              FlatButton(
-                  textColor: styleColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  onPressed: () {
-                    _db.signOut(context);
-                  },
-                  child: const Text(
-                    "Yes",
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                  )),
-              FlatButton(
-                  color: styleColor,
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    "No",
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                  )),
-            ],
-          );
+          return ConfirmLogOutDialog(funFirstAnswer: () {
+            _db.signOut(context);
+          }, funSecondAnswer: () {
+            Navigator.of(context).pop();
+          });
         });
   }
 }
