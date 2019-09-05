@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:job_app/pages/authorizationPage/Authorization.dart';
+import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import 'package:job_app/items/StyleSettings.dart';
-import 'package:job_app/pages/mainPage/tabs/dataTab/MenuFloatingButton.dart';
+import 'package:job_app/widgets/mainPage/tabs/dataTab/FloatingButtonMenu.dart';
 
 // ignore: must_be_immutable
 class DataTab extends StatefulWidget {
@@ -40,9 +40,9 @@ class _DataTabState extends State<DataTab> {
               return Center(
                   child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(styleColor)));
-            return SingleChildScrollView(
+            return ListView( /** CHANGE TO LIST!!!!!!!! **/
               scrollDirection: Axis.vertical,
-              child: DataTable(
+              children:<Widget>[ DataTable(
                   columnSpacing: 5,
                   columns: [
                     DataColumn(
@@ -61,10 +61,10 @@ class _DataTabState extends State<DataTab> {
                       label: const Text("Rate"),
                     ),
                   ],
-                  rows: _createRows(snapshot.data)),
+                  rows: _createRows(snapshot.data))],
             );
           }),
-      floatingActionButton: MenuFloatingButton(_deleteSelectedItems),
+      floatingActionButton: FloatingButtonMenu(_deleteSelectedItems),
     );
   }
 
