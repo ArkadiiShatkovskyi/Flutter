@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:job_app/items/StyleSettings.dart';
+import './SummaryCard.dart';
 
 class SummaryTab extends StatefulWidget {
   @override
@@ -37,8 +37,6 @@ class _SummaryTabState extends State<SummaryTab> {
           _listOfRates.add("Total");
           _listOfWorkTimePerRate.add(tempWorkTime);
           _listOfSalaryPerRate.add(tempSalary);
-//                _workedTime = tempWorkTime;
-//                _salary = tempSalary;
         });
       }
     });
@@ -46,84 +44,12 @@ class _SummaryTabState extends State<SummaryTab> {
 
   Widget _createItem(int index) {
     String rate = _listOfRates[index].toString();
-    return Card(
-//      color: Colors.white.withAlpha(230),
-//      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-      child: Container(
-        padding: EdgeInsets.only(left: 75, right: 75),
-        child: Column(
-          children: <Widget>[
-            Divider(
-              height: 30,
-              color: Colors.transparent,
-            ),
-            Center(
-                child: Text(
-              rate.toString() == "Total" ? "Total" : "Job per rate: $rate",
-              style: TextStyle(fontSize: 18),
-            )),
-            Divider(
-              height: 30,
-              color: styleColor,
-            ),
-            Container(
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          child: const Text(
-                            "Time worked: ",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          width: 170,
-                        ),
-                        Text(
-                          _listOfWorkTimePerRate[index].toStringAsFixed(2),
-                          style: TextStyle(fontSize: 16),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Divider(
-              height: 10,
-              color: Colors.transparent,
-            ),
-            Container(
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    child: const Text(
-                      "Salary: ",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    width: 170,
-                  ),
-                  Text(
-                    _listOfSalaryPerRate[index].toStringAsFixed(2),
-                    style: TextStyle(fontSize: 16),
-                  )
-                ],
-              ),
-            ),
-            Divider(
-              height: 30,
-              color: Colors.transparent,
-            ),
-          ],
-        ),
-      ),
-    );
+    return SummaryCard(rate: rate, workTimePerRate: _listOfWorkTimePerRate[index], salaryPerRate: _listOfSalaryPerRate[index]);
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-//                    physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: _listOfRates.length,
         itemBuilder: (BuildContext ctxt, int index) => _createItem(index));
