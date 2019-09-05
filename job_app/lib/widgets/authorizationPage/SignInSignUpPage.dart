@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:job_app/items/StyleSettings.dart';
 import 'package:ant_icons/ant_icons.dart';
-import 'package:job_app/pages/mainPage/MainPage.dart';
-import 'package:job_app/pages/authorizationPage/Authorization.dart';
+import 'package:job_app/widgets/mainPage/MainPage.dart';
+import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 
 class SignInSignUp extends StatefulWidget {
   @override
