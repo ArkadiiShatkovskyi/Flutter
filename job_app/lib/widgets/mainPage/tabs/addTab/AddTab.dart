@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:job_app/items/StyleSettings.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
-import 'package:job_app/widgets/mainPage/tabs/RowWidget.dart';
+import './RowWidget.dart';
 
 class AddTab extends StatefulWidget {
   @override
