@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:job_app/items/StyleSettings.dart';
-import 'package:ant_icons/ant_icons.dart';
 import 'package:job_app/widgets/mainPage/MainPage.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
+import './AuthorizationPageBody.dart';
 
 class SignInSignUp extends StatefulWidget {
   @override
@@ -58,18 +58,6 @@ class _LogInSignUpState extends State<SignInSignUp> {
     });
   }
 
-  Widget _showCircularProgress() {
-    if (_isLoading) {
-      return Center(
-          child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(styleColor)));
-    }
-    return Container(
-      height: 0.0,
-      width: 0.0,
-    );
-  }
-
   void signUpWithEmail() async {
     setState(() {
       _isLoading = true;
@@ -116,119 +104,41 @@ class _LogInSignUpState extends State<SignInSignUp> {
   }
 
   Widget _showBody() {
-    return ListView(
-      children: <Widget>[
-        _showImage(),
-        _showEmailField(),
-        Divider(
-          color: Colors.transparent,
-          height: 5.0,
-        ),
-        _showPasswordField(),
-        Divider(
-          color: Colors.transparent,
-          height: 10.0,
-        ),
-        _showMainButton(),
-        _showSecondButton(),
-        _showCircularProgress(),
-      ],
-    );
+    return AuthorizationPageBody(
+        _emailTextController,
+        _passwordTextController,
+        _pageText,
+        _secondButtonText,
+        _isLoading,
+        _onMainButtonPressed,
+        _onSecondButtonPressed);
   }
 
-  Widget _showImage() {
-    return Container(
-      width: 250,
-      height: 250,
-      margin: EdgeInsets.only(bottom: 20),
-      child: CircleAvatar(
-        backgroundColor: Colors.transparent,
-        radius: 48.0,
-        child: Image.asset("assets/images/undraw_mobile_login_ikmv.png"),
-      ),
-    );
+  void _onMainButtonPressed() {
+    if (_formMode == FormMode.SIGNUP) {
+      setState(() {
+        signUpWithEmail();
+      });
+    } else {
+      setState(() {
+        signInWithEmail();
+      });
+    }
   }
 
-  Widget _showEmailField() {
-    return Container(
-      margin: EdgeInsets.only(left: 40.0, right: 40.0),
-      child: TextFormField(
-        maxLines: 1,
-        maxLength: 30,
-        obscureText: false,
-        decoration: InputDecoration(
-          icon: Icon(AntIcons.mail_outline, color: styleColor),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-          labelText: 'Email',
-        ),
-        controller: _emailTextController,
-      ),
-    );
-  }
-
-  Widget _showPasswordField() {
-    return Container(
-      margin: EdgeInsets.only(left: 40.0, right: 40.0),
-      child: TextFormField(
-        maxLines: 1,
-        maxLength: 20,
-        obscureText: true,
-        decoration: InputDecoration(
-          icon: Icon(AntIcons.lock_outline, color: styleColor),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-          labelText: 'Password',
-        ),
-        controller: _passwordTextController,
-      ),
-    );
-  }
-
-  Widget _showMainButton() {
-    return Container(
-      margin: EdgeInsets.only(left: 75, right: 75),
-      child: RaisedButton(
-        color: styleColor,
-        textColor: Colors.white,
-        padding: EdgeInsets.all(20.0),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0)),
-        onPressed: () {
-          if (_formMode == FormMode.SIGNUP) {
-            setState(() {
-              signUpWithEmail();
-            });
-          } else {
-            setState(() {
-              signInWithEmail();
-            });
-          }
-        },
-        child: Text(
-          _pageText,
-          style: TextStyle(fontSize: 15),
-        ),
-      ),
-    );
-  }
-
-  Widget _showSecondButton() {
-    return FlatButton(
-        child: Text(_secondButtonText,
-            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300)),
-        onPressed: () {
-          if (_pageText == "Sign In") {
-            setState(() {
-              _formMode = FormMode.SIGNUP;
-              _pageText = "Sign Up";
-              _secondButtonText = "Already have an account? Sign In";
-            });
-          } else {
-            setState(() {
-              _formMode = FormMode.LOGIN;
-              _pageText = "Sign In";
-              _secondButtonText = "Create an account";
-            });
-          }
-        });
+  void _onSecondButtonPressed() {
+    if (_pageText == "Sign In") {
+      setState(() {
+        _formMode = FormMode.SIGNUP;
+        _pageText = "Sign Up";
+        _secondButtonText = "Already have an account? Sign In";
+      });
+    } else {
+      setState(() {
+        _formMode = FormMode.LOGIN;
+        _pageText = "Sign In";
+        _secondButtonText = "Create an account";
+      });
+    }
   }
 }
