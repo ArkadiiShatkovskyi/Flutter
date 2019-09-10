@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ant_icons/ant_icons.dart';
-import 'package:job_app/items/StyleSettings.dart';
 
 class AuthorizationPageBody extends StatelessWidget {
   final _emailTextController;
@@ -41,7 +40,9 @@ class AuthorizationPageBody extends StatelessWidget {
             maxLength: 30,
             obscureText: false,
             decoration: InputDecoration(
-              icon: Icon(AntIcons.mail_outline, color: styleColor),
+              icon: Icon(
+                AntIcons.mail_outline,
+              ),
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               labelText: 'Email',
@@ -60,7 +61,9 @@ class AuthorizationPageBody extends StatelessWidget {
             maxLength: 20,
             obscureText: true,
             decoration: InputDecoration(
-              icon: Icon(AntIcons.lock_outline, color: styleColor),
+              icon: Icon(
+                AntIcons.lock_outline,
+              ),
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               labelText: 'Password',
@@ -75,7 +78,6 @@ class AuthorizationPageBody extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(left: 75, right: 75),
           child: RaisedButton(
-            color: styleColor,
             textColor: Colors.white,
             padding: EdgeInsets.all(20.0),
             shape: RoundedRectangleBorder(
@@ -100,8 +102,9 @@ class AuthorizationPageBody extends StatelessWidget {
   Widget _showCircularProgress() {
     if (_isLoading) {
       return Center(
-          child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(styleColor)));
+        child: CircularProgressIndicator(),
+      );
+      //valueColor: AlwaysStoppedAnimation<Color>(styleColor)));
     }
     return Container(
       height: 0.0,

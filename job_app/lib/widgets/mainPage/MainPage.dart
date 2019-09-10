@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:job_app/items/StyleSettings.dart';
 import "package:ant_icons/ant_icons.dart";
 
 import '../authorizationPage/Authorization.dart';
@@ -8,6 +7,7 @@ import '../mainPage/drawer/DrawerMenu.dart';
 import 'tabs/addTab/AddTab.dart';
 import 'tabs/summaryTab/SummaryTab.dart';
 import './ConfirmLogOutDialog.dart';
+import '../AppTheme.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(accentColor: styleColor, primaryColor: styleColor),
+      theme: appTheme,
       debugShowCheckedModeBanner: false,
       home: WillPopScope(
         onWillPop: () async => false,
@@ -57,12 +57,12 @@ class _MainPageState extends State<MainPage> {
               ),
             ],
             currentIndex: _selectedTabIndex,
-            selectedItemColor: styleColor,
+//            selectedItemColor: styleColor,
             onTap: _onItemTapped,
           ),
           appBar: AppBar(
             title: Text("Your work"),
-            backgroundColor: styleColor,
+//            backgroundColor: styleColor,
             actions: <Widget>[
               FlatButton(
                   child: Icon(AntIcons.logout_outline, color: Colors.white),

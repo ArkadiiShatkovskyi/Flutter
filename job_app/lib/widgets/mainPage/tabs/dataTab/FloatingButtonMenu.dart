@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:job_app/items/StyleSettings.dart';
 import "package:ant_icons/ant_icons.dart";
+import 'package:job_app/widgets/AppTheme.dart';
 
 // ignore: must_be_immutable
 class FloatingButtonMenu extends StatefulWidget {

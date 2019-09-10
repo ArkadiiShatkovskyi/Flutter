@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ant_icons/ant_icons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:job_app/items/StyleSettings.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import './RowWidget.dart';
 
@@ -49,7 +48,6 @@ class _AddTabState extends State<AddTab> {
           ),
           Divider(
             height: 10,
-            color: styleColor,
           ),
           RowWidget("Choose start time", _strTime.toString().substring(10, 15),
               AntIcons.clock_circle_outline, _showStartTimePicker),
@@ -63,7 +61,6 @@ class _AddTabState extends State<AddTab> {
               child: IconButton(
             icon: Icon(AntIcons.save),
             iconSize: 40,
-            color: styleColor,
             onPressed: () {
               _addHours();
             },
@@ -123,7 +120,7 @@ class _AddTabState extends State<AddTab> {
     Scaffold.of(context).showSnackBar(SnackBar(
       duration: Duration(seconds: 1),
       content: Text('Work was added.'),
-      backgroundColor: styleColor,
+//      backgroundColor: styleColor,
     ));
   }
 }

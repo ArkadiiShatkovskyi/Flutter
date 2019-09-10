@@ -3,19 +3,18 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_app/widgets/InfoPage.dart';
-import 'package:job_app/items/StyleSettings.dart';
 import 'package:job_app/widgets/accountPage/AccountPage.dart';
 import 'package:job_app/widgets/SettingPage.dart';
+import 'package:job_app/widgets/AppTheme.dart';
 
 class DrawerCard extends StatelessWidget {
   final String drawerFont;
   final double tilesFontSize;
-  final Color iconsColor;
   final double iconsSize;
   final String text;
   final IconData icon;
 
-  DrawerCard(this.text, this.iconsColor, this.drawerFont, this.iconsSize,
+  DrawerCard(this.text, this.drawerFont, this.iconsSize,
       this.tilesFontSize, this.icon);
 
   @override
@@ -24,7 +23,7 @@ class DrawerCard extends StatelessWidget {
       child: ListTile(
           leading: Icon(
             icon,
-            color: iconsColor,
+            color: styleColor,
             size: iconsSize,
           ),
           title: Text(
@@ -65,7 +64,6 @@ class DrawerCard extends StatelessWidget {
             content: const Text("Are you sure you want exit from application?"),
             actions: <Widget>[
               FlatButton(
-                  textColor: styleColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
@@ -78,7 +76,6 @@ class DrawerCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                   )),
               FlatButton(
-                  color: styleColor,
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:job_app/items/StyleSettings.dart';
 import 'package:job_app/widgets/mainPage/MainPage.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import './AuthorizationPageBody.dart';
@@ -35,7 +34,6 @@ class _LogInSignUpState extends State<SignInSignUp> {
         child: Scaffold(
           appBar: AppBar(
             title: Text(_pageText),
-            backgroundColor: styleColor,
           ),
           body: Center(
             child: Container(

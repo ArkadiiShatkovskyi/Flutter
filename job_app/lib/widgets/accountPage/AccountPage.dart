@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:job_app/items/StyleSettings.dart';
 import 'package:job_app/widgets/mainPage/MainPage.dart';
 import 'package:ant_icons/ant_icons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import './DataElement.dart';
+import 'package:job_app/widgets/AppTheme.dart';
 
 class AccountPage extends StatefulWidget {
   @override
@@ -32,11 +32,11 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: appTheme,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
             title: Text("Account page"),
-            backgroundColor: styleColor,
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () => Navigator.pushReplacement(
@@ -56,26 +56,21 @@ class _AccountPageState extends State<AccountPage> {
             child: Icon(
               AntIcons.user,
               size: 100,
-              color: styleColor,
             )),
         Divider(
           height: 15,
-          color: styleColor,
         ),
         DataElement("Name", _name.toString()),
         Divider(
           height: 15,
-          color: styleColor,
         ),
         DataElement("Surname", _surname.toString()),
         Divider(
           height: 15,
-          color: styleColor,
         ),
         DataElement("Birth Day", _birthDate.toString()),
         Divider(
           height: 15,
-          color: styleColor,
         ),
         DataElement("Email", _email.toString()),
       ],

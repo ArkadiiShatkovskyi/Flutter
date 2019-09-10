@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:job_app/items/StyleSettings.dart';
-
 class SummaryCard extends StatelessWidget{
 
   final String rate;
@@ -28,7 +26,6 @@ class SummaryCard extends StatelessWidget{
                 )),
             Divider(
               height: 30,
-              color: styleColor,
             ),
             Container(
               child: Row(

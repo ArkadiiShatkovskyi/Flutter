@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:job_app/items/StyleSettings.dart';
 
 // ignore: must_be_immutable
 class RowWidget extends StatelessWidget {
@@ -70,7 +69,6 @@ class RowWidget extends StatelessWidget {
               icon,
             ),
             iconSize: 40,
-            color: styleColor,
             onPressed: () {
               function(context);
             },

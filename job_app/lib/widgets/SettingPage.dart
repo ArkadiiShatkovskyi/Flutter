@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../items/StyleSettings.dart';
 import '../widgets/mainPage/MainPage.dart';
+import './AppTheme.dart';
 
 class SettingPage extends StatefulWidget {
   @override
@@ -14,11 +14,11 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: appTheme,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
             title: Text("Settings"),
-            backgroundColor: styleColor,
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () => Navigator.pushReplacement(

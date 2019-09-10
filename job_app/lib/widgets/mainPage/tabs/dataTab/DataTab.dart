@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
-import 'package:job_app/items/StyleSettings.dart';
 import 'package:job_app/widgets/mainPage/tabs/dataTab/FloatingButtonMenu.dart';
 
 // ignore: must_be_immutable
@@ -38,8 +37,8 @@ class _DataTabState extends State<DataTab> {
           builder: (context, snapshot) {
             if (!snapshot.hasData)
               return Center(
-                  child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(styleColor)));
+                  child: CircularProgressIndicator());
+//                      valueColor: AlwaysStoppedAnimation<Color>(styleColor)));
             return ListView( /** CHANGE TO LIST!!!!!!!! **/
               scrollDirection: Axis.vertical,
               children:<Widget>[ DataTable(
@@ -124,7 +123,7 @@ class _DataTabState extends State<DataTab> {
     Scaffold.of(context).showSnackBar(SnackBar(
       duration: Duration(seconds: 1),
       content: Text(message),
-      backgroundColor: styleColor,
+//      backgroundColor: styleColor,
     ));
   }
 }

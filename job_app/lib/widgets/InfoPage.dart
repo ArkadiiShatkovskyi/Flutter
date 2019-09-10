@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/mainPage/MainPage.dart';
-import '../items/StyleSettings.dart';
+import './AppTheme.dart';
 
 class InfoWidget extends StatelessWidget {
   final String bcgImage = null;
@@ -9,13 +9,14 @@ class InfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: WillPopScope(
           onWillPop: () async => false,
           child: Scaffold(
             appBar: AppBar(
                 title: Text("About"),
-                backgroundColor: styleColor,
+//                backgroundColor: styleColor,
                 leading: IconButton(
                   icon: Icon(Icons.arrow_back),
                   onPressed: () => Navigator.pushReplacement(context,
