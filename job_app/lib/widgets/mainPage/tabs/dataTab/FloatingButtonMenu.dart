@@ -9,7 +9,7 @@ class FloatingButtonMenu extends StatefulWidget {
   FloatingButtonMenu(this._deleteFunction);
 
   @override
-  _FloatingButtonMenuState createState() => _FloatingButtonMenuState(_deleteFunction);
+  _FloatingButtonMenuState createState() => _FloatingButtonMenuState();
 }
 
 class _FloatingButtonMenuState extends State<FloatingButtonMenu>
@@ -21,9 +21,8 @@ class _FloatingButtonMenuState extends State<FloatingButtonMenu>
   Animation<double> _translateButton;
   Curve _curve = Curves.easeOut;
   double _fabHeight = 56.0;
-  Function _deleteFunction;
 
-  _FloatingButtonMenuState(this._deleteFunction);
+  _FloatingButtonMenuState();
 
   @override
   void initState() {
@@ -82,7 +81,7 @@ class _FloatingButtonMenuState extends State<FloatingButtonMenu>
     return Container(
       child: FloatingActionButton(
         heroTag: 2,
-        onPressed: _deleteFunction,
+        onPressed: widget._deleteFunction,
         tooltip: 'Delete',
         child: Icon(Icons.delete_outline),
       ),
