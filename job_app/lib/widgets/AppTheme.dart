@@ -11,6 +11,7 @@ Color _hexToColor(String code) {
 ThemeData get appTheme {
   return ThemeData(
     primaryColor: styleColor,
+    accentColor: styleColor,
 //    dividerColor: styleColor,
     buttonColor: styleColor,
     iconTheme: IconThemeData(color: styleColor),
