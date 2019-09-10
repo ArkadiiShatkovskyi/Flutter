@@ -10,7 +10,6 @@ class MenuDrawer extends StatelessWidget {
   final double tilesFontSize = 20;
   final double iconsSize = 20.0;
   final double titleDrawerSize = 30.0;
-//  final Color iconsColor = styleColor;
   final int menuItem;
 
   MenuDrawer(this.menuItem);
@@ -27,7 +26,7 @@ class MenuDrawer extends StatelessWidget {
 //      decoration: BoxDecoraґtion(color: styleColor),
       height: 175.0,
       child: DrawerHeader(
-        decoration: BoxDecoration(color: styleColor),
+        decoration: BoxDecoration(color: appTheme.primaryColor),
           child: Center(
         child: Text(
           "Menu",

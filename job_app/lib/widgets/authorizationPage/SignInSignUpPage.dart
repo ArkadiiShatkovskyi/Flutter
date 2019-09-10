@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:job_app/widgets/mainPage/MainPage.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import './AuthorizationPageBody.dart';
+import 'package:job_app/widgets/AppTheme.dart';
 
 class SignInSignUp extends StatefulWidget {
   @override
@@ -27,6 +28,7 @@ class _LogInSignUpState extends State<SignInSignUp> {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+      theme: appTheme,
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       home: WillPopScope(

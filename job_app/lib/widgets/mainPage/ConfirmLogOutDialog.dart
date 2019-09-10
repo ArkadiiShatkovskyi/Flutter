@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_app/widgets/AppTheme.dart';
 
 class ConfirmLogOutDialog extends StatelessWidget {
   final Function funFirstAnswer;
@@ -16,7 +17,7 @@ class ConfirmLogOutDialog extends StatelessWidget {
       content: const Text("You will be logged out from this account"),
       actions: <Widget>[
         FlatButton(
-//            textColor: styleColor,
+            textColor: appTheme.primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
@@ -27,7 +28,7 @@ class ConfirmLogOutDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             )),
         FlatButton(
-//            color: styleColor,
+            color: appTheme.primaryColor,
             textColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),

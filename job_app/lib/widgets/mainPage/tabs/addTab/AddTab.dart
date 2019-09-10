@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import './RowWidget.dart';
+import 'package:job_app/widgets/AppTheme.dart';
 
 class AddTab extends StatefulWidget {
   @override
@@ -120,7 +121,7 @@ class _AddTabState extends State<AddTab> {
     Scaffold.of(context).showSnackBar(SnackBar(
       duration: Duration(seconds: 1),
       content: Text('Work was added.'),
-//      backgroundColor: styleColor,
+      backgroundColor: appTheme.primaryColor,
     ));
   }
 }

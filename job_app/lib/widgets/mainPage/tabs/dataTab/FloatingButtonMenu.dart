@@ -34,7 +34,7 @@ class _FloatingButtonMenuState extends State<FloatingButtonMenu>
     _animateIcon =
         Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
     _buttonColor = ColorTween(
-      begin: styleColor,
+      begin: appTheme.primaryColor,
       end: Colors.redAccent,
     ).animate(CurvedAnimation(
       parent: _animationController,

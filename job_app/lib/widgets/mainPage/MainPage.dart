@@ -57,12 +57,10 @@ class _MainPageState extends State<MainPage> {
               ),
             ],
             currentIndex: _selectedTabIndex,
-//            selectedItemColor: styleColor,
             onTap: _onItemTapped,
           ),
           appBar: AppBar(
             title: Text("Your work"),
-//            backgroundColor: styleColor,
             actions: <Widget>[
               FlatButton(
                   child: Icon(AntIcons.logout_outline, color: Colors.white),

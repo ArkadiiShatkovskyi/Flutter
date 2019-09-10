@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import 'package:job_app/widgets/mainPage/tabs/dataTab/FloatingButtonMenu.dart';
+import 'package:job_app/widgets/AppTheme.dart';
 
 // ignore: must_be_immutable
 class DataTab extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() => _DataTabState();
 }
@@ -30,37 +30,38 @@ class _DataTabState extends State<DataTab> {
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
           stream: Firestore.instance.collection(_user).snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData)
-              return Center(
-                  child: CircularProgressIndicator());
-//                      valueColor: AlwaysStoppedAnimation<Color>(styleColor)));
-            return ListView( /** CHANGE TO LIST!!!!!!!! **/
+              return Center(child: CircularProgressIndicator());
+            return ListView.builder(
+              itemCount: 1,
               scrollDirection: Axis.vertical,
-              children:<Widget>[ DataTable(
-                  columnSpacing: 5,
-                  columns: [
-                    DataColumn(
-                      label: const Text("Date"),
-                    ),
-                    DataColumn(
-                      label: const Text("Start time"),
-                    ),
-                    DataColumn(
-                      label: const Text("End time"),
-                    ),
-                    DataColumn(
-                      label: const Text("Work time"),
-                    ),
-                    DataColumn(
-                      label: const Text("Rate"),
-                    ),
-                  ],
-                  rows: _createRows(snapshot.data))],
+              itemBuilder: (BuildContext ctx, int index) {
+                return DataTable(
+                    columnSpacing: 5,
+                    columns: [
+                      DataColumn(
+                        label: const Text("Date"),
+                      ),
+                      DataColumn(
+                        label: const Text("Start time"),
+                      ),
+                      DataColumn(
+                        label: const Text("End time"),
+                      ),
+                      DataColumn(
+                        label: const Text("Work time"),
+                      ),
+                      DataColumn(
+                        label: const Text("Rate"),
+                      ),
+                    ],
+                    rows: _createRows(snapshot.data));
+              },
             );
           }),
       floatingActionButton: FloatingButtonMenu(_deleteSelectedItems),
@@ -102,7 +103,7 @@ class _DataTabState extends State<DataTab> {
   }
 
   void _deleteSelectedItems() {
-    if (_selectedItems.length > 0){
+    if (_selectedItems.length > 0) {
       for (int index = 0; index < _selectedItems.length; index++) {
         Firestore.instance
             .collection(_user)
@@ -116,14 +117,15 @@ class _DataTabState extends State<DataTab> {
         _selectedItems.clear();
       });
       _showShackBarMessage('Items was deleted');
-    } else _showShackBarMessage('Choose items to delete');
+    } else
+      _showShackBarMessage('Choose items to delete');
   }
 
   void _showShackBarMessage(String message) {
     Scaffold.of(context).showSnackBar(SnackBar(
       duration: Duration(seconds: 1),
       content: Text(message),
-//      backgroundColor: styleColor,
+      backgroundColor: appTheme.primaryColor,
     ));
   }
 }

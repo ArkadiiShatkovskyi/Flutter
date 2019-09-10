@@ -16,7 +16,6 @@ class InfoWidget extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
                 title: Text("About"),
-//                backgroundColor: styleColor,
                 leading: IconButton(
                   icon: Icon(Icons.arrow_back),
                   onPressed: () => Navigator.pushReplacement(context,
