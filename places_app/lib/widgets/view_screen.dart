@@ -55,51 +55,87 @@ class _ViewScreenState extends State<ViewScreen> {
           ),
           Padding(
             padding: EdgeInsets.only(
-              top: 50,
+              top: 40,
 //              left: 10,
 //              right: 10,
             ),
             child: Image.asset(
               'assets/images/test_image.jpg',
               width: media.size.width,
-              height: media.size.height * .75,
+              height: media.size.height * .8,
             ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    width: media.size.width * .35,
-                    child: Text(
-                      "Awesome photo of building. By Arek",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 17),
-                      textAlign: TextAlign.start,
+              Padding(
+                padding: EdgeInsets.only(bottom: 20, left: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                        child: Text(
+                          "Fancy test photo to view",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                        width: media.size.width * .35),
+                  ],
+                ),
+              ),
+              Container(
+                width: media.size.width,
+                height: media.size.height * .10,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                        padding: EdgeInsets.only(left: 30),
+                        child: SmoothStarRating(
+                          size: 25,
+                          color: Colors.red,
+                          borderColor: Colors.black,
+                          rating: _ranking,
+                          onRatingChanged: (v) {
+                            setState(() {
+                              _ranking = v;
+                            });
+                          },
+                        )),
+                  ],
+                ),
+              ),
+              Container(
+                height: media.size.height * .15,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(left: 30),
+                      width: media.size.width * .45,
+                      child: Text(
+                        "Awesome photo of building. Dark place of Wroclaw. By A. S",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400, fontSize: 18),
+                        textAlign: TextAlign.start,
+                      ),
                     ),
-                  ),
-                  Padding(
-                      padding: EdgeInsets.only(bottom: 30, right: 15),
-                      child: SmoothStarRating(
-                        size: 30,
-                        color: Colors.red,
-                        borderColor: Colors.black,
-                        rating: _ranking,
-                        onRatingChanged: (v) {
-                          setState(() {
-                            _ranking = v;
-                          });
-                        },
-                      ))
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                children: <Widget>[],
+                    Container(
+                      padding: EdgeInsets.only(right: 50),
+                      child: IconButton(icon: Icon(Icons.favorite, size: 35, color: Colors.red,), onPressed: () {},),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
