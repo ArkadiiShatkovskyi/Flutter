@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:job_app/widgets/mainPage/drawer/DrawerCard.dart';
 import 'package:ant_icons/ant_icons.dart';
+
+import 'package:job_app/widgets/mainPage/drawer/DrawerCard.dart';
 import 'package:job_app/widgets/AppTheme.dart';
 
 class MenuDrawer extends StatelessWidget {

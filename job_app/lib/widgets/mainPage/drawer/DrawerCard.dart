@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:job_app/widgets/InfoPage.dart';
 import 'package:job_app/widgets/accountPage/AccountPage.dart';
 import 'package:job_app/widgets/SettingPage.dart';

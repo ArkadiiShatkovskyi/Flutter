@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:job_app/widgets/mainPage/MainPage.dart';
-import 'package:ant_icons/ant_icons.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ant_icons/ant_icons.dart';
+
+import 'package:job_app/widgets/mainPage/MainPage.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import './DataElement.dart';
 import 'package:job_app/widgets/AppTheme.dart';

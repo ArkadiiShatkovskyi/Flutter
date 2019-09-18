@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import './SummaryCard.dart';
 
 class SummaryTab extends StatefulWidget {

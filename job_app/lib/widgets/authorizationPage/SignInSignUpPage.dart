@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import 'package:job_app/widgets/mainPage/MainPage.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import './AuthorizationPageBody.dart';
