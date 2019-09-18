@@ -57,8 +57,9 @@ class _ViewScreenState extends State<ViewScreen> {
                         child: Text(
                           "Fancy test photo to view",
                           style: TextStyle(
+                            fontFamily: 'Chilanka-Regular',
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 24,
                           ),
                           textAlign: TextAlign.left,
                         ),
@@ -81,7 +82,8 @@ class _ViewScreenState extends State<ViewScreen> {
                 width: media.size.width,
                 height: media.size.height * .05,
                 decoration: BoxDecoration(
-                  color: Colors.white,),
+                  color: Colors.white,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -109,11 +111,13 @@ class _ViewScreenState extends State<ViewScreen> {
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.only(left: 30),
-                      width: media.size.width * .45,
+                      width: media.size.width * .5,
                       child: Text(
                         "Awesome photo of building. Dark place of Wroclaw. By A. S",
                         style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 18),
+                            fontFamily: 'Chilanka-Regular',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 21),
                         textAlign: TextAlign.start,
                       ),
                     ),
@@ -143,7 +147,9 @@ class _ViewScreenState extends State<ViewScreen> {
                             onPressed: () {},
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Container(
                           width: 50,
                           height: 50,
