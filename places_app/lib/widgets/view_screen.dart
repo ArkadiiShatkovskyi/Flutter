@@ -88,7 +88,7 @@ class _ViewScreenState extends State<ViewScreen> {
               ),
               Container(
                 width: media.size.width,
-                height: media.size.height * .10,
+                height: media.size.height * .05,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.rectangle,
@@ -96,6 +96,12 @@ class _ViewScreenState extends State<ViewScreen> {
                       topLeft: Radius.circular(50),
                       topRight: Radius.circular(50)),
                 ),
+              ),
+              Container(
+                width: media.size.width,
+                height: media.size.height * .05,
+                decoration: BoxDecoration(
+                  color: Colors.white,),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -116,7 +122,8 @@ class _ViewScreenState extends State<ViewScreen> {
                 ),
               ),
               Container(
-                height: media.size.height * .15,
+                height: media.size.height * .20,
+                decoration: BoxDecoration(color: Colors.white),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -130,9 +137,58 @@ class _ViewScreenState extends State<ViewScreen> {
                         textAlign: TextAlign.start,
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(right: 50),
-                      child: IconButton(icon: Icon(Icons.favorite, size: 35, color: Colors.red,), onPressed: () {},),
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          width: 50,
+                          height: 50,
+                          margin: EdgeInsets.only(right: 50),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 5),
+                                  blurRadius: 10,
+                                  spreadRadius: 3,
+                                )
+                              ]),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.favorite,
+                              size: 35,
+                              color: Colors.red,
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Container(
+                          width: 50,
+                          height: 50,
+                          margin: EdgeInsets.only(right: 50),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 5),
+                                  blurRadius: 10,
+                                  spreadRadius: 3,
+                                )
+                              ]),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.share,
+                              size: 35,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
