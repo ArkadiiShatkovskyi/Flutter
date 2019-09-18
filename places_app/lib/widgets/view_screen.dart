@@ -27,42 +27,22 @@ class _ViewScreenState extends State<ViewScreen> {
       backgroundColor: Colors.white,
       body: Stack(
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(right: 40),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.black,
-                    size: 20,
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-              Container(
-                width: media.size.width * .7,
-                child: Text(
-                  "Photos application",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: 40,
-//              left: 10,
-//              right: 10,
-            ),
+          Container(
             child: Image.asset(
               'assets/images/test_image.jpg',
               width: media.size.width,
-              height: media.size.height * .8,
+              height: media.size.height * .75,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: 40),
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+                size: 25,
+              ),
+              onPressed: () {},
             ),
           ),
           Column(
