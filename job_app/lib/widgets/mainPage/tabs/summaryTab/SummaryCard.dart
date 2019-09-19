@@ -10,13 +10,14 @@ class SummaryCard extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context);
     return Card(
       child: Container(
-        padding: EdgeInsets.only(left: 75, right: 75),
+        padding: EdgeInsets.only(left: media.size.width * .15, right: media.size.width * .15),
         child: Column(
           children: <Widget>[
             Divider(
-              height: 30,
+              height: media.size.height * .05,
               color: Colors.transparent,
             ),
             Center(
@@ -25,9 +26,10 @@ class SummaryCard extends StatelessWidget{
                   style: TextStyle(fontSize: 18),
                 )),
             Divider(
-              height: 30,
+              height: media.size.height * .05,
             ),
             Container(
+              padding: EdgeInsets.only(left: media.size.width * .07),
               child: Row(
                 children: <Widget>[
                   Container(
@@ -38,7 +40,7 @@ class SummaryCard extends StatelessWidget{
                             "Time worked: ",
                             style: TextStyle(fontSize: 16),
                           ),
-                          width: 170,
+                          width: media.size.width * .35,
                         ),
                         Text(
                           workTimePerRate.toStringAsFixed(2),
@@ -51,10 +53,11 @@ class SummaryCard extends StatelessWidget{
               ),
             ),
             Divider(
-              height: 10,
+              height: media.size.height * .01,
               color: Colors.transparent,
             ),
             Container(
+              padding: EdgeInsets.only(left: media.size.width * .07),
               child: Row(
                 children: <Widget>[
                   Container(
@@ -62,7 +65,7 @@ class SummaryCard extends StatelessWidget{
                       "Salary: ",
                       style: TextStyle(fontSize: 16),
                     ),
-                    width: 170,
+                    width: media.size.width * .35,
                   ),
                   Text(
                     salaryPerRate.toStringAsFixed(2),
@@ -72,7 +75,7 @@ class SummaryCard extends StatelessWidget{
               ),
             ),
             Divider(
-              height: 30,
+              height: media.size.height * .03,
               color: Colors.transparent,
             ),
           ],
