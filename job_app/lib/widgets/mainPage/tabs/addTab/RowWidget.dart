@@ -8,11 +8,12 @@ class RowWidget extends StatelessWidget {
   final function;
   var controller;
   var textInputHint;
+  final _media;
 
-  RowWidget(this.title, this.hint, this.icon, this.function);
+  RowWidget(this.title, this.hint, this.icon, this.function, this._media);
 
   RowWidget.textInput(this.title, this.hint,
-      this.controller, this.textInputHint, {this.icon = 0, this.function = 0});
+      this.controller, this.textInputHint, this._media, {this.icon = 0, this.function = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +21,19 @@ class RowWidget extends StatelessWidget {
       return Row(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 25, right: 15),
-            width: 200,
+            padding: EdgeInsets.only(left: _media.size.width * .07, right: _media.size.width * .07),
+            width: _media.size.width * .5,
             child: Text(title, style: TextStyle(fontSize: 16)),
           ),
           Container(
             padding: EdgeInsets.only(
-              left: 15,
+              left: _media.size.width * .05,
             ),
-            width: 100,
+            width: _media.size.width * .25,
             child: Text(hint),
           ),
           Container(
-            width: 60,
+            width: _media.size.width * .15,
             child: TextField(
               maxLength: 15,
               controller: controller,
@@ -50,8 +51,8 @@ class RowWidget extends StatelessWidget {
       return Row(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 25, right: 15),
-            width: 200,
+            padding: EdgeInsets.only(left: _media.size.width * .07, right: _media.size.width * .07),
+            width: _media.size.width * .5,
             child: Text(
               title,
               style: TextStyle(fontSize: 16),
@@ -59,9 +60,9 @@ class RowWidget extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(
-              left: 15,
+              left: _media.size.width * .05,
             ),
-            width: 100,
+            width: _media.size.width * .25,
             child: Text(hint),
           ),
           IconButton(

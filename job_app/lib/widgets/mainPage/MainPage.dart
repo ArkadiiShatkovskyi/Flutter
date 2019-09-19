@@ -41,7 +41,7 @@ class _MainPageState extends State<MainPage> {
       home: WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
-          drawer: MenuDrawer(2),
+          drawer: MenuDrawer(),
           bottomNavigationBar: BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(

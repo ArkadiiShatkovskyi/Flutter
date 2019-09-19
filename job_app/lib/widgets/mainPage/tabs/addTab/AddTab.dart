@@ -27,38 +27,34 @@ class _AddTabState extends State<AddTab> {
     _db.getUser().then((currUser) {
       this._user = currUser.uid;
     });
-//    _rateController.text = _defaultRate.toString();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _createBody();
-  }
-
-  Widget _createBody() {
+    final media = MediaQuery.of(context);
     return Container(
       child: ListView(
         physics: NeverScrollableScrollPhysics(),
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(
-              top: 15,
-              bottom: 15,
+              top: media.size.height * .03,
+              bottom: media.size.height * .02,
             ),
             child: Center(
                 child: const Text("Add work", style: TextStyle(fontSize: 18))),
           ),
           Divider(
-            height: 10,
+            height: media.size.height * .02,
           ),
           RowWidget("Choose start time", _strTime.toString().substring(10, 15),
-              AntIcons.clock_circle_outline, _showStartTimePicker),
+              AntIcons.clock_circle_outline, _showStartTimePicker, media),
           RowWidget("Choose end time", _endTime.toString().substring(10, 15),
-              AntIcons.clock_circle_outline, _showEndTimePicker),
+              AntIcons.clock_circle_outline, _showEndTimePicker, media),
           RowWidget("Choose date", _date.toString().substring(5, 10),
-              AntIcons.calendar_outline, _showDatePicker),
+              AntIcons.calendar_outline, _showDatePicker, media),
           RowWidget.textInput("Write your rate", _defaultRate.toString(),
-              _rateController, 'Rate'),
+              _rateController, 'Rate', media),
           Center(
               child: IconButton(
             icon: Icon(AntIcons.save),

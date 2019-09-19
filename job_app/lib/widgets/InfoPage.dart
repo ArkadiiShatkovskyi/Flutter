@@ -8,6 +8,7 @@ class InfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context);
     return MaterialApp(
       theme: appTheme,
         debugShowCheckedModeBanner: false,
@@ -25,13 +26,13 @@ class InfoWidget extends StatelessWidget {
                 child:
                     ListView(padding: EdgeInsets.all(15.0), children: <Widget>[
               Divider(
-                height: 30,
+                height: media.size.height * .04,
                 color: Colors.transparent,
               ),
               Card(
                 child: Container(
-                  width: 300,
-                  height: 300,
+                  width: media.size.width * .7,
+                  height: media.size.width * .8,
                   child: Image(
                     image: AssetImage(
                         "assets/images/undraw_mobile_prototyping_grmd.png"),
@@ -39,7 +40,7 @@ class InfoWidget extends StatelessWidget {
                 ),
               ),
               Divider(
-                height: 40.0,
+                height: media.size.height * .05,
               ),
               Card(
                   elevation: 0,

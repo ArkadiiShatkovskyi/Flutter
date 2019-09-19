@@ -9,14 +9,14 @@ import 'package:job_app/widgets/SettingPage.dart';
 import 'package:job_app/widgets/AppTheme.dart';
 
 class DrawerCard extends StatelessWidget {
-  final String drawerFont;
+  final String font;
   final double tilesFontSize;
   final double iconsSize;
   final String text;
   final IconData icon;
 
-  DrawerCard(this.text, this.drawerFont, this.iconsSize, this.tilesFontSize,
-      this.icon);
+  DrawerCard({this.text, this.font, this.iconsSize, this.tilesFontSize,
+      this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class DrawerCard extends StatelessWidget {
           title: Text(
             text,
             style: TextStyle(
-              fontFamily: drawerFont,
+              fontFamily: font,
               fontSize: tilesFontSize,
             ),
           ),

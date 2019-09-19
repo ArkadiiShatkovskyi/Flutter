@@ -6,7 +6,6 @@ import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import 'package:job_app/widgets/mainPage/tabs/dataTab/FloatingButtonMenu.dart';
 import 'package:job_app/widgets/AppTheme.dart';
 
-// ignore: must_be_immutable
 class DataTab extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _DataTabState();

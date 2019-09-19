@@ -24,11 +24,12 @@ class AuthorizationPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context);
     return ListView(
       children: <Widget>[
         Container(
-          width: 250,
-          height: 250,
+          width: media.size.width * .5,
+          height: media.size.height * .35,
           margin: EdgeInsets.only(bottom: 20),
           child: CircleAvatar(
             backgroundColor: Colors.transparent,
@@ -37,7 +38,7 @@ class AuthorizationPageBody extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 40.0, right: 40.0),
+          margin: EdgeInsets.only(left: media.size.width * .1, right: media.size.width * .1),
           child: TextFormField(
             maxLines: 1,
             maxLength: 30,
@@ -56,10 +57,10 @@ class AuthorizationPageBody extends StatelessWidget {
         ),
         Divider(
           color: Colors.transparent,
-          height: 5.0,
+          height: media.size.height * .01,
         ),
         Container(
-          margin: EdgeInsets.only(left: 40.0, right: 40.0),
+          margin: EdgeInsets.only(left: media.size.width * .1, right: media.size.width * .1),
           child: TextFormField(
             maxLines: 1,
             maxLength: 20,
@@ -78,10 +79,10 @@ class AuthorizationPageBody extends StatelessWidget {
         ),
         Divider(
           color: Colors.transparent,
-          height: 10.0,
+          height: media.size.height * .01,
         ),
         Container(
-          margin: EdgeInsets.only(left: 75, right: 75),
+          margin: EdgeInsets.only(left: media.size.width * .25, right: media.size.width * .25),
           child: RaisedButton(
             textColor: Colors.white,
             padding: EdgeInsets.all(20.0),
