@@ -65,7 +65,7 @@ class _DataTabState extends State<DataTab> {
               },
             );
           }),
-      floatingActionButton: FloatingButtonMenu(_deleteSelectedItems),
+      floatingActionButton: FloatingButtonMenu(_deleteSelectedItems, _editItem),
     );
   }
 
@@ -120,6 +120,12 @@ class _DataTabState extends State<DataTab> {
       _showShackBarMessage('Items was deleted');
     } else
       _showShackBarMessage('Choose items to delete');
+  }
+
+  void _editItem(){
+    if(_selectedItems.length == 0 || _selectedItems.length > 1)
+      _showShackBarMessage("Choose one item");
+    else{}
   }
 
   void _showShackBarMessage(String message) {
