@@ -12,8 +12,9 @@ class RowWidget extends StatelessWidget {
 
   RowWidget(this.title, this.hint, this.icon, this.function, this._media);
 
-  RowWidget.textInput(this.title, this.hint,
-      this.controller, this.textInputHint, this._media, {this.icon = 0, this.function = 0});
+  RowWidget.textInput(
+      this.title, this.hint, this.controller, this.textInputHint, this._media,
+      {this.icon = 0, this.function = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,8 @@ class RowWidget extends StatelessWidget {
       return Row(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: _media.size.width * .07, right: _media.size.width * .07),
+            padding: EdgeInsets.only(
+                left: _media.size.width * .07, right: _media.size.width * .07),
             width: _media.size.width * .5,
             child: Text(title, style: TextStyle(fontSize: 16)),
           ),
@@ -51,11 +53,12 @@ class RowWidget extends StatelessWidget {
       return Row(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: _media.size.width * .07, right: _media.size.width * .07),
+            padding: EdgeInsets.only(
+                left: _media.size.width * .07, right: _media.size.width * .07),
             width: _media.size.width * .5,
             child: Text(
               title,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ),
           Container(

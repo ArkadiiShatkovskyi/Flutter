@@ -4,7 +4,7 @@ class DataElement extends StatelessWidget {
   final _dataText;
   final _text;
 
-  DataElement(this._text, this._dataText);
+  const DataElement(this._text, this._dataText);
 
   @override
   Widget build(BuildContext context) {

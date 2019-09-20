@@ -18,9 +18,9 @@ class _SettingPageState extends State<SettingPage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-            title: Text("Settings"),
+            title: const Text("Settings"),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () => Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (context) => MainPage())),
             )),

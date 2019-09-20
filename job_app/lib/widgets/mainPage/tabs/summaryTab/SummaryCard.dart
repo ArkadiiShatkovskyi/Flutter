@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class SummaryCard extends StatelessWidget{
-
+class SummaryCard extends StatelessWidget {
   final String rate;
   final double workTimePerRate;
   final double salaryPerRate;
 
-  SummaryCard({this.rate, this.workTimePerRate, this.salaryPerRate});
+  const SummaryCard({this.rate, this.workTimePerRate, this.salaryPerRate});
 
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
     return Card(
       child: Container(
-        padding: EdgeInsets.only(left: media.size.width * .15, right: media.size.width * .15),
+        padding: EdgeInsets.only(
+            left: media.size.width * .15, right: media.size.width * .15),
         child: Column(
           children: <Widget>[
             Divider(
@@ -22,9 +22,9 @@ class SummaryCard extends StatelessWidget{
             ),
             Center(
                 child: Text(
-                  rate.toString() == "Total" ? "Total" : "Job per rate: $rate",
-                  style: TextStyle(fontSize: 18),
-                )),
+              rate.toString() == "Total" ? "Total" : "Job per rate: $rate",
+              style: const TextStyle(fontSize: 18),
+            )),
             Divider(
               height: media.size.height * .05,
             ),
@@ -44,7 +44,7 @@ class SummaryCard extends StatelessWidget{
                         ),
                         Text(
                           workTimePerRate.toStringAsFixed(2),
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         )
                       ],
                     ),
@@ -69,7 +69,7 @@ class SummaryCard extends StatelessWidget{
                   ),
                   Text(
                     salaryPerRate.toStringAsFixed(2),
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   )
                 ],
               ),

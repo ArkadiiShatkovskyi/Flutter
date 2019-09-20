@@ -40,7 +40,7 @@ class _LogInSignUpState extends State<SignInSignUp> {
           ),
           body: Center(
             child: Container(
-              margin: EdgeInsets.only(top: 40),
+              margin: const EdgeInsets.only(top: 40),
               child: _showBody(),
             ),
           ),

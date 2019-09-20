@@ -39,14 +39,14 @@ class _AccountPageState extends State<AccountPage> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             appBar: AppBar(
-                title: Text("Account page"),
+                title: const Text("Account page"),
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                   onPressed: () => Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => MainPage())),
                 )),
             body: Container(
-                child: Center(child: Text("Page is on the testing")))));
+                child: Center(child: const Text("Page is on the testing")))));
     /*MaterialApp(
       theme: appTheme,
       debugShowCheckedModeBanner: false,

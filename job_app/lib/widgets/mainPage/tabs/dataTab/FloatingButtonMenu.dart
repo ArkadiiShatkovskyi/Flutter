@@ -96,7 +96,7 @@ class _FloatingButtonMenuState extends State<FloatingButtonMenu>
         heroTag: 1,
         onPressed: _test,
         tooltip: 'Inbox',
-        child: Icon(AntIcons.edit_outline),
+        child: const Icon(AntIcons.edit_outline),
       ),
     );
   }

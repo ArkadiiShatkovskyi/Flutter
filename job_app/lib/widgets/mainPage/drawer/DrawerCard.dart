@@ -15,8 +15,8 @@ class DrawerCard extends StatelessWidget {
   final String text;
   final IconData icon;
 
-  DrawerCard({this.text, this.font, this.iconsSize, this.tilesFontSize,
-      this.icon});
+  const DrawerCard(
+      {this.text, this.font, this.iconsSize, this.tilesFontSize, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class DrawerCard extends StatelessWidget {
             content: const Text("Are you sure you want exit from application?"),
             actions: <Widget>[
               FlatButton(
-                textColor: appTheme.primaryColor,
+                  textColor: appTheme.primaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),

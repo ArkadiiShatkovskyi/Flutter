@@ -124,7 +124,7 @@ class _DataTabState extends State<DataTab> {
 
   void _showShackBarMessage(String message) {
     Scaffold.of(context).showSnackBar(SnackBar(
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       content: Text(message),
       backgroundColor: appTheme.primaryColor,
     ));

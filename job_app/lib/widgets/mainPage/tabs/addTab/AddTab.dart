@@ -41,7 +41,7 @@ class _AddTabState extends State<AddTab> {
               top: media.size.height * .03,
               bottom: media.size.height * .02,
             ),
-            child: Center(
+            child: const Center(
                 child: const Text("Add work", style: TextStyle(fontSize: 18))),
           ),
           Divider(
@@ -57,7 +57,7 @@ class _AddTabState extends State<AddTab> {
               _rateController, 'Rate', media),
           Center(
               child: IconButton(
-            icon: Icon(AntIcons.save),
+            icon: const Icon(AntIcons.save),
             iconSize: 40,
             onPressed: () {
               _addHours();
@@ -116,8 +116,8 @@ class _AddTabState extends State<AddTab> {
           : double.parse(_rateController.text),
     });
     Scaffold.of(context).showSnackBar(SnackBar(
-      duration: Duration(seconds: 1),
-      content: Text('Work was added.'),
+      duration: const Duration(seconds: 1),
+      content: const Text('Work was added.'),
       backgroundColor: appTheme.primaryColor,
     ));
   }

@@ -45,26 +45,27 @@ class _MainPageState extends State<MainPage> {
           bottomNavigationBar: BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(AntIcons.database_outline),
-                title: Text('Home'),
+                icon: const Icon(AntIcons.database_outline),
+                title: const Text('Home'),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.assessment),
-                title: Text('Summary'),
+                icon: const Icon(Icons.assessment),
+                title: const Text('Summary'),
               ),
               BottomNavigationBarItem(
-                icon: Icon(AntIcons.file_add_outline),
-                title: Text('Add work'),
+                icon: const Icon(AntIcons.file_add_outline),
+                title: const Text('Add work'),
               ),
             ],
             currentIndex: _selectedTabIndex,
             onTap: _onItemTapped,
           ),
           appBar: AppBar(
-            title: Text("Your work"),
+            title: const Text("Your work"),
             actions: <Widget>[
               FlatButton(
-                  child: Icon(AntIcons.logout_outline, color: Colors.white),
+                  child:
+                      const Icon(AntIcons.logout_outline, color: Colors.white),
                   onPressed: _signOut)
             ],
           ),

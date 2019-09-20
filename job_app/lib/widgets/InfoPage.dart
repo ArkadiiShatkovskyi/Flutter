@@ -10,15 +10,15 @@ class InfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
     return MaterialApp(
-      theme: appTheme,
+        theme: appTheme,
         debugShowCheckedModeBanner: false,
         home: WillPopScope(
           onWillPop: () async => false,
           child: Scaffold(
             appBar: AppBar(
-                title: Text("About"),
+                title: const Text("About"),
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                   onPressed: () => Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => MainPage())),
                 )),
@@ -50,7 +50,7 @@ class InfoWidget extends StatelessWidget {
                     child: Text(
                       "Hi, i'm Arkadii Shatkovskyi. Android Developer. It's my first app in flutter. I hope you enjoy it. \n Best regards A.S.",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 17),
+                      style: const TextStyle(fontSize: 17),
                     ),
                   )),
             ])),

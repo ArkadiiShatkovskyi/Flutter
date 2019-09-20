@@ -6,7 +6,7 @@ class ConfirmLogOutDialog extends StatelessWidget {
   final Function funFirstAnswer;
   final Function funSecondAnswer;
 
-  ConfirmLogOutDialog({this.funFirstAnswer, this.funSecondAnswer});
+  const ConfirmLogOutDialog({this.funFirstAnswer, this.funSecondAnswer});
 
   @override
   Widget build(BuildContext context) {

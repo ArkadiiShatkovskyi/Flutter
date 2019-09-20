@@ -13,7 +13,7 @@ class AuthorizationPageBody extends StatelessWidget {
   final _funMainButton;
   final _funSecondButton;
 
-  AuthorizationPageBody(
+  const AuthorizationPageBody(
       this._emailTextController,
       this._passwordTextController,
       this._pageText,
@@ -30,7 +30,7 @@ class AuthorizationPageBody extends StatelessWidget {
         Container(
           width: media.size.width * .5,
           height: media.size.height * .35,
-          margin: EdgeInsets.only(bottom: 20),
+          margin: const EdgeInsets.only(bottom: 20),
           child: CircleAvatar(
             backgroundColor: Colors.transparent,
             radius: 48.0,
@@ -38,7 +38,8 @@ class AuthorizationPageBody extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: media.size.width * .1, right: media.size.width * .1),
+          margin: EdgeInsets.only(
+              left: media.size.width * .1, right: media.size.width * .1),
           child: TextFormField(
             maxLines: 1,
             maxLength: 30,
@@ -60,7 +61,8 @@ class AuthorizationPageBody extends StatelessWidget {
           height: media.size.height * .01,
         ),
         Container(
-          margin: EdgeInsets.only(left: media.size.width * .1, right: media.size.width * .1),
+          margin: EdgeInsets.only(
+              left: media.size.width * .1, right: media.size.width * .1),
           child: TextFormField(
             maxLines: 1,
             maxLength: 20,
@@ -82,10 +84,11 @@ class AuthorizationPageBody extends StatelessWidget {
           height: media.size.height * .01,
         ),
         Container(
-          margin: EdgeInsets.only(left: media.size.width * .25, right: media.size.width * .25),
+          margin: EdgeInsets.only(
+              left: media.size.width * .25, right: media.size.width * .25),
           child: RaisedButton(
             textColor: Colors.white,
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0)),
             onPressed: _funMainButton,
