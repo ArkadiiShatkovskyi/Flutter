@@ -7,8 +7,9 @@ import 'package:job_app/widgets/AppTheme.dart';
 // ignore: must_be_immutable
 class FloatingButtonMenu extends StatefulWidget {
   Function _deleteFunction;
+  Function _editFunction;
 
-  FloatingButtonMenu(this._deleteFunction);
+  FloatingButtonMenu(this._deleteFunction, this._editFunction);
 
   @override
   _FloatingButtonMenuState createState() => _FloatingButtonMenuState();
@@ -75,17 +76,13 @@ class _FloatingButtonMenuState extends State<FloatingButtonMenu>
     isOpened = !isOpened;
   }
 
-  void _test() {
-    print('here');
-  }
-
   Widget _add() {
     return Container(
       child: FloatingActionButton(
         heroTag: 2,
         onPressed: widget._deleteFunction,
         tooltip: 'Delete',
-        child: Icon(Icons.delete_outline),
+        child: const Icon(Icons.delete_outline),
       ),
     );
   }
@@ -94,7 +91,7 @@ class _FloatingButtonMenuState extends State<FloatingButtonMenu>
     return Container(
       child: FloatingActionButton(
         heroTag: 1,
-        onPressed: _test,
+        onPressed: widget._editFunction,
         tooltip: 'Inbox',
         child: const Icon(AntIcons.edit_outline),
       ),
