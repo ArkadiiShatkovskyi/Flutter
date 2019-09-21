@@ -6,7 +6,7 @@ import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import 'package:job_app/widgets/mainPage/tabs/dataTab/FloatingButtonMenu.dart';
 import 'package:job_app/widgets/AppTheme.dart';
 import './Record.dart';
-import 'package:job_app/widgets/AppTheme.dart';
+import './EditRecordWidget.dart';
 
 class DataTab extends StatefulWidget {
   @override
@@ -152,112 +152,8 @@ class _DataTabState extends State<DataTab> {
     if (_selectedItems.length == 1)
       showBottomSheet(
           context: context,
-          builder: (context) => Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: appTheme.primaryColor),
-                  /*borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(30),
-                      topLeft: Radius.circular(30)),*/
-                ),
-                width: media.size.width * 1,
-                height: media.size.height * .45,
-                child: Column(
-                  children: <Widget>[
-                    DataTable(columnSpacing: 5, columns: [
-                      DataColumn(
-                        label: const Text("Date"),
-                      ),
-                      DataColumn(
-                        label: const Text("Start time"),
-                      ),
-                      DataColumn(
-                        label: const Text("End time"),
-                      ),
-                      DataColumn(
-                        label: const Text("Work time"),
-                      ),
-                      DataColumn(
-                        label: const Text("Rate"),
-                      ),
-                    ], rows: [
-                      DataRow(
-                        cells: [
-                          DataCell(Center(child: Text(_itemToEdit.date))),
-                          DataCell(Center(child: Text(_itemToEdit.startTime))),
-                          DataCell(Center(child: Text(_itemToEdit.endTime))),
-                          DataCell(Center(
-                              child: Text(
-                                  _itemToEdit.workTime.toString().length > 4
-                                      ? _itemToEdit.workTime.substring(0, 4)
-                                      : _itemToEdit.workTime))),
-                          DataCell(
-                            Center(child: Text(_itemToEdit.rate)),
-                          )
-                        ],
-                      )
-                    ]),
-                    Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Container(
-                              width: 75,
-                              padding: EdgeInsets.only(top: 15),
-                              child: Text("Date: ")),
-                          SizedBox(
-                              width: media.size.width * .3,
-                              child: TextFormField()),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Container(
-                              width: 75,
-                              padding: EdgeInsets.only(top: 15),
-                              child: Text("Start time: ")),
-                          SizedBox(
-                              width: media.size.width * .3,
-                              child: TextFormField()),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Container(
-                              width: 75,
-                              padding: EdgeInsets.only(top: 15),
-                              child: Text("End time: ")),
-                          SizedBox(
-                              width: media.size.width * .3,
-                              child: TextFormField()),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Container(
-                              width: 75,
-                              padding: EdgeInsets.only(top: 15),
-                              child: Text("Rate: ")),
-                          SizedBox(
-                              width: media.size.width * .3,
-                              child: TextFormField()),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+          builder: (context) => EditRecordWidget(
+                editItem: _itemToEdit,
               ));
     else
       _showShackBarMessage("Choose one item");
