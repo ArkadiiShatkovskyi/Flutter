@@ -154,6 +154,7 @@ class _DataTabState extends State<DataTab> {
         context: context,
         builder: (context) => EditRecordWidget(
           editItem: _itemToEdit,
+          user: _user,
         ),
       );
     else
