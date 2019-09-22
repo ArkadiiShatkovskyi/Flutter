@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import 'package:job_app/widgets/mainPage/tabs/dataTab/FloatingButtonMenu.dart';
 import 'package:job_app/widgets/AppTheme.dart';
-import './Record.dart';
+import '../../../../models/Record.dart';
 import './EditRecordWidget.dart';
 
 class DataTab extends StatefulWidget {
