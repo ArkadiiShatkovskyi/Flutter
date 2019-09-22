@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -17,16 +16,12 @@ class EditRecordWidget extends StatefulWidget {
 }
 
 class _EditRecordWidgetState extends State<EditRecordWidget> {
-  /*DateTime _date;
+  var _date;
   TimeOfDay _startTime;
   TimeOfDay _endTime;
-  double _workTime;
-  double _rate;*/
-  var _date;
-  var _startTime;
-  var _endTime;
   var _workTime;
   var _rate;
+  TextEditingController _rateController = TextEditingController();
 
   @override
   void initState() {
@@ -45,6 +40,7 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
             .substring(3, widget.editItem.endTime.toString().length)));
     _workTime = widget.editItem.workTime;
     _rate = widget.editItem.rate;
+    _rateController.text = _rate;
   }
 
   @override
@@ -191,7 +187,12 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
                     width: 75,
                     padding: EdgeInsets.only(top: 15),
                     child: Text("Rate: ")),
-                SizedBox(width: media.size.width * .3, child: TextFormField()),
+                SizedBox(
+                    width: media.size.width * .3,
+                    child: TextFormField(
+                      controller: _rateController,
+                      textAlign: TextAlign.center,
+                    )),
               ],
             ),
           ),
@@ -207,7 +208,7 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
                       color: Colors.white,
                     ),
                     label: Text(
-                      'Choose time',
+                      'Edit record',
                       style: TextStyle(color: Colors.white),
                     )),
               ],
@@ -228,22 +229,21 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
         lastDate: DateTime(2050));
     if (picked != null && picked != _date)
       setState(() {
-        _date = picked;
+        _date = picked.toString().substring(5, 10);
       });
   }
 
   Future<Null> _showTimePicker(BuildContext context, bool startTime) async {
     final TimeOfDay picked = await showTimePicker(
       context: context,
-//      initialTime: startTime ? _startTime : _endTime,
-      initialTime: TimeOfDay.now(),
+      initialTime: startTime ? _startTime : _endTime,
     );
     if (picked != null && picked != (startTime ? _startTime : _endTime))
       setState(() {
         if (startTime)
-          _startTime = picked;
+          _startTime = _startTime.replacing(hour: picked.hour, minute: picked.minute);
         else
-          _endTime = picked;
+          _endTime = _endTime.replacing(hour: picked.hour, minute: picked.minute);
       });
   }
 }
