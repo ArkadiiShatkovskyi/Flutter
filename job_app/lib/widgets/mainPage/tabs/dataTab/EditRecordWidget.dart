@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:ant_icons/ant_icons.dart';
@@ -40,7 +39,7 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
             .substring(3, widget.editItem.endTime.toString().length)));
     _workTime = widget.editItem.workTime;
     _rate = widget.editItem.rate;
-    _rateController.text = _rate;
+    _rateController.text = _rate.toString();
   }
 
   @override
@@ -92,12 +91,14 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
                 ))),
                 DataCell(Center(
                     child: Text(
-                  _workTime,
+                  _workTime.toString().length > 4
+                      ? _workTime.toString().substring(0, 4)
+                      : _workTime.toString(),
                 ))),
                 DataCell(
                   Center(
                       child: Text(
-                    _rate,
+                    _rate.toString(),
                   )),
                 )
               ],
@@ -241,9 +242,22 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
     if (picked != null && picked != (startTime ? _startTime : _endTime))
       setState(() {
         if (startTime)
-          _startTime = _startTime.replacing(hour: picked.hour, minute: picked.minute);
+          _startTime =
+              _startTime.replacing(hour: picked.hour, minute: picked.minute);
         else
-          _endTime = _endTime.replacing(hour: picked.hour, minute: picked.minute);
+          _endTime =
+              _endTime.replacing(hour: picked.hour, minute: picked.minute);
+        _workTime = changeWorkTime().toString();
       });
+  }
+
+  double changeWorkTime() {
+    int start_hour = _startTime.hour;
+    int end_hour = _endTime.hour <= 5 ? _endTime.hour + 24 : _endTime.hour;
+    int start_minutes = _startTime.minute;
+    int end_minutes = _endTime.minute;
+
+    return (end_hour + end_minutes / 60.0) -
+        (start_hour + start_minutes / 60.0);
   }
 }

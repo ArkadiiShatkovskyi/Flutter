@@ -85,8 +85,8 @@ class _DataTabState extends State<DataTab> {
           date: documentSnapshot['date'].toString(),
           startTime: documentSnapshot['strTime'].toString(),
           endTime: documentSnapshot['endTime'].toString(),
-          workTime: documentSnapshot['workTime'].toString(),
-          rate: documentSnapshot['rate'].toString(),
+          workTime: documentSnapshot['workTime'],
+          rate: documentSnapshot['rate'],
         );
       }).toList();
       setState(() {
@@ -117,7 +117,7 @@ class _DataTabState extends State<DataTab> {
           DataCell(Center(child: Text(rec.startTime))),
           DataCell(Center(child: Text(rec.endTime))),
           DataCell(Center(
-              child: Text(rec.workTime.length > 4
+              child: Text(rec.workTime.toString().length > 4
                   ? rec.workTime.toString().substring(0, 4)
                   : rec.workTime.toString()))),
           DataCell(
