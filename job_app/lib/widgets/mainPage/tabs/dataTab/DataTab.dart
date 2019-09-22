@@ -151,10 +151,11 @@ class _DataTabState extends State<DataTab> {
   void _editItem(BuildContext context, MediaQueryData media) {
     if (_selectedItems.length == 1)
       showBottomSheet(
-          context: context,
-          builder: (context) => EditRecordWidget(
-                editItem: _itemToEdit,
-              ));
+        context: context,
+        builder: (context) => EditRecordWidget(
+          editItem: _itemToEdit,
+        ),
+      );
     else
       _showShackBarMessage("Choose one item");
   }
