@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:job_app/widgets/InfoPage.dart';
 import 'package:job_app/widgets/accountPage/AccountPage.dart';
 import 'package:job_app/widgets/SettingPage.dart';
-import 'package:job_app/widgets/AppTheme.dart';
 
 class DrawerCard extends StatelessWidget {
   final String font;
@@ -24,7 +23,7 @@ class DrawerCard extends StatelessWidget {
       child: ListTile(
           leading: Icon(
             icon,
-            color: appTheme.primaryColor,
+            color: Theme.of(context).primaryColor,
             size: iconsSize,
           ),
           title: Text(
@@ -65,7 +64,7 @@ class DrawerCard extends StatelessWidget {
             content: const Text("Are you sure you want exit from application?"),
             actions: <Widget>[
               FlatButton(
-                  textColor: appTheme.primaryColor,
+                  textColor: Theme.of(context).primaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
@@ -79,7 +78,7 @@ class DrawerCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                   )),
               FlatButton(
-                  color: appTheme.primaryColor,
+                  color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),

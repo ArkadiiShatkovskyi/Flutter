@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import 'package:job_app/widgets/mainPage/tabs/dataTab/FloatingButtonMenu.dart';
-import 'package:job_app/widgets/AppTheme.dart';
 import '../../../../models/Record.dart';
 import './EditRecordWidget.dart';
 
@@ -165,7 +164,7 @@ class _DataTabState extends State<DataTab> {
     Scaffold.of(context).showSnackBar(SnackBar(
       duration: const Duration(seconds: 1),
       content: Text(message),
-      backgroundColor: appTheme.primaryColor,
+      backgroundColor: Theme.of(context).primaryColor,
     ));
   }
 }

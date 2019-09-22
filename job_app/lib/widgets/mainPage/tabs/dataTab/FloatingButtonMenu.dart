@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import "package:ant_icons/ant_icons.dart";
 
-import 'package:job_app/widgets/AppTheme.dart';
-
 // ignore: must_be_immutable
 class FloatingButtonMenu extends StatefulWidget {
   Function _deleteFunction;
@@ -37,7 +35,7 @@ class _FloatingButtonMenuState extends State<FloatingButtonMenu>
     _animateIcon =
         Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
     _buttonColor = ColorTween(
-      begin: appTheme.primaryColor,
+      begin: Theme.of(context).primaryColor,
       end: Colors.redAccent,
     ).animate(CurvedAnimation(
       parent: _animationController,

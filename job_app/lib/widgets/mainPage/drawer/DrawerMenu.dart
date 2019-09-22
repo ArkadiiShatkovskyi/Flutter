@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import 'package:ant_icons/ant_icons.dart';
 
 import 'package:job_app/widgets/mainPage/drawer/DrawerCard.dart';
-import 'package:job_app/widgets/AppTheme.dart';
 
 class MenuDrawer extends StatelessWidget {
   final String drawerFont = 'CourgetteRegular';
@@ -16,15 +15,15 @@ class MenuDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
     return Drawer(
-      child: _getList(media),
+      child: _getList(media, context),
     );
   }
 
-  Container _drawerStyle(media) {
+  Container _drawerStyle(media, context) {
     return Container(
       height: media.size.height * .25,
       child: DrawerHeader(
-          decoration: BoxDecoration(color: appTheme.primaryColor),
+          decoration: BoxDecoration(color: Theme.of(context).primaryColor),
           child: Center(
             child: Text(
               "Menu",
@@ -38,9 +37,9 @@ class MenuDrawer extends StatelessWidget {
     );
   }
 
-  ListView _getList(media) {
+  ListView _getList(media, context) {
     return ListView(padding: EdgeInsets.zero, children: <Widget>[
-      _drawerStyle(media),
+      _drawerStyle(media, context),
       Divider(height: media.size.height * .01, color: Colors.transparent),
       DrawerCard(
           text: "Account",

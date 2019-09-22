@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:ant_icons/ant_icons.dart';
 
-import 'package:job_app/widgets/AppTheme.dart';
-
 class AuthorizationPageBody extends StatelessWidget {
   final _emailTextController;
   final _passwordTextController;
@@ -47,7 +45,7 @@ class AuthorizationPageBody extends StatelessWidget {
             decoration: InputDecoration(
               icon: Icon(
                 AntIcons.mail_outline,
-                color: appTheme.primaryColor,
+                color: Theme.of(context).primaryColor,
               ),
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -70,7 +68,7 @@ class AuthorizationPageBody extends StatelessWidget {
             decoration: InputDecoration(
               icon: Icon(
                 AntIcons.lock_outline,
-                color: appTheme.primaryColor,
+                color: Theme.of(context).primaryColor,
               ),
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(20)),

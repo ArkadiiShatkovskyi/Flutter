@@ -283,6 +283,11 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
       'workTime': _workTime,
       'rate': double.parse(_rateController.text),
     });
+    Scaffold.of(context).showSnackBar(SnackBar(
+      duration: const Duration(seconds: 1),
+      content: const Text('Work was added.'),
+      backgroundColor: Theme.of(context).primaryColor,
+    ));
 //    Navigator.of(context).pop();
   }
 }
