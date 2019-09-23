@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import 'package:job_app/widgets/mainPage/tabs/dataTab/FloatingButtonMenu.dart';
+import 'package:job_app/widgets/ConfirmMessage.dart';
 import '../../../../models/Record.dart';
 import './EditRecordWidget.dart';
 
@@ -88,9 +89,10 @@ class _DataTabState extends State<DataTab> {
           rate: documentSnapshot['rate'],
         );
       }).toList();
-      setState(() {
-        _listOfRecors = list;
-      });
+      if (this.mounted)
+        setState(() {
+          _listOfRecors = list;
+        });
     });
   }
 
@@ -128,23 +130,38 @@ class _DataTabState extends State<DataTab> {
   }
 
   void _deleteSelectedItems() {
-    if (_selectedItems.length > 0) {
-      for (int index = 0; index < _selectedItems.length; index++) {
-        Firestore.instance
-            .collection(_user)
-            .document(_selectedItems[index])
-            .delete()
-            .catchError((e) {
-          print(e);
-        });
-      }
-      setState(() {
-        _selectedItems.clear();
-        _getData(_user);
-      });
-      _showShackBarMessage('Items was deleted');
-    } else
-      _showShackBarMessage('Choose items to delete');
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ConfirmMessage(
+          title: "Delete data?",
+          message: "Selected items will be deleted. \nAre you sure?",
+          funFirstAnswer: () {
+            Navigator.of(context).pop();
+            if (_selectedItems.length > 0) {
+              for (int index = 0; index < _selectedItems.length; index++) {
+                Firestore.instance
+                    .collection(_user)
+                    .document(_selectedItems[index])
+                    .delete()
+                    .catchError((e) {
+                  print(e);
+                });
+              }
+              setState(() {
+                _selectedItems.clear();
+                _getData(_user);
+              });
+              _showShackBarMessage('Items was deleted');
+            } else
+              _showShackBarMessage('Choose items to delete');
+          },
+          funSecondAnswer: () {
+            Navigator.of(context).pop();
+          },
+        );
+      },
+    );
   }
 
   void _editItem(BuildContext context, MediaQueryData media) {
@@ -161,10 +178,12 @@ class _DataTabState extends State<DataTab> {
   }
 
   void _showShackBarMessage(String message) {
-    Scaffold.of(context).showSnackBar(SnackBar(
-      duration: const Duration(seconds: 1),
-      content: Text(message),
-      backgroundColor: Theme.of(context).primaryColor,
-    ));
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 1),
+        content: Text(message),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+    );
   }
 }
