@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ant_icons/ant_icons.dart';
-import 'package:job_app/models/Record.dart';
 
+import 'package:job_app/models/Record.dart';
 import 'package:job_app/widgets/AppTheme.dart';
+import './PreviewOfEditedRecord.dart';
+import './EditingOption.dart';
 
 class EditRecordWidget extends StatefulWidget {
   final Record editItem;
@@ -53,159 +55,49 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
         border: Border.all(color: appTheme.primaryColor),
       ),
       width: media.size.width * 1,
-      height: media.size.height * .55,
+      height: media.size.height * .6,
       child: Column(
         children: <Widget>[
-          DataTable(columnSpacing: 5, columns: [
-            DataColumn(
-              label: const Text("Date"),
-            ),
-            DataColumn(
-              label: const Text("Start time"),
-            ),
-            DataColumn(
-              label: const Text("End time"),
-            ),
-            DataColumn(
-              label: const Text("Work time"),
-            ),
-            DataColumn(
-              label: const Text("Rate"),
-            ),
-          ], rows: [
-            DataRow(
-              cells: [
-                DataCell(Center(
-                    child: Text(
-                  _date,
-                ))),
-                DataCell(Center(
-                    child: Text(
-                  _startTime
-                      .toString()
-                      .substring(10, _startTime.toString().length - 1),
-                ))),
-                DataCell(Center(
-                    child: Text(
-                  _endTime
-                      .toString()
-                      .substring(10, _endTime.toString().length - 1),
-                ))),
-                DataCell(Center(
-                    child: Text(
-                  _workTime.toString().length > 4
-                      ? _workTime.toString().substring(0, 4)
-                      : _workTime.toString(),
-                ))),
-                DataCell(
-                  Center(
-                      child: Text(
-                    _rate.toString(),
-                  )),
-                )
-              ],
-            )
-          ]),
-          Padding(
-            padding: EdgeInsets.only(left: 30, right: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Container(
-                    width: 75,
-                    padding: EdgeInsets.only(top: 15),
-                    child: Text("Date: ")),
-                Container(
-                  padding: EdgeInsets.only(top: 10),
-                  width: media.size.width * .35,
-                  child: RaisedButton.icon(
-                    onPressed: () => _showDatePicker(context),
-                    icon: Icon(
-                      AntIcons.calendar_outline,
-                      color: Colors.white,
-                    ),
-                    label: Text(
-                      'Choose date',
-                      style: TextStyle(color: Colors.white),
-                    ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: 25,
+                child: IconButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: Icon(
+                    Icons.keyboard_arrow_down,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 30, right: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Container(
-                    width: 75,
-                    padding: EdgeInsets.only(top: 15),
-                    child: Text("Start time: ")),
-                Container(
-                  padding: EdgeInsets.only(top: 10),
-                  width: media.size.width * .35,
-                  child: RaisedButton.icon(
-                    onPressed: () => _showTimePicker(context, true),
-                    icon: Icon(
-                      AntIcons.clock_circle_outline,
-                      color: Colors.white,
-                    ),
-                    label: Text(
-                      'Choose time',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          PreviewOfEditedRecord(
+            date: _date,
+            startTime: _startTime,
+            endTime: _endTime,
+            workTime: _workTime,
+            rate: _rate,
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 30, right: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Container(
-                    width: 75,
-                    padding: EdgeInsets.only(top: 15),
-                    child: Text("End time: ")),
-                Container(
-                  padding: EdgeInsets.only(top: 10),
-                  width: media.size.width * .35,
-                  child: RaisedButton.icon(
-                    onPressed: () => _showTimePicker(context, false),
-                    icon: Icon(
-                      AntIcons.clock_circle_outline,
-                      color: Colors.white,
-                    ),
-                    label: Text(
-                      'Choose time',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          EditOption.optionWithButton(
+            text: "Date: ",
+            buttonText: 'Choose date',
+            function: () => _showDatePicker(context),
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 30, right: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Container(
-                  width: 75,
-                  padding: EdgeInsets.only(top: 15),
-                  child: Text("Rate: "),
-                ),
-                SizedBox(
-                  width: media.size.width * .3,
-                  child: TextFormField(
-                    controller: _rateController,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
+          EditOption.optionWithButton(
+            text: "Start time: ",
+            buttonText: 'Choose time',
+            function: () => _showTimePicker(context, true),
+          ),
+          EditOption.optionWithButton(
+            text: "End time: ",
+            buttonText: 'Choose time',
+            function: () => _showTimePicker(context, false),
+          ),
+          EditOption.optionWithTextInput(
+            text: "Rate: ",
+            controller: _rateController,
           ),
           Padding(
             padding: EdgeInsets.only(top: 10),
@@ -248,8 +140,8 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
       context: context,
       initialTime: startTime ? _startTime : _endTime,
     );
-    if ((picked != null &&
-        picked != (startTime ? _startTime : _endTime)) && mounted)
+    if ((picked != null && picked != (startTime ? _startTime : _endTime)) &&
+        mounted)
       setState(() {
         if (startTime)
           _startTime =
@@ -266,7 +158,6 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
     int endHour = _endTime.hour <= 5 ? _endTime.hour + 24 : _endTime.hour;
     int startMinutes = _startTime.minute;
     int endMinutes = _endTime.minute;
-
     return (endHour + endMinutes / 60.0) - (startHour + startMinutes / 60.0);
   }
 
@@ -283,11 +174,12 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
       'workTime': _workTime,
       'rate': double.parse(_rateController.text),
     });
-    Scaffold.of(context).showSnackBar(SnackBar(
-      duration: const Duration(seconds: 1),
-      content: const Text('Work was added.'),
-      backgroundColor: Theme.of(context).primaryColor,
-    ));
-//    Navigator.of(context).pop();
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 1),
+        content: const Text('Record was edited'),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+    );
   }
 }
