@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 
 class SummaryCard extends StatelessWidget {
+  final String month;
   final String rate;
-  final double workTimePerRate;
-  final double salaryPerRate;
+  final double workTime;
+  final double salary;
 
-  const SummaryCard({this.rate, this.workTimePerRate, this.salaryPerRate});
+  const SummaryCard.workPerRate({
+    this.rate,
+    this.workTime,
+    this.salary,
+    this.month = '',
+  });
+
+  const SummaryCard.workPerMonth({
+    this.month,
+    this.workTime,
+    this.salary,
+    this.rate = '',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +30,14 @@ class SummaryCard extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Divider(
-              height: media.size.height * .05,
+              height: media.size.height * .02,
               color: Colors.transparent,
             ),
             Center(
                 child: Text(
-              rate.toString() == "Total" ? "Total" : "Job per rate: $rate",
+              month == ''
+                  ? rate.toString() == "Total" ? "Total" : "Job per rate: $rate"
+                  : "Per Month: $month",
               style: const TextStyle(fontSize: 18),
             )),
             Divider(
@@ -43,7 +58,7 @@ class SummaryCard extends StatelessWidget {
                           width: media.size.width * .35,
                         ),
                         Text(
-                          workTimePerRate.toStringAsFixed(2),
+                          workTime.toStringAsFixed(2),
                           style: const TextStyle(fontSize: 16),
                         )
                       ],
@@ -68,7 +83,7 @@ class SummaryCard extends StatelessWidget {
                     width: media.size.width * .35,
                   ),
                   Text(
-                    salaryPerRate.toStringAsFixed(2),
+                    salary.toStringAsFixed(2),
                     style: const TextStyle(fontSize: 16),
                   )
                 ],
