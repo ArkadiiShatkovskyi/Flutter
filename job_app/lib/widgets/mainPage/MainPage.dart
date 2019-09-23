@@ -7,7 +7,7 @@ import '../mainPage/tabs/dataTab/DataTab.dart';
 import '../mainPage/drawer/DrawerMenu.dart';
 import 'tabs/addTab/AddTab.dart';
 import 'tabs/summaryTab/SummaryTab.dart';
-import './ConfirmLogOutDialog.dart';
+import '../ConfirmMessage.dart';
 import '../AppTheme.dart';
 
 class MainPage extends StatefulWidget {
@@ -84,13 +84,19 @@ class _MainPageState extends State<MainPage> {
 
   void _signOut() async {
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return ConfirmLogOutDialog(funFirstAnswer: () {
+      context: context,
+      builder: (BuildContext context) {
+        return ConfirmMessage(
+          title: "Log out?",
+          message: "You will be logged out from this account",
+          funFirstAnswer: () {
             _db.signOut(context);
-          }, funSecondAnswer: () {
+          },
+          funSecondAnswer: () {
             Navigator.of(context).pop();
-          });
-        });
+          },
+        );
+      },
+    );
   }
 }
