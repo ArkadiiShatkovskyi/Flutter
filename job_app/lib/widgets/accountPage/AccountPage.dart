@@ -25,7 +25,7 @@ class _AccountPageState extends State<AccountPage> {
     Authorization _authorization = Authorization();
     _authorization.getUser().then((currUser) {
       _email = currUser.email;
-      _getPersonalData(currUser.uid);
+//      _getPersonalData(currUser.uid);
     });
   }
 
