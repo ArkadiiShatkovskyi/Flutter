@@ -11,9 +11,7 @@ class SummaryTab extends StatefulWidget {
 }
 
 class _SummaryTabState extends State<SummaryTab> {
-  List<dynamic> _listOfRates = List();
-  List<dynamic> _listOfWorkTimePerRate = List();
-  List<dynamic> _listOfSalaryPerRate = List();
+  List<dynamic> _listOfWork = List();
   Authorization _authorization = Authorization();
 
   @override
@@ -24,91 +22,101 @@ class _SummaryTabState extends State<SummaryTab> {
     });
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        shrinkWrap: true,
+        itemCount: _listOfWork.length,
+        itemBuilder: (BuildContext ctxt, int index) => _createItem(index));
+  }
+
   void _getValues(String user) {
+    /*** GETTING DATA FROM DATA BASE AND SETTING UP VARIABLES ***/
     Firestore.instance.collection(user).snapshots().listen((snapshot) {
       double tempWorkTime = snapshot.documents.fold(0, (tot, doc) {
         return tot + doc.data['workTime'];
       });
       double tempSalary = snapshot.documents
           .fold(0, (tot, doc) => tot + doc.data['workTime'] * doc.data['rate']);
-      _listOfRates = _createListOfRates(snapshot);
-      _listOfSalaryPerRate = _createListOfSalary(snapshot, _listOfRates);
-      _listOfWorkTimePerRate = _createListOfWorkTime(snapshot, _listOfRates);
-      if (this.mounted) {
+      if (mounted)
         setState(() {
-          _listOfRates.add("Total");
-          _listOfWorkTimePerRate.add(tempWorkTime);
-          _listOfSalaryPerRate.add(tempSalary);
+          List<Map> result = [
+            {'rate': 'Total', 'workTime': tempWorkTime, 'salary': tempSalary}
+          ];
+          result.addAll(_createListOfMonths(snapshot));
+          result.addAll(_createListOfWorkPerRate(snapshot));
+          this._listOfWork = result;
         });
-      }
     });
   }
 
   Widget _createItem(int index) {
-    String rate = _listOfRates[index].toString();
-    return SummaryCard(rate: rate, workTimePerRate: _listOfWorkTimePerRate[index], salaryPerRate: _listOfSalaryPerRate[index]);
+    /*** CREATING WIDGET O SHOW DATA ***/
+    return _listOfWork[index]['month'] == null
+        ? SummaryCard.workPerRate(
+            rate: _listOfWork[index]['rate'].toString(),
+            workTime: _listOfWork[index]['workTime'],
+            salary: _listOfWork[index]['salary'])
+        : SummaryCard.workPerMonth(
+            month: _listOfWork[index]['month'],
+            workTime: _listOfWork[index]['workTime'],
+            salary: _listOfWork[index]['salary'],
+          );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: _listOfRates.length,
-        itemBuilder: (BuildContext ctxt, int index) => _createItem(index));
-  }
-
-  List<dynamic> _getListOfRates(QuerySnapshot snapshot) {
-    List<double> tempList = List();
-    return snapshot.documents.map((doc) {
-      if (tempList.indexOf(doc['rate']) == -1) {
-        tempList.add(doc['rate'].toDouble());
-        return doc['rate'].toDouble();
+  List<Map> _createListOfMonths(QuerySnapshot snapshot) {
+    List<Map> months = List();
+    snapshot.documents.map((document) {
+      String month = document['date'].toString().substring(0, 2);
+      if (!itemIsOnTheList(months, 'month', month)) {
+//      if (months.indexOf({'month': month}) == -1) {
+        months.add({'month': month});
+        return month;
       }
+      return null;
     }).toList();
+    for (int i = 0; i < months.length; i++) {
+      months[i]['workTime'] = 0;
+      months[i]['salary'] = 0;
+      months[i] = snapshot.documents
+          .where((doc) =>
+              (doc['date'].toString().substring(0, 2) == months[i]['month']))
+          .fold(months[i], (tot, doc) {
+        tot['workTime'] = tot['workTime'] + doc['workTime'];
+        tot['salary'] = tot['salary'] + (doc['workTime'] * doc['rate']);
+        return tot;
+      });
+    }
+    return months;
   }
 
-  dynamic _getListOfSalary(QuerySnapshot snapshot, double rate) {
-    return snapshot.documents.map((doc) {
-      if (rate == doc['rate']) return doc['rate'] * doc['workTime'];
+  List<Map> _createListOfWorkPerRate(QuerySnapshot snapshot) {
+    List<Map> list = List();
+    snapshot.documents.map((doc) {
+      if (!itemIsOnTheList(list, 'rate', doc['rate'])) {
+//      if (list.indexOf({'rate': doc['rate']}) == -1) {
+        list.add({'rate': doc['rate']});
+        return {'rate': doc['rate']};
+      }
+      return null;
     }).toList();
+    for (int index = 0; index < list.length; index++) {
+      list[index]['workTime'] = 0;
+      list[index]['salary'] = 0;
+      list[index] = snapshot.documents
+          .where((doc) => (doc['rate'] == list[index]['rate']))
+          .fold(list[index], (tot, doc) {
+        tot['workTime'] = tot['workTime'] + doc['workTime'];
+        tot['salary'] = tot['salary'] + (doc['workTime'] * doc['rate']);
+        return tot;
+      });
+    }
+    return list;
   }
 
-  dynamic _getListOfWorkTime(QuerySnapshot snapshot, double rate) {
-    return snapshot.documents.map((doc) {
-      if (rate == doc['rate']) return doc['workTime'];
-    }).toList();
-  }
-
-  List<dynamic> _createListOfRates(QuerySnapshot snapshot) {
-    List<dynamic> temp = _getListOfRates(snapshot);
-    temp.removeWhere((value) {
-      return value == null;
+  bool itemIsOnTheList(List list, String itemName, var value) {
+    return list.any((itemOnList) {
+      return itemOnList[itemName] == value;
     });
-    return temp;
-  }
-
-  List<dynamic> _createListOfSalary(QuerySnapshot snapshot, List listOfRates) {
-    List result = List();
-    for (int i = 0; i < listOfRates.length; i++) {
-      List<dynamic> temp = _getListOfSalary(snapshot, listOfRates[i]);
-      temp.removeWhere((value) {
-        return value == null;
-      });
-      result.add(temp.fold(0, (tot, doc) => tot + doc));
-    }
-    return result;
-  }
-
-  List<dynamic> _createListOfWorkTime(
-      QuerySnapshot snapshot, List listOfRates) {
-    List result = List();
-    for (int i = 0; i < listOfRates.length; i++) {
-      List<dynamic> temp = _getListOfWorkTime(snapshot, listOfRates[i]);
-      temp.removeWhere((value) {
-        return value == null;
-      });
-      result.add(temp.fold(0, (tot, doc) => tot + doc));
-    }
-    return result;
   }
 }
