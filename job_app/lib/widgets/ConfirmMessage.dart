@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ConfirmLogOutDialog extends StatelessWidget {
+class ConfirmMessage extends StatelessWidget {
   final Function funFirstAnswer;
   final Function funSecondAnswer;
+  final String title;
+  final String message;
 
-  const ConfirmLogOutDialog({this.funFirstAnswer, this.funSecondAnswer});
+  const ConfirmMessage(
+      {this.title, this.message, this.funFirstAnswer, this.funSecondAnswer});
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +15,8 @@ class ConfirmLogOutDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
-      title: const Text("Log out?"),
-      content: const Text("You will be logged out from this account"),
+      title: Text(title),
+      content: Text(message),
       actions: <Widget>[
         FlatButton(
             textColor: Theme.of(context).primaryColor,
