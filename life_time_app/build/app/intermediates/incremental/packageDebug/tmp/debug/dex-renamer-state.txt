@@ -1,0 +1,4 @@
+#Tue Sep 24 18:25:40 CEST 2019
+base.0=/home/guest/Development/Git/Flutter/meals_app/life_time_app/build/app/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
