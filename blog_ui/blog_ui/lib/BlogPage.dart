@@ -43,9 +43,9 @@ class BlogPage extends StatelessWidget {
       itemBuilder: (contex, index) {
         return Container(
           width: media.size.width * .7,
-          height: media.size.height * .4,
+          height: media.size.height * .3,
           margin: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
-          padding: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 15),
+          padding: EdgeInsets.only(left: 10, right: 10,),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             gradient: LinearGradient(colors: [
@@ -60,13 +60,13 @@ class BlogPage extends StatelessWidget {
             children: <Widget>[
               Image.asset(
                 'assets/images/blog.jpg',
-                width: 175,
-                height: 175,
+                width: 160,
+                height: 160,
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                  top: 30.0,
-                  bottom: 30.0,
+                  top: 20.0,
+                  bottom: 20.0,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
