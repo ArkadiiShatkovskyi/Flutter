@@ -5,6 +5,12 @@ class BlogPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        shape: UnderlineInputBorder(
+          borderSide: BorderSide(style: BorderStyle.none),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(40),
+          ),
+        ),
         centerTitle: true,
         title: Text("Categories"),
         leading: IconButton(
