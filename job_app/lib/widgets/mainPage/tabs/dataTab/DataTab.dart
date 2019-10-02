@@ -165,7 +165,7 @@ class _DataTabState extends State<DataTab> {
   }
 
   void _editItem(BuildContext context, MediaQueryData media) {
-    if (_selectedItems.length == 1)
+    if (_selectedItems.length == 1 && _itemToEdit != null) {
       showBottomSheet(
         context: context,
         builder: (context) => EditRecordWidget(
@@ -173,7 +173,9 @@ class _DataTabState extends State<DataTab> {
           user: _user,
         ),
       );
-    else
+    } else if (_itemToEdit == null) {
+      _showShackBarMessage("Uncheck items and check item, which you wanna to edit");
+    } else
       _showShackBarMessage("Choose one item");
   }
 

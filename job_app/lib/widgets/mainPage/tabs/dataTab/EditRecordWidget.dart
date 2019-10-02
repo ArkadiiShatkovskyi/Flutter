@@ -29,21 +29,25 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
   @override
   void initState() {
     super.initState();
-    _date = widget.editItem.date;
-    _startTime = TimeOfDay.now().replacing(
-        hour: int.parse(widget.editItem.startTime.toString().substring(0, 2)),
-        minute: int.parse(widget.editItem.startTime
-            .toString()
-            .substring(3, widget.editItem.startTime.toString().length)));
-
-    _endTime = TimeOfDay.now().replacing(
-        hour: int.parse(widget.editItem.endTime.toString().substring(0, 2)),
-        minute: int.parse(widget.editItem.endTime
-            .toString()
-            .substring(3, widget.editItem.endTime.toString().length)));
-    _workTime = widget.editItem.workTime;
-    _rate = widget.editItem.rate;
-    _rateController.text = _rate.toString();
+    setState(() {
+      if (widget.editItem != null) {
+        _date = widget.editItem.date;
+        _startTime = TimeOfDay.now().replacing(
+            hour:
+                int.parse(widget.editItem.startTime.toString().substring(0, 2)),
+            minute: int.parse(widget.editItem.startTime
+                .toString()
+                .substring(3, widget.editItem.startTime.toString().length)));
+        _endTime = TimeOfDay.now().replacing(
+            hour: int.parse(widget.editItem.endTime.toString().substring(0, 2)),
+            minute: int.parse(widget.editItem.endTime
+                .toString()
+                .substring(3, widget.editItem.endTime.toString().length)));
+        _workTime = widget.editItem.workTime;
+        _rate = widget.editItem.rate;
+        _rateController.text = _rate.toString();
+      }
+    });
   }
 
   @override

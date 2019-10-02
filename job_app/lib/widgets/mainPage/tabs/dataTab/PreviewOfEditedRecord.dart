@@ -38,26 +38,36 @@ class PreviewOfEditedRecord extends StatelessWidget {
         cells: [
           DataCell(Center(
               child: Text(
-            date,
+            date == null ? '' : date,
           ))),
           DataCell(Center(
               child: Text(
-            startTime.toString().substring(10, startTime.toString().length - 1),
+            startTime == null
+                ? ''
+                : startTime
+                    .toString()
+                    .substring(10, startTime.toString().length - 1),
           ))),
           DataCell(Center(
               child: Text(
-            endTime.toString().substring(10, endTime.toString().length - 1),
+            endTime == null
+                ? ''
+                : endTime
+                    .toString()
+                    .substring(10, endTime.toString().length - 1),
           ))),
           DataCell(Center(
               child: Text(
-            workTime.toString().length > 4
-                ? workTime.toString().substring(0, 4)
-                : workTime.toString(),
+            workTime == null
+                ? 0.toString()
+                : workTime.toString().length > 4
+                    ? workTime.toString().substring(0, 4)
+                    : workTime.toString(),
           ))),
           DataCell(
             Center(
                 child: Text(
-              rate.toString(),
+              rate == null ? 0.toString() : rate.toString(),
             )),
           )
         ],
