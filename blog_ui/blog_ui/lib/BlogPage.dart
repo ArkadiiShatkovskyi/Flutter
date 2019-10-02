@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'package:gradient_app_bar/gradient_app_bar.dart';
+
 class BlogPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: GradientAppBar(
+        gradient: LinearGradient(colors: [
+          Colors.lightBlueAccent.withOpacity(0.15),
+          Colors.indigoAccent.withOpacity(0.8),
+        ]),
         shape: UnderlineInputBorder(
-          borderSide: BorderSide(style: BorderStyle.none),
+          borderSide: BorderSide(
+            style: BorderStyle.none,
+          ),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(40),
           ),
@@ -45,15 +53,18 @@ class BlogPage extends StatelessWidget {
           width: media.size.width * .7,
           height: media.size.height * .3,
           margin: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
-          padding: EdgeInsets.only(left: 10, right: 10,),
+          padding: EdgeInsets.only(
+            left: 10,
+            right: 10,
+          ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            gradient: LinearGradient(colors: [
-              Colors.lightBlueAccent.withOpacity(0.15),
-              Colors.indigoAccent.withOpacity(0.15),
-            ]),
-//              border: Border.all(color: Colors.black),
-//              borderRadius: BorderRadius.circular(30),
+            gradient: LinearGradient(
+              colors: [
+                Colors.lightBlueAccent.withOpacity(0.15),
+                Colors.indigoAccent.withOpacity(0.8),
+              ],
+            ),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -89,12 +100,14 @@ class BlogPage extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         IconButton(
+                          onPressed: () {},
                           icon: Icon(
                             Icons.favorite,
                             color: Colors.redAccent,
                           ),
                         ),
                         IconButton(
+                          onPressed: () {},
                           icon: Icon(
                             Icons.share,
                             color: Colors.black,
