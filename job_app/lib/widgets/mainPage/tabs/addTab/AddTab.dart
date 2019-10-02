@@ -17,7 +17,7 @@ class _AddTabState extends State<AddTab> {
   DateTime _date = DateTime.now();
   TextEditingController _rateController = TextEditingController();
   String _user;
-  double _defaultRate = 15.0;
+  double _defaultRate = 17.35;
 
   @override
   void initState() {
