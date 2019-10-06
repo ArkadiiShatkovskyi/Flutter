@@ -25,35 +25,30 @@ class AnimationIconButton extends StatefulWidget {
 class AnimationIconButtonState extends State<AnimationIconButton> {
   String _animationName = 'Test';
 
-  void _onButtonLongPress() {
+  void _onButtonTap() {
     setState(() {
-      _animationName = 'Untitled';
+      _animationName = 'like_animation';
     });
-  }
-
-  void _onButtonTap(){
-    setState(() {
-      _animationName = 'Test';
+    Future.delayed(const Duration(seconds: 1), () {
+      setState(() {
+        _animationName = 'Test';
+      });
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Test animation with flare"),
-        ),
-        body: Center(
-          child: AnimatedContainer(
-            duration: Duration(seconds: 2),
-            child: GestureDetector(
-              onLongPress: _onButtonLongPress,
-              onTap: _onButtonTap,
-              child: FlareActor(
-                'assets/LikeButton.flr',
-                fit: BoxFit.contain,
-                animation: _animationName,
-              ),
+      appBar: AppBar(
+        title: Text("Test animation with flare"),
+      ),
+      body: Center(
+        child: GestureDetector(
+            onTap: _onButtonTap,
+            child: FlareActor(
+              'assets/LikeButton.flr',
+              fit: BoxFit.contain,
+              animation: _animationName,
             ),
           ),
         ),
