@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flare_flutter/flare_actor.dart';
+import './screens/LoadingScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,13 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: GestureDetector(
-        child: FlareActor(
-          'assets/animation/ActivityAnimation.flr',
-          fit: BoxFit.cover,
-          animation: 'activity',
-        ),
-      ),
+      home: LoadingScreen(),
     );
   }
 }
