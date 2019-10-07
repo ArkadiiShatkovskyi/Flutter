@@ -33,6 +33,15 @@ dev_dependencies:
   flutter_calendar: ^0.0.8
   keyboard_avoider: ^0.1.2
   ant_icons: ^1.0.0
+  flutter_launcher_icons: any
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path_ios: "assets/icon/CalendarIcon.png"
+  image_path_android: "assets/icon/CalendarIcon.png"
+  adaptive_icon_background: "assets/icon/background.png"
+  adaptive_icon_foreground: "assets/icon/foreground.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -49,6 +58,7 @@ flutter:
     - assets/images/undraw_mobile_login_ikmv.png
     - assets/images/undraw_mobile_prototyping_grmd.png
     - assets/images/undraw_calendar_dutt.png
+#    - assets/icon/CalendarIcon.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
