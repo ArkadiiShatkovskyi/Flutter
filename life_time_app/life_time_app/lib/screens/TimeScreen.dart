@@ -9,6 +9,13 @@ class TimeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.add), title: Text("Add")),
+          BottomNavigationBarItem(icon: Icon(Icons.calendar_today), title: Text("Calendar")),
+        ]
+      ),
       body: Stack(
         children: <Widget>[
           Positioned(
@@ -57,7 +64,7 @@ class TimeScreen extends StatelessWidget {
                     topLeft: Radius.circular(30)),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(top: 30, bottom: 20),
+                padding: const EdgeInsets.only(top: 30, bottom: 0),
                 child: ListView(
                   children: <Widget>[
                     SizedBox(
