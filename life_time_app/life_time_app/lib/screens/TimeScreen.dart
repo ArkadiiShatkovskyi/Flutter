@@ -40,30 +40,37 @@ class TimeScreen extends StatelessWidget {
             bottom: 0,
             child: Container(
               width: media.width,
-              height: media.height / 2,
+              height: media.height * .55,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
+                /*gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomLeft,
                   colors: [
                     Colors.lightBlueAccent,
                     Colors.blueAccent,
                   ],
-                ),
+                ),*/
 //                color: Colors.black54,
+//                border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(30),
                     topLeft: Radius.circular(30)),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(top: 30.0, bottom: 30),
+                padding: const EdgeInsets.only(top: 30, bottom: 20),
                 child: ListView(
                   children: <Widget>[
                     SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
                       height: media.height * .2,
                       child: Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                        margin: EdgeInsets.only(top: 30, left: 40, right: 40),
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        margin:
+                            EdgeInsets.only(left: 40, right: 40, bottom: 30),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -90,8 +97,11 @@ class TimeScreen extends StatelessWidget {
 //                      width: media.width * .9,
                       height: media.height * .2,
                       child: Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                        margin: EdgeInsets.only(top: 30, left: 40, right: 40),
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        margin:
+                            EdgeInsets.only(left: 40, right: 40, bottom: 30),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -118,8 +128,11 @@ class TimeScreen extends StatelessWidget {
 //                      width: media.width * .9,
                       height: media.height * .2,
                       child: Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                        margin: EdgeInsets.only(top: 30, left: 40, right: 40),
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        margin:
+                            EdgeInsets.only(left: 40, right: 40, bottom: 30),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
