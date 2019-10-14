@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class StatisticsList extends StatelessWidget {
+class StatisticItem extends StatelessWidget {
   final height;
   final item;
 
-  const StatisticsList(this.height, this.item);
+  const StatisticItem(this.height, this.item);
 
   List get statistics {
     return [
@@ -38,7 +38,7 @@ class StatisticsList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Text("some text"),
-                Text( statistics[item]['text']),
+                Text(statistics[item]['text']),
               ],
             ),
           ],
