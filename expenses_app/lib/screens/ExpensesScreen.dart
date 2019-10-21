@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/ExpensesList.dart';
 
 class ExpensesScreen extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class ExpensesScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(child: Text("Here's main screen")),
+      body: ExpensesList(5),
     );
   }
 }
