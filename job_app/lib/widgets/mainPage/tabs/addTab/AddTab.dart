@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ant_icons/ant_icons.dart';
@@ -67,7 +68,7 @@ class _AddTabState extends State<AddTab> {
     );
   }
 
-  Future<Null> _showDatePicker(BuildContext context) async {
+  /*Future<Null> _showDatePicker(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         initialDatePickerMode: DatePickerMode.day,
         context: context,
@@ -78,8 +79,46 @@ class _AddTabState extends State<AddTab> {
       setState(() {
         _date = picked;
       });
+  }*/
+
+  Future<Null> _showDatePicker(BuildContext context) async {
+    final height = MediaQuery.of(context).size.height;
+    showBottomSheet(
+        context: context,
+        builder: (BuildContext ctx) {
+          return SizedBox(
+            height: height * .27,
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.arrow_drop_down,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                SizedBox(
+                  height: height * .20,
+                  child: CupertinoDatePicker(
+//                    backgroundColor: Theme.of(context).pr,
+                    mode: CupertinoDatePickerMode.date,
+                    initialDateTime: _date,
+                    minimumDate: DateTime(2015, 8),
+                    maximumDate: DateTime(2050),
+                    onDateTimeChanged: (DateTime dateTime) {
+                      setState(() {
+                        _date = dateTime;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
   }
 
+  /*
   Future<Null> _showStartTimePicker(BuildContext context) async {
     final TimeOfDay picked = await showTimePicker(
       context: context,
@@ -100,6 +139,72 @@ class _AddTabState extends State<AddTab> {
       setState(() {
         _endTime = picked;
       });
+  } */
+
+  Future<Null> _showStartTimePicker(BuildContext context) async {
+    final height = MediaQuery.of(context).size.height;
+    showBottomSheet(context: context, builder: (BuildContext ctx){
+      return SizedBox(
+        height: height * .3,
+        child: Column(
+          children: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.arrow_drop_down,
+                color: Theme.of(context).primaryColor,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            SizedBox(
+              height: height * .20,
+              child: CupertinoDatePicker(
+                use24hFormat: true,
+                mode: CupertinoDatePickerMode.time,
+                initialDateTime: DateTime.now(),
+                onDateTimeChanged: (DateTime dateTime) {
+                  setState(() {
+                    _strTime = TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+
+  Future<Null> _showEndTimePicker(BuildContext context) async {
+    final height = MediaQuery.of(context).size.height;
+    showBottomSheet(context: context, builder: (BuildContext ctx){
+      return SizedBox(
+        height: height * .3,
+        child: Column(
+          children: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.arrow_drop_down,
+                color: Theme.of(context).primaryColor,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            SizedBox(
+              height: height * .20,
+              child: CupertinoDatePicker(
+                use24hFormat: true,
+                mode: CupertinoDatePickerMode.time,
+                initialDateTime: DateTime.now(),
+                onDateTimeChanged: (DateTime dateTime) {
+                  setState(() {
+                    _endTime = TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 
   void _addHours() async {
