@@ -27,7 +27,7 @@ class _SummaryTabState extends State<SummaryTab> {
     return ListView.builder(
         shrinkWrap: true,
         itemCount: _listOfWork.length,
-        itemBuilder: (BuildContext ctxt, int index) => _createItem(index));
+        itemBuilder: (BuildContext ctxt, int index) => _createItems(index));
   }
 
   void _getValues(String user) {
@@ -50,7 +50,7 @@ class _SummaryTabState extends State<SummaryTab> {
     });
   }
 
-  Widget _createItem(int index) {
+  Widget _createItems(int index) {
     /*** CREATING WIDGET O SHOW DATA ***/
     return _listOfWork[index]['month'] == null
         ? SummaryCard.workPerRate(
