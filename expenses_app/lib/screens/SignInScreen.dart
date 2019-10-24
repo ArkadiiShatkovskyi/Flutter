@@ -34,10 +34,10 @@ class _SignInScreenState extends State<SignInScreen> {
       child: Stack(
         children: <Widget>[
           Positioned(
-            top: media.size.height * .25,
-            left: media.size.width * .05,
-            right: media.size.width * .05,
-            bottom: media.size.height * .25,
+            top: media.size.height * .28,
+            left: media.size.width * .1,
+            right: media.size.width * .1,
+            bottom: media.size.height * .28,
             child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40)),
@@ -45,9 +45,6 @@ class _SignInScreenState extends State<SignInScreen> {
                 margin: EdgeInsets.all(50),
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(
-                      height: 10,
-                    ),
                     const Center(
                       child: Text(
                         "Log in",
@@ -56,7 +53,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
                     SizedBox(
                       width: media.size.width * .6,
