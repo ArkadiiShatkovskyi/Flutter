@@ -1,6 +1,17 @@
-import 'package:expenses_app/screens/ExpensesScreen.dart';
 import 'package:flutter/material.dart';
 
+import './screens/SignInScreen.dart';
+
 void main() => runApp(
-      ExpensesScreen(),
+      ExpensesApp(),
     );
+
+class ExpensesApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SignInScreen(),
+    );
+  }
+}
