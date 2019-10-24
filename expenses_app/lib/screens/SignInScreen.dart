@@ -6,6 +6,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  static const Color _primaryColor = Colors.indigo;
+
   TextEditingController _loginTextController = new TextEditingController();
   TextEditingController _passwordTextController = new TextEditingController();
 
@@ -17,7 +19,7 @@ class _SignInScreenState extends State<SignInScreen> {
         backgroundColor: Colors.white,
         splashColor: Colors.amberAccent,
         onPressed: (){},
-        child: Icon(Icons.arrow_forward, color: Colors.lightBlueAccent,),
+        child: Icon(Icons.arrow_forward, color: _primaryColor,),
       ),
       body: createBody(context),
     );
@@ -26,7 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget createBody(context) {
     final media = MediaQuery.of(context);
     return Container(
-      color: Colors.lightBlueAccent,
+      color: _primaryColor,
       width: media.size.width,
       height: media.size.height,
       child: Stack(
@@ -46,7 +48,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: Text(
                         "Log in",
                         style: TextStyle(
-                            fontStyle: FontStyle.italic, fontSize: 30, color: Colors.lightBlueAccent),
+                            fontStyle: FontStyle.italic, fontSize: 30, color: _primaryColor,),
                       ),
                     ),
                     const SizedBox(
@@ -62,12 +64,12 @@ class _SignInScreenState extends State<SignInScreen> {
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
-                            borderSide: const BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                            borderSide: const BorderSide(color: _primaryColor, width: 2.0),
                           ),
                           icon: Icon(
                             Icons.mail_outline,
                             size: 26,
-                            color: Colors.lightBlueAccent,
+                            color: _primaryColor,
                           ),
                           labelText: 'Log in',
                           border: OutlineInputBorder(
@@ -88,11 +90,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
-                            borderSide: const BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                            borderSide: const BorderSide(color: _primaryColor, width: 2.0),
                           ),
                           icon: Icon(
                             Icons.mail_outline,
-                            color: Colors.lightBlueAccent,
+                            color: _primaryColor,
                             size: 26,
                           ),
                           labelText: 'Password',
