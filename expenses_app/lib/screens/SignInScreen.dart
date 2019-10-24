@@ -34,15 +34,15 @@ class _SignInScreenState extends State<SignInScreen> {
       child: Stack(
         children: <Widget>[
           Positioned(
-            top: media.size.height * .28,
-            left: media.size.width * .1,
-            right: media.size.width * .1,
-            bottom: media.size.height * .28,
+            top: media.size.height * .25,
+            left: media.size.width * .08,
+            right: media.size.width * .08,
+            bottom: media.size.height * .27,
             child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40)),
               child: Container(
-                margin: EdgeInsets.all(50),
+                margin: EdgeInsets.all(40),
                 child: Column(
                   children: <Widget>[
                     const Center(
@@ -102,6 +102,12 @@ class _SignInScreenState extends State<SignInScreen> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30)),
                         ),
+                      ),
+                    ),
+                     Center(
+                      child: FlatButton(
+                        child: Text("Create an account", style: TextStyle(color: _primaryColor, fontStyle: FontStyle.italic, fontSize: 14),),
+                        onPressed: (){},
                       ),
                     ),
                   ],
