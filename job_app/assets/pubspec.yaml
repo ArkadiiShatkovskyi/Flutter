@@ -1,5 +1,5 @@
 name: job_app
-description: A new Flutter application.
+description: A new Flutter project.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -17,14 +17,15 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+
+  cloud_firestore:
+
   flutter:
     sdk: flutter
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   firebase_auth: ^0.6.6
-  cloud_firestore:
 
 dev_dependencies:
   flutter_test:
@@ -47,7 +48,6 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
-
   fonts:
     - family: CourgetteRegular
       fonts:
@@ -58,6 +58,7 @@ flutter:
     - assets/images/undraw_mobile_login_ikmv.png
     - assets/images/undraw_mobile_prototyping_grmd.png
     - assets/images/undraw_calendar_dutt.png
+#    - assets/icon/CalendarIcon.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
