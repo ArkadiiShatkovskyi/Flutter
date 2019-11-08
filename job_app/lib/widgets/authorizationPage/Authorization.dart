@@ -19,7 +19,7 @@ class Authorization {
     } catch (e) {
       this._isLoading = false;
       print(e.toString());
-      print("wrong pass");
+//      print("wrong pass");
     }
     this._isLoading = false;
     return user != null;
@@ -64,5 +64,9 @@ class Authorization {
 
   void setIsLoading() {
     this._isLoading = true;
+  }
+
+  void stopLoading(){
+    this._isLoading = false;
   }
 }
