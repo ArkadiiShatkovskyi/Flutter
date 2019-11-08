@@ -40,6 +40,18 @@ class _SignInPageBodyState extends State<SignInPageBody> {
   bool _isLoading = false;
   Authorization _db = Authorization();
 
+  @override
+  void initState() {
+    super.initState();
+//    _formMode = FormMode.LOGIN;
+    _db.getUser().then((user) {
+      if (user != null) {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => MainPage()));
+      }
+    });
+  }
+
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
     return Center(
