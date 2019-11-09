@@ -6,6 +6,7 @@ import 'package:ant_icons/ant_icons.dart';
 
 import 'package:job_app/widgets/AppTheme.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
+import 'package:job_app/widgets/authorizationPage/RegistrationPage.com.dart';
 import 'package:job_app/widgets/mainPage/MainPage.dart';
 
 class SingInPage extends StatelessWidget {
@@ -39,18 +40,6 @@ class _SignInPageBodyState extends State<SignInPageBody> {
   final _passwordTextController = TextEditingController();
   bool _isLoading = false;
   Authorization _db = Authorization();
-
-  @override
-  void initState() {
-    super.initState();
-//    _formMode = FormMode.LOGIN;
-    _db.getUser().then((user) {
-      if (user != null) {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => MainPage()));
-      }
-    });
-  }
 
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
@@ -135,7 +124,7 @@ class _SignInPageBodyState extends State<SignInPageBody> {
               child: Text("Create an account",
                   style:
                       TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300)),
-              onPressed: () => {},
+              onPressed: _showRegistrationPage,
             ),
             _showCircularProgress(),
           ],
@@ -170,7 +159,10 @@ class _SignInPageBodyState extends State<SignInPageBody> {
           _isLoading = _db.setToLoad();
       });
     });
+  }
 
+  void _showRegistrationPage(){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegistrationPage()));
   }
 
   Widget _showCircularProgress() {
