@@ -87,7 +87,7 @@ class _AddTabState extends State<AddTab> {
         context: context,
         builder: (BuildContext ctx) {
           return SizedBox(
-            height: height * .3,
+            height: height * .27,
             child: Column(
               children: <Widget>[
                 IconButton(
