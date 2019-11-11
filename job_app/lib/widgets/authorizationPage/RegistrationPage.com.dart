@@ -5,6 +5,7 @@ import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:job_app/widgets/AppTheme.dart';
+import './FieldWidget.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -27,6 +28,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
       home: WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
+          floatingActionButton: FloatingActionButton(child: Icon(AntIcons.arrow_right, color: Colors.white,), onPressed: () => {},),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           appBar: AppBar(
             title: Text("Create new account"),
           ),
@@ -35,6 +38,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
               margin: const EdgeInsets.only(top: 40),
               child: ListView(
                 children: <Widget>[
+                  SizedBox(
+                    height: 30,
+                  ),
                   Container(
                     width: media.size.width * .5,
                     height: media.size.height * .3,
@@ -43,105 +49,33 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         "assets/images/undraw_personal_data_29co.svg"),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 30,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: media.size.width * .1,
-                        right: media.size.width * .1),
-                    child: TextFormField(
-                      maxLines: 1,
-                      maxLength: 20,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        icon: Icon(
-                          AntIcons.user,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        labelText: 'Name',
-                      ),
-                      controller: _nameTextController,
-                    ),
-                  ),
-                  Divider(
-                    color: Colors.transparent,
-                    height: media.size.height * .01,
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: media.size.width * .1,
-                        right: media.size.width * .1),
-                    child: TextFormField(
-                      maxLines: 1,
-                      maxLength: 30,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        icon: Icon(
-                          AntIcons.user,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        labelText: 'Surname',
-                      ),
-                      controller: _surNameTextController,
-                    ),
-                  ),
-                  Divider(
-                    color: Colors.transparent,
-                    height: media.size.height * .01,
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: media.size.width * .1,
-                        right: media.size.width * .1),
-                    child: TextFormField(
-                      maxLines: 1,
-                      maxLength: 30,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        icon: Icon(
-                          AntIcons.mail_outline,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        labelText: 'Email',
-                      ),
-                      controller: _emailTextController,
-                    ),
-                  ),
-                  Divider(
-                    color: Colors.transparent,
-                    height: media.size.height * .01,
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: media.size.width * .1,
-                        right: media.size.width * .1),
-                    child: TextFormField(
-                      maxLines: 1,
-                      maxLength: 20,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        icon: Icon(
-                          AntIcons.lock_outline,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        labelText: 'Password',
-                      ),
-                      controller: _passwordTextController,
-                    ),
-                  ),
-                  Divider(
-                    color: Colors.transparent,
-                    height: media.size.height * .01,
-                  ),
-                  Container(
+                  FieldWidget(
+                      width: media.size.width,
+                      icon: AntIcons.user,
+                      textController: _nameTextController,
+                      labelText: 'Name'),
+                  SizedBox(height: 10),
+                  FieldWidget(
+                      width: media.size.width,
+                      icon: AntIcons.user,
+                      textController: _surNameTextController,
+                      labelText: 'Surname'),
+                  SizedBox(height: 10),
+                 /* FieldWidget(
+                      width: media.size.width,
+                      icon: AntIcons.mail_outline,
+                      textController: _emailTextController,
+                      labelText: 'Email'),
+                  SizedBox(height: 10),
+                  FieldWidget(
+                      width: media.size.width,
+                      icon: AntIcons.lock_outline,
+                      textController: _passwordTextController,
+                      labelText: 'Password'),
+                  SizedBox(height: 10),*/
+                  /*Container(
                     margin: EdgeInsets.only(
                         left: media.size.width * .25,
                         right: media.size.width * .25),
@@ -156,7 +90,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         style: TextStyle(fontSize: 15),
                       ),
                     ),
-                  ),
+                  ),*/
                 ],
               ),
             ),
