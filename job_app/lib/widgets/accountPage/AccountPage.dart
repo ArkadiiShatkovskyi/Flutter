@@ -16,7 +16,6 @@ class AccountPage extends StatefulWidget {
 class _AccountPageState extends State<AccountPage> {
   var _name = '';
   var _surname = '';
-  var _birthDate = '';
   var _email = '';
 
   @override
@@ -76,10 +75,6 @@ class _AccountPageState extends State<AccountPage> {
             Divider(
               height: 15,
             ),
-            DataElement("Birth Day", _birthDate.toString()),
-            Divider(
-              height: 15,
-            ),
             DataElement("Email", _email.toString()),
           ],
         ),
@@ -95,7 +90,6 @@ class _AccountPageState extends State<AccountPage> {
     setState(() {
       _name = document['name'];
       _surname = document['surname'];
-      _birthDate = document['birthDay'];
     });
   }
 }
