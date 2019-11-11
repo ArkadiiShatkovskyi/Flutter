@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ant_icons/ant_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:job_app/widgets/AppTheme.dart';
 
@@ -35,18 +36,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
               child: ListView(
                 children: <Widget>[
                   Container(
-                    child: Center(
-                      child: Text(
-                        "Fields bellow",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontStyle: FontStyle.italic,
-                            color: Theme.of(context).primaryColor),
-                      ),
-                    ),
+                    width: media.size.width * .5,
+                    height: media.size.height * .3,
+                    margin: const EdgeInsets.only(bottom: 20),
+                    child: SvgPicture.asset(
+                        "assets/images/undraw_personal_data_29co.svg"),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 15,
                   ),
                   Container(
                     margin: EdgeInsets.only(
