@@ -19,6 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -58,6 +59,7 @@ flutter:
     - assets/images/undraw_mobile_login_ikmv.png
     - assets/images/undraw_mobile_prototyping_grmd.png
     - assets/images/undraw_calendar_dutt.png
+    - assets/images/undraw_personal_data_29co.svg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
