@@ -4,17 +4,26 @@ import './FieldWidget.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
-class RegistrationStep extends StatelessWidget{
-
+class RegistrationStep extends StatelessWidget {
   final image;
   final textController1;
   final textController2;
+  final textController3;
   final icon1;
   final icon2;
   final labelText1;
   final labelText2;
 
-  RegistrationStep({this.image, this.textController1, this.textController2, this.icon1, this.icon2, this.labelText1, this.labelText2});
+  // ignore: avoid_init_to_null
+  RegistrationStep(
+      {this.image,
+      this.textController1,
+      this.textController2,
+      this.icon1,
+      this.icon2,
+      this.labelText1,
+      this.labelText2,
+      this.textController3 = null});
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +34,16 @@ class RegistrationStep extends StatelessWidget{
         child: ListView(
           children: <Widget>[
             SizedBox(
-              height: 30,
+              height: 5,
             ),
             Container(
               width: media.size.width * .5,
               height: media.size.height * .3,
               margin: const EdgeInsets.only(bottom: 20),
-              child: SvgPicture.asset(
-                  image),
+              child: SvgPicture.asset(image),
             ),
             SizedBox(
-              height: 30,
+              height: 15,
             ),
             FieldWidget(
                 width: media.size.width,
@@ -48,9 +56,23 @@ class RegistrationStep extends StatelessWidget{
                 icon: icon2,
                 textController: textController2,
                 labelText: labelText2),
+            SizedBox(height: 10),
+            _passwordRepeat(media),
           ],
         ),
       ),
     );
+  }
+
+  Widget _passwordRepeat(media) {
+    return textController3 == null
+        ? SizedBox(
+            height: 5,
+          )
+        : FieldWidget(
+            width: media.size.width,
+            icon: icon2,
+            textController: textController3,
+            labelText: 'Repeat password');
   }
 }
