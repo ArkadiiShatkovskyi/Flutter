@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:ant_icons/ant_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:job_app/widgets/AppTheme.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
@@ -41,7 +42,6 @@ class _SignInPageBodyState extends State<SignInPageBody> {
   bool _isLoading = false;
   Authorization _db = Authorization();
 
-
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
     return Center(
@@ -56,8 +56,8 @@ class _SignInPageBodyState extends State<SignInPageBody> {
               child: CircleAvatar(
                 backgroundColor: Colors.transparent,
                 radius: 48.0,
-                child:
-                    Image.asset("assets/images/undraw_mobile_login_ikmv.png"),
+                child: SvgPicture.asset(
+                    "assets/images/undraw_mobile_login_ikmv.svg"),
               ),
             ),
             Container(
@@ -144,7 +144,8 @@ class _SignInPageBodyState extends State<SignInPageBody> {
             _emailTextController.text, _passwordTextController.text, widget.key)
         .then((answer) {
       if (answer == true) {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => MainPage()));
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => MainPage()));
       } else {
         Scaffold.of(context).showSnackBar(SnackBar(
           duration: Duration(seconds: 2),
@@ -156,14 +157,15 @@ class _SignInPageBodyState extends State<SignInPageBody> {
     });
     Timer(Duration(seconds: 3), () {
       setState(() {
-          _db.stopLoading();
-          _isLoading = _db.setToLoad();
+        _db.stopLoading();
+        _isLoading = _db.setToLoad();
       });
     });
   }
 
-  void _showRegistrationPage(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegistrationPage()));
+  void _showRegistrationPage() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => RegistrationPage()));
   }
 
   Widget _showCircularProgress() {
