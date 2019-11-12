@@ -107,73 +107,82 @@ class _AddTabState extends State<AddTab> {
 
   Future<Null> _showStartTimePicker(BuildContext context) async {
     final height = MediaQuery.of(context).size.height;
-    showBottomSheet(context: context, builder: (BuildContext ctx){
-      return SizedBox(
-        height: height * .3,
-        child: Column(
-          children: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.arrow_drop_down,
-                color: Theme.of(context).primaryColor,
-              ),
-              onPressed: () => Navigator.of(context).pop(),
+    showBottomSheet(
+        context: context,
+        builder: (BuildContext ctx) {
+          return SizedBox(
+            height: height * .3,
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.arrow_drop_down,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                SizedBox(
+                  height: height * .20,
+                  child: CupertinoDatePicker(
+                    use24hFormat: true,
+                    mode: CupertinoDatePickerMode.time,
+                    initialDateTime: DateTime.now(),
+                    onDateTimeChanged: (DateTime dateTime) {
+                      setState(() {
+                        _strTime = TimeOfDay(
+                            hour: dateTime.hour, minute: dateTime.minute);
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: height * .20,
-              child: CupertinoDatePicker(
-                use24hFormat: true,
-                mode: CupertinoDatePickerMode.time,
-                initialDateTime: DateTime.now(),
-                onDateTimeChanged: (DateTime dateTime) {
-                  setState(() {
-                    _strTime = TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
-                  });
-                },
-              ),
-            ),
-          ],
-        ),
-      );
-    });
+          );
+        });
   }
 
   Future<Null> _showEndTimePicker(BuildContext context) async {
     final height = MediaQuery.of(context).size.height;
-    showBottomSheet(context: context, builder: (BuildContext ctx){
-      return SizedBox(
-        height: height * .3,
-        child: Column(
-          children: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.arrow_drop_down,
-                color: Theme.of(context).primaryColor,
-              ),
-              onPressed: () => Navigator.of(context).pop(),
+    showBottomSheet(
+        context: context,
+        builder: (BuildContext ctx) {
+          return SizedBox(
+            height: height * .3,
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.arrow_drop_down,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                SizedBox(
+                  height: height * .20,
+                  child: CupertinoDatePicker(
+                    use24hFormat: true,
+                    mode: CupertinoDatePickerMode.time,
+                    initialDateTime: DateTime.now(),
+                    onDateTimeChanged: (DateTime dateTime) {
+                      setState(() {
+                        _endTime = TimeOfDay(
+                            hour: dateTime.hour, minute: dateTime.minute);
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: height * .20,
-              child: CupertinoDatePicker(
-                use24hFormat: true,
-                mode: CupertinoDatePickerMode.time,
-                initialDateTime: DateTime.now(),
-                onDateTimeChanged: (DateTime dateTime) {
-                  setState(() {
-                    _endTime = TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
-                  });
-                },
-              ),
-            ),
-          ],
-        ),
-      );
-    });
+          );
+        });
   }
 
   void _addHours() async {
-    double workTime = (_endTime.hour + _endTime.minute / 60.0) -
-        (_strTime.hour + _strTime.minute / 60.0);
+    double workTime = _endTime.hour < _strTime.hour
+        ? (24 + _endTime.hour + _endTime.minute / 60.0) -
+            (_strTime.hour + _strTime.minute / 60.0)
+        : (_endTime.hour + _endTime.minute / 60.0) -
+            (_strTime.hour + _strTime.minute / 60.0);
     await Firestore.instance.collection(_user).add({
       'date': _date.toString().substring(5, 10),
       'strTime': _strTime.toString().substring(10, 15),
