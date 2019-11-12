@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:job_app/widgets/authorizationPage/SignInSignUpPage.dart';
+
+import './SignInPage.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -35,7 +36,7 @@ class Authorization {
       FirebaseAuth.instance.currentUser().then((firebaseUser) {
         if (firebaseUser == null) {
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => SignInSignUp()));
+              context, MaterialPageRoute(builder: (context) => SingInPage()));
         }
       });
     }
