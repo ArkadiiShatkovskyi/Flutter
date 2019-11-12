@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../widgets/mainPage/MainPage.dart';
 import './AppTheme.dart';
 
@@ -33,10 +35,8 @@ class InfoWidget extends StatelessWidget {
                 child: Container(
                   width: media.size.width * .7,
                   height: media.size.width * .8,
-                  child: Image(
-                    image: AssetImage(
-                        "assets/images/undraw_mobile_prototyping_grmd.png"),
-                  ),
+                  child: SvgPicture.asset(
+                      "assets/images/undraw_mobile_prototyping_grmd.svg"),
                 ),
               ),
               Divider(
