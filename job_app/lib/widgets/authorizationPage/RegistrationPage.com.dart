@@ -14,6 +14,7 @@ class RegistrationPage extends StatefulWidget {
 class _RegistrationPageState extends State<RegistrationPage> {
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
+  final _passwordRepeatTextController = TextEditingController();
   final _nameTextController = TextEditingController();
   final _surNameTextController = TextEditingController();
   final _pageViewController = PageController();
@@ -38,6 +39,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         icon1: AntIcons.mail_outline,
         labelText1: 'Email',
         textController2: _passwordTextController,
+        textController3: _passwordRepeatTextController,
         icon2: AntIcons.lock_outline,
         labelText2: 'Password',
       )
@@ -77,11 +79,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  void nextPage(){
-    if(_pageViewController.page == 1.0){
+  void nextPage() {
+    if (_pageViewController.page == 1.0) {
       print("register here");
-    }else{
-      _pageViewController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.ease);
+    } else {
+      _pageViewController.nextPage(
+          duration: Duration(milliseconds: 300), curve: Curves.ease);
     }
   }
 }
