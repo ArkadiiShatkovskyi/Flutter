@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:job_app/widgets/AppTheme.dart';
 import './FieldWidget.dart';
+import './RegistrationStep.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -17,8 +18,28 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final _passwordTextController = TextEditingController();
   final _nameTextController = TextEditingController();
   final _surNameTextController = TextEditingController();
+  final _pageViewController = PageController();
 
-//  Authorization _db = Authorization();
+  var _registrationSteps = <Widget>[
+    RegistrationStep(
+      image: "assets/images/undraw_personal_data_29co.svg",
+      textController1: _nameTextController,
+      icon1: AntIcons.user,
+      labelText1: 'Name',
+      textController2: _surNameTextController,
+      icon2: AntIcons.user,
+      labelText2: 'Surname',
+    ),
+    RegistrationStep(
+      image: "assets/images/undraw_personal_data_29co.svg",
+      textController1: _emailTextController,
+      icon1: AntIcons.mail_outline,
+      labelText1: 'Email',
+      textController2: _passwordTextController,
+      icon2: AntIcons.lock_outline,
+      labelText2: 'Password',
+    )
+  ];
 
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
@@ -28,8 +49,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
       home: WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
-          floatingActionButton: FloatingActionButton(child: Icon(AntIcons.arrow_right, color: Colors.white,), onPressed: () => {},),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: FloatingActionButton(
+            child: Icon(
+              AntIcons.arrow_right,
+              color: Colors.white,
+            ),
+            onPressed: () => {},
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
           appBar: AppBar(
             title: Text("Create new account"),
           ),
@@ -63,40 +91,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       textController: _surNameTextController,
                       labelText: 'Surname'),
                   SizedBox(height: 10),
-                 /* FieldWidget(
-                      width: media.size.width,
-                      icon: AntIcons.mail_outline,
-                      textController: _emailTextController,
-                      labelText: 'Email'),
-                  SizedBox(height: 10),
-                  FieldWidget(
-                      width: media.size.width,
-                      icon: AntIcons.lock_outline,
-                      textController: _passwordTextController,
-                      labelText: 'Password'),
-                  SizedBox(height: 10),*/
-                  /*Container(
-                    margin: EdgeInsets.only(
-                        left: media.size.width * .25,
-                        right: media.size.width * .25),
-                    child: RaisedButton(
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(20.0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
-                      onPressed: () => {},
-                      child: Text(
-                        "Create an account",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                  ),*/
                 ],
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget createPageView() {
+    return PageView(
+      controller: _pageViewController,
+      physics: NeverScrollableScrollPhysics(),
+      children: <Widget>[],
     );
   }
 }
