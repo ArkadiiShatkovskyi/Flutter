@@ -12,32 +12,29 @@ class InfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
     return MaterialApp(
-        theme: appTheme,
-        debugShowCheckedModeBanner: false,
-        home: WillPopScope(
-          onWillPop: () async => false,
-          child: Scaffold(
-            appBar: AppBar(
-                title: const Text("About"),
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => MainPage())),
-                )),
-            body: Container(
-                child:
-                    ListView(padding: EdgeInsets.all(15.0), children: <Widget>[
+      theme: appTheme,
+      debugShowCheckedModeBanner: false,
+      home: WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          appBar: AppBar(
+              title: const Text("About"),
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () => Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => MainPage())),
+              )),
+          body: Container(
+            child: ListView(padding: EdgeInsets.all(15.0), children: <Widget>[
               Divider(
                 height: media.size.height * .04,
                 color: Colors.transparent,
               ),
-              Card(
-                child: Container(
-                  width: media.size.width * .7,
-                  height: media.size.width * .8,
-                  child: SvgPicture.asset(
-                      "assets/images/undraw_mobile_prototyping_grmd.svg"),
-                ),
+              Container(
+                width: media.size.width * .7,
+                height: media.size.width * .8,
+                child: SvgPicture.asset(
+                    "assets/images/undraw_mobile_prototyping_grmd.svg"),
               ),
               Divider(
                 height: media.size.height * .05,
@@ -53,8 +50,10 @@ class InfoWidget extends StatelessWidget {
                       style: const TextStyle(fontSize: 17),
                     ),
                   )),
-            ])),
+            ]),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
