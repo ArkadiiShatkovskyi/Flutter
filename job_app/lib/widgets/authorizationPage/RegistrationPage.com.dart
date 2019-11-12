@@ -63,6 +63,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+              onPressed: () => Navigator.pop(context, false),
+            ),
             title: Text("Create new account"),
           ),
           body: createPageView(),
