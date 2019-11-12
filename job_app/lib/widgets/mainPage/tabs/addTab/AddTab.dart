@@ -68,26 +68,13 @@ class _AddTabState extends State<AddTab> {
     );
   }
 
-  /*Future<Null> _showDatePicker(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-        initialDatePickerMode: DatePickerMode.day,
-        context: context,
-        initialDate: _date,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2050));
-    if (picked != null && picked != _date)
-      setState(() {
-        _date = picked;
-      });
-  }*/
-
   Future<Null> _showDatePicker(BuildContext context) async {
     final height = MediaQuery.of(context).size.height;
     showBottomSheet(
         context: context,
         builder: (BuildContext ctx) {
           return SizedBox(
-            height: height * .27,
+            height: height * .3,
             child: Column(
               children: <Widget>[
                 IconButton(
@@ -117,29 +104,6 @@ class _AddTabState extends State<AddTab> {
           );
         });
   }
-
-  /*
-  Future<Null> _showStartTimePicker(BuildContext context) async {
-    final TimeOfDay picked = await showTimePicker(
-      context: context,
-      initialTime: _strTime,
-    );
-    if (picked != null && picked != _strTime)
-      setState(() {
-        _strTime = picked;
-      });
-  }
-
-  Future<Null> _showEndTimePicker(BuildContext context) async {
-    final TimeOfDay picked = await showTimePicker(
-      context: context,
-      initialTime: _endTime,
-    );
-    if (picked != null && picked != _endTime)
-      setState(() {
-        _endTime = picked;
-      });
-  } */
 
   Future<Null> _showStartTimePicker(BuildContext context) async {
     final height = MediaQuery.of(context).size.height;
