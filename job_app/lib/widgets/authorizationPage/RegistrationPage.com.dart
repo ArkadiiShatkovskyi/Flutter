@@ -68,7 +68,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 Icons.arrow_back,
                 color: Colors.white,
               ),
-              onPressed: () => Navigator.pop(context, false),
+              onPressed: _back,
             ),
             title: Text("Create new account"),
           ),
@@ -91,7 +91,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
       print("register here");
     } else {
       _pageViewController.nextPage(
-          duration: Duration(milliseconds: 300), curve: Curves.ease);
+          duration: Duration(milliseconds: 500), curve: Curves.ease);
     }
+  }
+
+  void _back(){
+    if(_pageViewController.page == 1.0)
+      _pageViewController.previousPage(
+          duration: Duration(milliseconds: 500), curve: Curves.ease);
+      else
+        Navigator.pop(context, false);
   }
 }
