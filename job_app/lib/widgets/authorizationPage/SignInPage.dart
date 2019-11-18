@@ -57,7 +57,7 @@ class _SignInPageBodyState extends State<SignInPageBody> {
     final media = MediaQuery.of(context);
     return Center(
       child: Container(
-        margin: const EdgeInsets.only(top: 40),
+        margin: const EdgeInsets.only(top: 15),
         child: ListView(
           children: <Widget>[
             Container(
