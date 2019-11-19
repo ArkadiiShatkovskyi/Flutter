@@ -9,9 +9,21 @@ class StatisticItem extends StatelessWidget {
 
   List get statistics {
     return [
-      {'title': "This is CARD 1", 'text': '12321412412'},
-      {'title': "This is CARD 2", 'text': '12321412412'},
-      {'title': "This is CARD 3", 'text': '12321412412'}
+      {
+        'title': "This is CARD 1",
+        'text': '12321412412',
+        'image': 'assets/images/cat.jpeg'
+      },
+      {
+        'title': "This is CARD 2",
+        'text': '12321412412',
+        'image': 'assets/images/dog.jpg'
+      },
+      {
+        'title': "This is CARD 3",
+        'text': '12321412412',
+        'image': 'assets/images/raccoon.jpeg'
+      }
     ];
   }
 
@@ -23,7 +35,8 @@ class StatisticItem extends StatelessWidget {
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         margin: EdgeInsets.only(left: 40, right: 40, bottom: 30),
-        child: Column(
+        child: cardBodyTest(),
+        /*Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Center(
@@ -42,7 +55,16 @@ class StatisticItem extends StatelessWidget {
               ],
             ),
           ],
-        ),
+        ),*/
+      ),
+    );
+  }
+
+  Widget cardBodyTest() {
+    return ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(30)),
+      child: Image.asset(
+        statistics[item]['image'],
       ),
     );
   }
