@@ -49,7 +49,8 @@ class _TimeScreenState extends State<TimeScreen> {
                       Icons.menu,
                       color: Colors.black,
                     ),
-                    color: Colors.white, onPressed: () {},
+                    color: Colors.white,
+                    onPressed: () {},
                   )),
             ),
             Positioned(
@@ -96,16 +97,19 @@ class _TimeScreenState extends State<TimeScreen> {
                         height: 10,
                       ),
                       GestureDetector(
-                        onHorizontalDragStart: (detail){
+                        onHorizontalDragStart: (detail) {
                           this._xPosition = detail.globalPosition.dx;
                         },
-                        onHorizontalDragUpdate: (detail){
-                          setState(() {
-                            if (itemCount == 2)
-                              this.itemCount = 0;
-                            else
-                              this.itemCount = itemCount + 1;
-                          });
+                        onHorizontalDragUpdate: (detail) {
+                          var value = detail.globalPosition.dx - _xPosition;
+                          if (value.abs() == 200) {
+                            setState(() {
+                              if (itemCount == 2)
+                                this.itemCount = 0;
+                              else
+                                this.itemCount = itemCount + 1;
+                            });
+                          }
                         },
                         child: StatisticItem(media.height * .5, itemCount),
                       ),
@@ -121,7 +125,7 @@ class _TimeScreenState extends State<TimeScreen> {
     );
   }
 
- /* void onHorizontalDrag() {
+/* void onHorizontalDrag() {
     print("Here");
     setState(() {
       if (itemCount == 2)
