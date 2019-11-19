@@ -4,8 +4,21 @@ import 'package:flutter/painting.dart';
 
 import '../widgets/StatisticItem.dart';
 
-class TimeScreen extends StatelessWidget {
+class TimeScreen extends StatefulWidget {
+  @override
+  _TimeScreenState createState() => _TimeScreenState();
+}
+
+class _TimeScreenState extends State<TimeScreen> {
   final date = DateTime.now();
+  int itemCount;
+  var _xPosition;
+
+  @override
+  void initState() {
+    super.initState();
+    this.itemCount = 0;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +49,7 @@ class TimeScreen extends StatelessWidget {
                       Icons.menu,
                       color: Colors.black,
                     ),
-                    color: Colors.white,
+                    color: Colors.white, onPressed: () {},
                   )),
             ),
             Positioned(
@@ -82,7 +95,20 @@ class TimeScreen extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      StatisticItem(media.height * .5, 1),
+                      GestureDetector(
+                        onHorizontalDragStart: (detail){
+                          this._xPosition = detail.globalPosition.dx;
+                        },
+                        onHorizontalDragUpdate: (detail){
+                          setState(() {
+                            if (itemCount == 2)
+                              this.itemCount = 0;
+                            else
+                              this.itemCount = itemCount + 1;
+                          });
+                        },
+                        child: StatisticItem(media.height * .5, itemCount),
+                      ),
                       /***  HERE WRITE */
                     ],
                   ),
@@ -94,4 +120,14 @@ class TimeScreen extends StatelessWidget {
       ),
     );
   }
+
+ /* void onHorizontalDrag() {
+    print("Here");
+    setState(() {
+      if (itemCount == 2)
+        this.itemCount = 0;
+      else
+        this.itemCount = itemCount + 1;
+    });
+  }*/
 }
