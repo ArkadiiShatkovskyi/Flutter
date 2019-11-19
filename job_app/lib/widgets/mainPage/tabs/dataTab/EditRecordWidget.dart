@@ -59,7 +59,7 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
         border: Border.all(color: appTheme.primaryColor),
       ),
       width: media.size.width * 1,
-      height: media.size.height * .6,
+      height: media.size.height * .65,
       child: Column(
         children: <Widget>[
           Row(
