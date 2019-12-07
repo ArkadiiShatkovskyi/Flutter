@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:job_app/widgets/AppTheme.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
-import 'package:job_app/widgets/authorizationPage/RegistrationPage.com.dart';
+import 'package:job_app/widgets/authorizationPage/RegistrationPage.dart';
 import 'package:job_app/widgets/mainPage/MainPage.dart';
 
 class SingInPage extends StatelessWidget {

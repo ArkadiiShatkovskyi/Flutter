@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ant_icons/ant_icons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:job_app/widgets/AppTheme.dart';
 import './RegistrationStep.dart';
@@ -86,20 +88,30 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  void nextPage() {
+  void nextPage() async {
     if (_pageViewController.page == 1.0) {
-      print("register here");
+      if (_passwordTextController.text != _passwordRepeatTextController.text)
+        return;
+      FirebaseUser user = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: _emailTextController.text,
+              password: _passwordTextController.text);
+      await Firestore.instance.collection('personalData').add({
+        'name': _nameTextController.text,
+        'surname': _surNameTextController.text,
+        'user': user.uid,
+      });
     } else {
       _pageViewController.nextPage(
           duration: Duration(milliseconds: 500), curve: Curves.ease);
     }
   }
 
-  void _back(){
-    if(_pageViewController.page == 1.0)
+  void _back() {
+    if (_pageViewController.page == 1.0)
       _pageViewController.previousPage(
           duration: Duration(milliseconds: 500), curve: Curves.ease);
-      else
-        Navigator.pop(context, false);
+    else
+      Navigator.pop(context, false);
   }
 }
