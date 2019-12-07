@@ -45,34 +45,91 @@ class RegistrationStep extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            FieldWidget(
-                width: media.size.width,
-                icon: icon1,
-                textController: textController1,
-                labelText: labelText1),
-            SizedBox(height: 10),
-            FieldWidget(
-                width: media.size.width,
-                icon: icon2,
-                textController: textController2,
-                labelText: labelText2),
-            SizedBox(height: 10),
-            _passwordRepeat(media),
+            _passwordRepeat(media, context),
           ],
         ),
       ),
     );
   }
 
-  Widget _passwordRepeat(media) {
+  Widget _passwordRepeat(media, context) {
     return textController3 == null
-        ? SizedBox(
-            height: 5,
-          )
-        : FieldWidget(
-            width: media.size.width,
-            icon: icon2,
-            textController: textController3,
-            labelText: 'Repeat password');
+        ? nameSurnameStep(media)
+        : emailPasswordStep(media, context);
+  }
+
+  Widget nameSurnameStep(media){
+    return Container(
+        height: media.size.height * .4,
+        child: ListView(
+          physics: NeverScrollableScrollPhysics(),
+          children: <Widget>[
+            FieldWidget(
+                width: media.size.width,
+                icon: icon1,
+                textController: textController1,
+                labelText: labelText1),
+            SizedBox(height: 15),
+            FieldWidget(
+                width: media.size.width,
+                icon: icon2,
+                textController: textController2,
+                labelText: labelText2)
+          ],
+        ),);
+  }
+
+  Widget emailPasswordStep(media, context){
+    return Container(
+      height: media.size.height * .4,
+      child: ListView(
+        physics: NeverScrollableScrollPhysics(),
+        children: <Widget>[
+          FieldWidget(
+              width: media.size.width,
+              icon: icon1,
+              textController: textController1,
+              labelText: labelText1),
+          SizedBox(height: 10),
+          Container(
+            margin: EdgeInsets.only(
+                left: media.size.width * .1, right: media.size.width * .1),
+            child: TextFormField(
+              controller: textController2,
+              obscureText: true,
+              maxLength: 30,
+              decoration: InputDecoration(
+                icon: Icon(
+                  icon2,
+                  color: Theme.of(context).primaryColor,
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                labelText: labelText2,
+              ),
+            ),
+          ),
+          SizedBox(height: 10),
+          Container(
+            margin: EdgeInsets.only(
+                left: media.size.width * .1, right: media.size.width * .1),
+            child: TextFormField(
+              controller: textController3,
+              obscureText: true,
+              maxLength: 30,
+              decoration: InputDecoration(
+                icon: Icon(
+                  icon2,
+                  color: Theme.of(context).primaryColor,
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                labelText: "Repeat password",
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
