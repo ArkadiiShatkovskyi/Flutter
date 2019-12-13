@@ -46,8 +46,10 @@ class _DataTabState extends State<DataTab> {
           _listOfRecors.length == 0
               ? Center(
                   child: Container(
-                      padding: EdgeInsets.only(top: media.size.height * .4),
-                      child: CircularProgressIndicator()))
+                    padding: EdgeInsets.only(top: media.size.height * .4),
+                    child: Text("There is no work for now"),
+                  ),
+                )
               : DataTable(
                   columnSpacing: 5,
                   columns: [
@@ -174,7 +176,8 @@ class _DataTabState extends State<DataTab> {
         ),
       );
     } else if (_itemToEdit == null) {
-      _showShackBarMessage("Uncheck items and check item, which you wanna to edit");
+      _showShackBarMessage(
+          "Uncheck items and check item, which you wanna to edit");
     } else
       _showShackBarMessage("Choose one item");
   }
