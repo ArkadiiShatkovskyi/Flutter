@@ -17,14 +17,17 @@ ThemeData get appTheme {
     iconTheme: IconThemeData(color: styleColor),
     textTheme: TextTheme(
       title: TextStyle(
-        fontFamily: 'CourgetteRegular',
+//        fontFamily: 'CourgetteRegular',
         fontSize: 20,
       ),
     ),
     appBarTheme: AppBarTheme(
       color: styleColor,
       textTheme: ThemeData.light().textTheme.copyWith(
-            title: TextStyle(fontSize: 20, fontFamily: 'CourgetteRegular'),
+            title: TextStyle(
+              fontSize: 20,
+//              fontFamily: 'CourgetteRegular',
+            ),
           ),
     ),
   );
