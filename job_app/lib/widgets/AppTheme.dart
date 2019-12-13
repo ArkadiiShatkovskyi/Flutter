@@ -12,7 +12,6 @@ ThemeData get appTheme {
   return ThemeData(
     primaryColor: styleColor,
     accentColor: styleColor,
-//    dividerColor: styleColor,
     buttonColor: styleColor,
     inputDecorationTheme: InputDecorationTheme(focusColor: styleColor),
     iconTheme: IconThemeData(color: styleColor),
