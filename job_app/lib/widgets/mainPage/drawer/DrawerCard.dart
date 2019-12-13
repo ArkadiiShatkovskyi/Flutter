@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:job_app/widgets/InfoPage.dart';
-import 'package:job_app/widgets/accountPage/AccountPage.dart';
-import 'package:job_app/widgets/SettingPage.dart';
 import 'package:job_app/widgets/ConfirmMessage.dart';
 
 class DrawerCard extends StatelessWidget {
@@ -38,12 +36,6 @@ class DrawerCard extends StatelessWidget {
           if (text == "About") {
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => InfoWidget()));
-          } else if (text == "Account") {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => AccountPage()));
-          } else if (text == "Settings") {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => SettingPage()));
           } else if (text == "Close") {
             showDialog(
               context: context,

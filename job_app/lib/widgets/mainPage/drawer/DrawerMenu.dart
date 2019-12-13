@@ -5,7 +5,7 @@ import 'package:ant_icons/ant_icons.dart';
 
 import 'package:job_app/widgets/mainPage/drawer/DrawerCard.dart';
 
-class MenuDrawer extends StatelessWidget {
+class DrawerMenu extends StatelessWidget {
   final String drawerFont = 'CourgetteRegular';
   final double tilesFontSize = 20;
   final double iconsSize = 20.0;
@@ -21,19 +21,20 @@ class MenuDrawer extends StatelessWidget {
 
   Container _drawerStyle(media, context) {
     return Container(
-      height: media.size.height * .25,
+      height: media.size.height * .3,
       child: DrawerHeader(
-          decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-          child: Center(
-            child: Text(
-              "Menu",
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: drawerFont,
-                fontSize: titleDrawerSize,
-              ),
+        decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+        child: Center(
+          child: Text(
+            "Menu",
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: drawerFont,
+              fontSize: titleDrawerSize,
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 
@@ -42,24 +43,11 @@ class MenuDrawer extends StatelessWidget {
       _drawerStyle(media, context),
       Divider(height: media.size.height * .01, color: Colors.transparent),
       DrawerCard(
-          text: "Account",
-          font: drawerFont,
-          iconsSize: iconsSize,
-          tilesFontSize: tilesFontSize,
-          icon: AntIcons.user), //not added
-      DrawerCard(
-          text: "Settings",
-          font: drawerFont,
-          iconsSize: iconsSize,
-          tilesFontSize: tilesFontSize,
-          icon: AntIcons.setting_outline), //not added
-      DrawerCard(
           text: "About",
           font: drawerFont,
           iconsSize: iconsSize,
           tilesFontSize: tilesFontSize,
           icon: AntIcons.info_circle_outline),
-      Divider(height: media.size.height * .37, color: Colors.transparent),
       DrawerCard(
           text: "Close",
           font: drawerFont,
