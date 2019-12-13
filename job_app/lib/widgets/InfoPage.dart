@@ -45,7 +45,8 @@ class InfoWidget extends StatelessWidget {
                   child: Container(
                     color: Colors.transparent,
                     child: Text(
-                      "Hi, i'm Arkadii Shatkovskyi. Android Developer. It's my first app in flutter. I hope you enjoy it. \n Best regards A.S.",
+                      "Application icon provided by https://www.stockio.com/\n"
+                          "Images provided by https://undraw.co/",
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontSize: 17),
                     ),
