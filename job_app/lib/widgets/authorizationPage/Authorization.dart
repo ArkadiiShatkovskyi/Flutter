@@ -13,10 +13,10 @@ class Authorization {
   Future<bool> signInWithEmail(email, password, navigatorKey) async {
     FirebaseUser user;
     try {
-      user = await _auth.signInWithEmailAndPassword(
+      user = (await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
-      );
+      )).user;
     } catch (e) {
       this._isLoading = false;
       print(e.toString());
@@ -45,10 +45,10 @@ class Authorization {
   Future<bool> signUpWithEmail(email, password) async {
     FirebaseUser user;
     try {
-      user = await _auth.createUserWithEmailAndPassword(
+      user = (await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
-      );
+      )) as FirebaseUser;
     } catch (e) {
       print(e.toString());
     }

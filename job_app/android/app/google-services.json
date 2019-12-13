@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:921724392474:android:9597fc46c1f35fa2",
         "android_client_info": {
-          "package_name": "arek.com.job_app"
+          "package_name": "com.example.job_app"
         }
       },
       "oauth_client": [
@@ -30,6 +30,13 @@
             {
               "client_id": "921724392474-ncoeokp3gp8te5tgsmo5bscikprfngjg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "921724392474-kd1ns5u0857lr3e60fnvhudm70022cdo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.arek"
+              }
             }
           ]
         }

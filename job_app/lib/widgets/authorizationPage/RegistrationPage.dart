@@ -92,10 +92,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
     if (_pageViewController.page == 1.0) {
       if (_passwordTextController.text != _passwordRepeatTextController.text)
         return;
-      FirebaseUser user = await FirebaseAuth.instance
+      FirebaseUser user = (await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: _emailTextController.text,
-              password: _passwordTextController.text);
+              password: _passwordTextController.text)).user;
       await Firestore.instance.collection('personalData').add({
         'name': _nameTextController.text,
         'surname': _surNameTextController.text,

@@ -166,12 +166,14 @@ class _SignInPageBodyState extends State<SignInPageBody> {
         // SHOW MESSAGE TRY AGAIN
       }
     });
-    Timer(Duration(seconds: 3), () {
-      setState(() {
-        _db.stopLoading();
-        _isLoading = _db.setToLoad();
+    if (this.mounted) {
+      Timer(Duration(seconds: 3), () {
+        setState(() {
+          _db.stopLoading();
+          _isLoading = _db.setToLoad();
+        });
       });
-    });
+    }
   }
 
   void _showRegistrationPage() {
