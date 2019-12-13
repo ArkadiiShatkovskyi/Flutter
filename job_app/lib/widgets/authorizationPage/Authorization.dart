@@ -20,7 +20,6 @@ class Authorization {
     } catch (e) {
       this._isLoading = false;
       print(e.toString());
-//      print("wrong pass");
     }
     this._isLoading = false;
     return user != null;

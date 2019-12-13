@@ -13,17 +13,19 @@ class RegistrationStep extends StatelessWidget {
   final icon2;
   final labelText1;
   final labelText2;
+  final btnFunction;
 
-  // ignore: avoid_init_to_null
-  RegistrationStep(
-      {this.image,
-      this.textController1,
-      this.textController2,
-      this.icon1,
-      this.icon2,
-      this.labelText1,
-      this.labelText2,
-      this.textController3 = null});
+  RegistrationStep({
+    this.image,
+    this.textController1,
+    this.textController2,
+    this.icon1,
+    this.icon2,
+    this.labelText1,
+    this.labelText2,
+    this.textController3,
+    this.btnFunction,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,50 +40,23 @@ class RegistrationStep extends StatelessWidget {
             ),
             Container(
               width: media.size.width * .5,
-              height: media.size.height * .3,
+              height: media.size.height * .28,
               margin: const EdgeInsets.only(bottom: 20),
               child: SvgPicture.asset(image),
             ),
             SizedBox(
               height: 15,
             ),
-            _passwordRepeat(media, context),
+            emailPasswordStep(media, context),
           ],
         ),
       ),
     );
   }
 
-  Widget _passwordRepeat(media, context) {
-    return textController3 == null
-        ? nameSurnameStep(media)
-        : emailPasswordStep(media, context);
-  }
-
-  Widget nameSurnameStep(media){
+  Widget emailPasswordStep(media, context) {
     return Container(
-        height: media.size.height * .4,
-        child: ListView(
-          physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[
-            FieldWidget(
-                width: media.size.width,
-                icon: icon1,
-                textController: textController1,
-                labelText: labelText1),
-            SizedBox(height: 15),
-            FieldWidget(
-                width: media.size.width,
-                icon: icon2,
-                textController: textController2,
-                labelText: labelText2)
-          ],
-        ),);
-  }
-
-  Widget emailPasswordStep(media, context){
-    return Container(
-      height: media.size.height * .4,
+      height: media.size.height * .48,
       child: ListView(
         physics: NeverScrollableScrollPhysics(),
         children: <Widget>[
@@ -90,7 +65,7 @@ class RegistrationStep extends StatelessWidget {
               icon: icon1,
               textController: textController1,
               labelText: labelText1),
-          SizedBox(height: 10),
+          SizedBox(height: 5),
           Container(
             margin: EdgeInsets.only(
                 left: media.size.width * .1, right: media.size.width * .1),
@@ -103,13 +78,13 @@ class RegistrationStep extends StatelessWidget {
                   icon2,
                   color: Theme.of(context).primaryColor,
                 ),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                 labelText: labelText2,
               ),
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 5),
           Container(
             margin: EdgeInsets.only(
                 left: media.size.width * .1, right: media.size.width * .1),
@@ -122,9 +97,25 @@ class RegistrationStep extends StatelessWidget {
                   icon2,
                   color: Theme.of(context).primaryColor,
                 ),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                 labelText: "Repeat password",
+              ),
+            ),
+          ),
+          SizedBox(height: 5),
+          Container(
+            margin: EdgeInsets.only(
+                left: media.size.width * .25, right: media.size.width * .25),
+            child: RaisedButton(
+              textColor: Colors.white,
+              padding: const EdgeInsets.all(20.0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0)),
+              onPressed: () => btnFunction(context),
+              child: Text(
+                "Sign up",
+                style: TextStyle(fontSize: 15),
               ),
             ),
           ),
