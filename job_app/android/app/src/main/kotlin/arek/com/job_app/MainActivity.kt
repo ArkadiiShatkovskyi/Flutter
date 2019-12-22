@@ -1,4 +1,4 @@
-package com.example.job_app
+package arek.com.job_app
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
