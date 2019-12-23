@@ -55,14 +55,25 @@ class _AddTabState extends State<AddTab> {
               AntIcons.calendar_outline, _showDatePicker, media),
           RowWidget.textInput("Write your rate", _defaultRate.toString(),
               _rateController, 'Rate', media),
+          FlatButton(
+            child: Text(
+              'Change default rate',
+              style: TextStyle(
+                  fontSize: 12,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.normal),
+            ),
+            onPressed: () {},
+          ),
           Center(
-              child: IconButton(
-            icon: const Icon(AntIcons.save),
-            iconSize: 40,
-            onPressed: () {
-              _addHours();
-            },
-          )),
+            child: IconButton(
+              icon: const Icon(AntIcons.save),
+              iconSize: 40,
+              onPressed: () {
+                _addHours();
+              },
+            ),
+          ),
         ],
       ),
     );
