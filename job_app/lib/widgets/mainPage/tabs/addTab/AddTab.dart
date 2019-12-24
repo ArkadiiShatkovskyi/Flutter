@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import './RowWidget.dart';
+import 'package:job_app/models/RateReader.dart';
 
 class AddTab extends StatefulWidget {
   @override
@@ -17,12 +18,14 @@ class _AddTabState extends State<AddTab> {
   TimeOfDay _endTime = TimeOfDay.now();
   DateTime _date = DateTime.now();
   TextEditingController _rateController = TextEditingController();
+  TextEditingController _defaultRateController = TextEditingController();
   String _user;
-  double _defaultRate = 17.35;
+  double _defaultRate = 0;
 
   @override
   void initState() {
     super.initState();
+    _getRate();
     Authorization _db = Authorization();
     _db.getUser().then((currUser) {
       this._user = currUser.uid;
@@ -63,7 +66,7 @@ class _AddTabState extends State<AddTab> {
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.normal),
             ),
-            onPressed: () {},
+            onPressed: () => _updateRate(context),
           ),
           Center(
             child: IconButton(
@@ -208,5 +211,73 @@ class _AddTabState extends State<AddTab> {
       content: const Text('Work was added.'),
       backgroundColor: Theme.of(context).primaryColor,
     ));
+  }
+
+  void _getRate() async {
+    var result = await readCounter();
+    setState(() {
+      _defaultRate = result;
+    });
+  }
+
+  void _updateRate(context) {
+    final media = MediaQuery.of(context).size;
+    showBottomSheet(
+        context: context,
+        builder: (BuildContext ctx) {
+          return SizedBox(
+            height: media.height * .32,
+            width: media.width,
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.arrow_drop_down,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                const Text("Change default rate"),
+                Container(
+                  padding: EdgeInsets.only(top: 10),
+                  width: media.width * .3,
+                  child: TextField(
+                    maxLength: 15,
+                    controller: _defaultRateController,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      labelText: _defaultRate.toString(),
+                    ),
+                  ),
+                ),
+                RaisedButton(
+                  child: const Text(
+                    "Change",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    try {
+                      double.parse(_defaultRateController.text);
+                    } catch (e) {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        duration: const Duration(seconds: 1),
+                        content: const Text('Rate must be a number'),
+                        backgroundColor: Theme.of(context).primaryColor,
+                      ));
+                    }
+                    writeCounter(double.parse(_defaultRateController.text));
+                    setState(() {
+                      _defaultRate = double.parse(_defaultRateController.text);
+                    });
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+    _getRate();
   }
 }
