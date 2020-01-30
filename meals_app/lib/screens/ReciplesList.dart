@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/RecipeWidget.dart';
+
 class ReciplesList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _ReciplesListState();
 }
 
 class _ReciplesListState extends State<ReciplesList> {
+
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: Container(
@@ -41,6 +45,11 @@ class _ReciplesListState extends State<ReciplesList> {
         child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      body: ListView(
+        children: <Widget>[
+          RecipeWidget(media),
+        ],
+      ),
     );
   }
 }
