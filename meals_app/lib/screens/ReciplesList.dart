@@ -48,6 +48,8 @@ class _ReciplesListState extends State<ReciplesList> {
       body: ListView(
         children: <Widget>[
           RecipeWidget(media),
+          RecipeWidget(media),
+          RecipeWidget(media),
         ],
       ),
     );
