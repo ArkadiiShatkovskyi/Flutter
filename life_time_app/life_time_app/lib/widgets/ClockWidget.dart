@@ -44,14 +44,15 @@ class _ClockWidgetState extends State<ClockWidget>
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(30),
+      color: Colors.black87,
       child: Container(
         width: widget.width,
         height: widget.height,
         child: Center(
           child: Text(
             getTime(),
-            style: TextStyle(color: Colors.black, fontSize: 50),
+            style: TextStyle(color: Colors.white,fontFamily: 'IndieFlower', fontSize: 50),
           ),
         ),
       ),
