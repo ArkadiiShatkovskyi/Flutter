@@ -12,7 +12,6 @@ class ClockWidget extends StatefulWidget {
 
 class _ClockWidgetState extends State<ClockWidget>
     with SingleTickerProviderStateMixin {
-
   var hours;
   var minutes;
   var seconds;
@@ -43,17 +42,64 @@ class _ClockWidgetState extends State<ClockWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(30),
-      color: Colors.black87,
-      child: Container(
-        width: widget.width,
-        height: widget.height,
-        child: Center(
-          child: Text(
-            getTime(),
-            style: TextStyle(color: Colors.white,fontFamily: 'IndieFlower', fontSize: 50),
-          ),
+    return Padding(
+      padding: EdgeInsets.only(
+        left: widget.width * .3,
+        right: widget.width * .3,
+      ),
+      child: Material(
+        borderRadius: BorderRadius.circular(30),
+        color: Colors.black38,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Container(
+              width: widget.width / 3.5,
+              child: Center(
+                child: Text(
+                  getHours(),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'IndieFlower',
+                      fontSize: 50),
+                ),
+              ),
+            ),
+            const Text(
+              ":",
+              style: TextStyle(
+                  color: Colors.white, fontFamily: 'IndieFlower', fontSize: 50),
+            ),
+            Container(
+              width: widget.width / 3.5,
+              child: Center(
+                child: Text(
+                  getMinutes(),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'IndieFlower',
+                      fontSize: 50),
+                ),
+              ),
+            ),
+            const Text(
+              ":",
+              style: TextStyle(
+                  color: Colors.white, fontFamily: 'IndieFlower', fontSize: 50),
+            ),
+            Container(
+              width: widget.width / 3.5,
+              child: Center(
+                child: Text(
+                  getSeconds(),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'IndieFlower',
+                      fontSize: 50),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -61,5 +107,17 @@ class _ClockWidgetState extends State<ClockWidget>
 
   String getTime() {
     return "${hours.toString().padLeft(2, '0')} : ${minutes.toString().padLeft(2, '0')} : ${seconds.toString().padLeft(2, '0')}";
+  }
+
+  String getHours() {
+    return "${hours.toString().padLeft(2, '0')}";
+  }
+
+  String getMinutes() {
+    return "${minutes.toString().padLeft(2, '0')}";
+  }
+
+  String getSeconds() {
+    return "${seconds.toString().padLeft(2, '0')}";
   }
 }
