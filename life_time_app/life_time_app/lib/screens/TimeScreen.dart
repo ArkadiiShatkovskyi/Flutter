@@ -72,7 +72,7 @@ class _TimeScreenState extends State<TimeScreen> {
               right: media.width *.1,
               child: ClockWidget(
                 width: media.width * 0.8,
-                height: media.height * 0.25,
+                height: media.height * 0.125,
               ),
             ),
             Positioned(
