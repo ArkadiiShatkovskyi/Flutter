@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
-import '../widgets/StatisticItem.dart';
+import '../widgets/EventsWidget.dart';
 import '../widgets/ClockWidget.dart';
 
 class TimeScreen extends StatefulWidget {
@@ -47,7 +47,6 @@ class _TimeScreenState extends State<TimeScreen> {
                     onPressed: () {},
                   )),
             ),
-
             Positioned(
                 top: media.height / 10,
                 left: media.width / 4,
@@ -68,14 +67,15 @@ class _TimeScreenState extends State<TimeScreen> {
                 )),
             Positioned(
               top: media.height * 0.2,
-              left: media.width *.1,
-              right: media.width *.1,
+              left: media.width * .1,
+              right: media.width * .1,
               child: ClockWidget(
                 width: media.width * 0.5,
                 height: media.height * 0.125,
               ),
             ),
             Positioned(
+              top: media.height * 0.4,
               bottom: 0,
               child: Container(
                 width: media.width,
@@ -85,35 +85,7 @@ class _TimeScreenState extends State<TimeScreen> {
                       topRight: Radius.circular(30),
                       topLeft: Radius.circular(30)),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 30, bottom: 0),
-                  child: ListView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: <Widget>[
-                      SizedBox(
-                        height: 10,
-                      ),
-                      GestureDetector(
-                        onHorizontalDragStart: (detail) {
-                          this._xPosition = detail.globalPosition.dx;
-                        },
-                        onHorizontalDragUpdate: (detail) {
-                          var value = detail.globalPosition.dx - _xPosition;
-                          if (value.abs() == 200) {
-                            setState(() {
-                              if (itemCount == 2)
-                                this.itemCount = 0;
-                              else
-                                this.itemCount = itemCount + 1;
-                            });
-                          }
-                        },
-                        child: StatisticItem(media.height * .5, itemCount),
-                      ),
-                      /***  HERE WRITE */
-                    ],
-                  ),
-                ),
+                child: EventsWidget(),
               ),
             ),
           ],
@@ -121,14 +93,4 @@ class _TimeScreenState extends State<TimeScreen> {
       ),
     );
   }
-
-/* void onHorizontalDrag() {
-    print("Here");
-    setState(() {
-      if (itemCount == 2)
-        this.itemCount = 0;
-      else
-        this.itemCount = itemCount + 1;
-    });
-  }*/
 }
