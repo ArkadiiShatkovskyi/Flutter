@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class EventWidget extends StatelessWidget {
+
+  final nrImage;
+
+  EventWidget(this.nrImage);
+
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
@@ -14,13 +19,7 @@ class EventWidget extends StatelessWidget {
               width: media.width / 2,
               child: ClipRRect(
 //                borderRadius: BorderRadius.circular(30),
-                child: AspectRatio(
-                  aspectRatio: 12 / 9,
-                  child: Image.asset(
-                    "assets/images/test.jpg",
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                child: chooseImage(),
               ),
             ),
           ),
@@ -33,6 +32,24 @@ class EventWidget extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget chooseImage(){
+    String img = "assets/images/test.jpg";
+    if(nrImage == 1){
+      img = "assets/images/cat.jpeg";
+    }else if(nrImage == 2){
+      img = "assets/images/dog.jpg";
+    }else if(nrImage == 3){
+      img = "assets/images/raccoon.jpg";
+    }
+    return AspectRatio(
+      aspectRatio: 12 / 9,
+      child: Image.asset(
+        img,
+        fit: BoxFit.cover,
       ),
     );
   }
