@@ -25,12 +25,43 @@ class _TimeScreenState extends State<TimeScreen> {
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        child: Container(
+          height: media.height * 0.08,
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: media.width * 0.05,
+              right: media.width * 0.05,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.menu),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: SizedBox(
         width: media.width,
         height: media.height,
         child: Stack(
           children: <Widget>[
-            Positioned(
+            /*Positioned(
               top: 10,
               right: media.width - 60,
               child: Container(
@@ -46,9 +77,9 @@ class _TimeScreenState extends State<TimeScreen> {
                     color: Colors.white,
                     onPressed: () {},
                   )),
-            ),
+            ),*/
             Positioned(
-                top: media.height / 10,
+                top: media.height * .05,
                 left: media.width / 4,
                 right: media.width / 4,
                 child: Column(
@@ -66,7 +97,7 @@ class _TimeScreenState extends State<TimeScreen> {
                   ],
                 )),
             Positioned(
-              top: media.height * 0.2,
+              top: media.height * 0.15,
               left: media.width * .1,
               right: media.width * .1,
               child: ClockWidget(
@@ -75,7 +106,7 @@ class _TimeScreenState extends State<TimeScreen> {
               ),
             ),
             Positioned(
-              top: media.height * 0.4,
+              top: media.height * 0.3,
               bottom: 0,
               child: Container(
                 width: media.width,
