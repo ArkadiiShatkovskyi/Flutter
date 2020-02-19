@@ -4,6 +4,8 @@ import 'package:flutter/painting.dart';
 
 import '../widgets/EventsWidget.dart';
 import '../widgets/ClockWidget.dart';
+import '../widgets/DrawerMenu.dart';
+import '../screens/AddScreen.dart';
 
 class TimeScreen extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class TimeScreen extends StatefulWidget {
 
 class _TimeScreenState extends State<TimeScreen> {
   final date = DateTime.now();
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   int itemCount;
   var _xPosition;
 
@@ -25,6 +28,8 @@ class _TimeScreenState extends State<TimeScreen> {
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
     return Scaffold(
+      key: scaffoldKey,
+      drawer: DrawerMenu(),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: Container(
@@ -40,7 +45,7 @@ class _TimeScreenState extends State<TimeScreen> {
               children: <Widget>[
                 IconButton(
                   icon: Icon(Icons.menu),
-                  onPressed: () {},
+                  onPressed: () => scaffoldKey.currentState.openDrawer(),
                 ),
                 IconButton(
                   icon: Icon(Icons.search),
@@ -52,7 +57,10 @@ class _TimeScreenState extends State<TimeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AddScreen()));
+        },
         child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -61,23 +69,6 @@ class _TimeScreenState extends State<TimeScreen> {
         height: media.height,
         child: Stack(
           children: <Widget>[
-            /*Positioned(
-              top: 10,
-              right: media.width - 60,
-              child: Container(
-                  decoration: BoxDecoration(
-//                      color: Colors.grey,
-                    shape: BoxShape.circle,
-                  ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.menu,
-                      color: Colors.black,
-                    ),
-                    color: Colors.white,
-                    onPressed: () {},
-                  )),
-            ),*/
             Positioned(
                 top: media.height * .05,
                 left: media.width / 4,
