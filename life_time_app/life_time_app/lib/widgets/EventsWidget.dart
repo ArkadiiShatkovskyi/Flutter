@@ -12,7 +12,7 @@ class EventsWidget extends StatelessWidget {
         crossAxisCount: 3,
         crossAxisSpacing: 5,
         mainAxisSpacing: 5,
-        childAspectRatio: 1,
+        childAspectRatio: 0.95,
         children: <Widget>[
           EventWidget(0),
           EventWidget(1),
