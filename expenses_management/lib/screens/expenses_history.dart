@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/HistoryList.dart';
+
 class ExpensesHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,10 +16,11 @@ class ExpensesHistory extends StatelessWidget {
               top: media.height * .05,
               left: media.width * 0.3,
               right: media.width * 0.3,
-              child: Text("Expenses history")),
+              child: Center(child: Text("Expenses history"))),
           Positioned(
-              top: 200,
-              child: Text("Expenses history")),
+            top: media.height * .1,
+            child: HistoryList(),
+          ),
         ],
       ),
     );
