@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/HistoryList.dart';
+import '../widgets/ChartBar.dart';
 
 class ExpensesHistory extends StatelessWidget {
+//  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
@@ -44,16 +47,43 @@ class ExpensesHistory extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          /*Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddScreen()));*/
-        },
+        onPressed: () => showBottomSheet(
+          context: context,
+          builder: (context) => Container(child: _showBottomSheet()),
+        ),
         child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: Container(
-        padding: EdgeInsets.only(top: media.height * .38),
-        child: HistoryList(),
+      body: Stack(
+        children: <Widget>[
+          Positioned(
+            top: 0,
+            child: SizedBox(
+                width: media.width,
+                height: media.height * .4,
+                child: ChartBar()),
+          ),
+          Positioned(
+            top: media.height * .38,
+            child: HistoryList(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _showBottomSheet() {
+    return Container(
+      height: 200,
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text("Text1"),
+              Text("Text1"),
+            ],
+          ),
+        ],
       ),
     );
   }
