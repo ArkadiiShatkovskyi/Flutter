@@ -14,7 +14,7 @@ class HistoryCard extends StatelessWidget {
       padding:
           EdgeInsets.only(left: media.width * .05, right: media.width * .05),
       width: media.width,
-      height: media.height * .07,
+      height: media.height * .1,
       child: Card(
         elevation: 1,
         child: Row(
