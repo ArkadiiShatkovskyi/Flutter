@@ -11,16 +11,27 @@ class HistoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.only(left: media.width * .05, right: media.width * .05),
+      padding:
+          EdgeInsets.only(left: media.width * .05, right: media.width * .05),
       width: media.width,
-      height: media.height * .08,
+      height: media.height * .07,
       child: Card(
         elevation: 1,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Text(title.toString()),
-            Text(amount.toString()),
+            Container(
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.attach_money,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  Text(amount.toString()),
+                ],
+              ),
+            ),
           ],
         ),
       ),
