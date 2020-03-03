@@ -8,7 +8,7 @@ class HistoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.only(bottom: media.height * .05),
+//      padding: EdgeInsets.only(bottom: media.height * .01),
       width: media.width,
       height: media.height * .8,
       child: ListView(
