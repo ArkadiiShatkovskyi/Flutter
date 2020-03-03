@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './screens/expenses_history.dart';
+import './screens/ExpensesHistory.dart';
 
 void main() => runApp(MyApp());
 
