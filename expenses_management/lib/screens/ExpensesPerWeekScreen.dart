@@ -3,68 +3,76 @@ import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 import '../widgets/HistoryList.dart';
-import '../models/ExpensesPerDay.dart';
-import '../widgets/ExpensesChart.dart';
+import 'AddExpenses.dart';
+import '../widgets/ChartBarForWeek.dart';
 
-class ExpensesHistory extends StatelessWidget {
-//  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+class ExpensesPerWeek extends StatefulWidget {
+  @override
+  _ExpensesPerWeekState createState() => _ExpensesPerWeekState();
+}
 
-  final List<ExpensesPerDay> data = [
-    ExpensesPerDay(
-      day: "Mon",
-      money: 50,
-      barColor: charts.ColorUtil.fromDartColor(Colors.purpleAccent),
-    ),
-    ExpensesPerDay(
-      day: "Tue",
-      money: 30,
-      barColor: charts.ColorUtil.fromDartColor(Colors.indigo),
-    ),
-    ExpensesPerDay(
-      day: "Wen",
-      money: 40,
-      barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
-    ),
-    ExpensesPerDay(
-      day: "Thu",
-      money: 25,
-      barColor: charts.ColorUtil.fromDartColor(Colors.green),
-    ),
-    ExpensesPerDay(
-      day: "Fri",
-      money: 121,
-      barColor: charts.ColorUtil.fromDartColor(Colors.orange),
-    ),
-    ExpensesPerDay(
-      day: "Sat",
-      money: 15,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
-    ),
-    ExpensesPerDay(
-      day: "Sun",
-      money: 63,
-      barColor: charts.ColorUtil.fromDartColor(Colors.redAccent),
-    ),
-  ];
+class _ExpensesPerWeekState extends State<ExpensesPerWeek> {
+  Map<int, Object> data;
 
-  getThisWeek() {
-    int day = DateTime.now().weekday;
-    getDayOfTheWeek(DateTime.monday);
+  @override
+  void initState() {
+    data = {
+      1: {
+        'day': "Mon",
+        'money': 0,
+        'barColor': charts.ColorUtil.fromDartColor(Colors.purpleAccent),
+        'date': getDayOfTheWeek(DateTime.monday),
+      },
+      2: {
+        'day': "Tue",
+        'money': 0,
+        'barColor': charts.ColorUtil.fromDartColor(Colors.indigo),
+        'date': getDayOfTheWeek(DateTime.tuesday),
+      },
+      3: {
+        'day': "Wen",
+        'money': 0,
+        'barColor': charts.ColorUtil.fromDartColor(Colors.yellow),
+        'date': getDayOfTheWeek(DateTime.wednesday),
+      },
+      4: {
+        'day': "Thu",
+        'money': 0,
+        'barColor': charts.ColorUtil.fromDartColor(Colors.green),
+        'date': getDayOfTheWeek(DateTime.thursday),
+      },
+      5: {
+        'day': "Fri",
+        'money': 0,
+        'barColor': charts.ColorUtil.fromDartColor(Colors.orange),
+        'date': getDayOfTheWeek(DateTime.friday),
+      },
+      6: {
+        'day': "Sat",
+        'money': 0,
+        'barColor': charts.ColorUtil.fromDartColor(Colors.blue),
+        'date': getDayOfTheWeek(DateTime.saturday),
+      },
+      7: {
+        'day': "Sun",
+        'money': 0,
+        'barColor': charts.ColorUtil.fromDartColor(Colors.redAccent),
+        'date': getDayOfTheWeek(DateTime.sunday),
+      },
+    };
+
+    super.initState();
   }
 
-  void getDayOfTheWeek(dayOfWeek) {
+  DateTime getDayOfTheWeek(dayOfWeek) {
     DateTime date = DateTime.now();
     var result =
         date.subtract(Duration(days: date.weekday - dayOfWeek)).toUtc();
-    var day = result.day;
+    /* var day = result.day;
     var month = result.month;
-    var year = result.year;
-    print("Date: " +
-        day.toString() +
-        "." +
-        month.toString() +
-        "." +
-        year.toString());
+    var year = result.year;*/
+//    print("Date: " + result.toString());
+    return result;
   }
 
   @override
@@ -108,11 +116,12 @@ class ExpensesHistory extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => showBottomSheet(
-          context: context,
-          builder: (context) => Container(child: _showBottomSheet()),
+        onPressed: () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AddExpenses())),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
         ),
-        child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Stack(
@@ -124,9 +133,7 @@ class ExpensesHistory extends StatelessWidget {
               height: media.height * .4,
               child: Container(
                 child: Center(
-                  child: ExpensesChart(
-                    data: data,
-                  ),
+                  child: ChartBarForWeek(data),
                 ),
               ),
             ),
@@ -134,22 +141,6 @@ class ExpensesHistory extends StatelessWidget {
           Positioned(
             top: media.height * .38,
             child: HistoryList(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _showBottomSheet() {
-    return Container(
-      height: 200,
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Text("Text1"),
-              Text("Text1"),
-            ],
           ),
         ],
       ),
