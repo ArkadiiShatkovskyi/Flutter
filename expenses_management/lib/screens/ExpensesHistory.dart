@@ -6,6 +6,20 @@ import '../widgets/ChartBar.dart';
 class ExpensesHistory extends StatelessWidget {
 //  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+  getThisWeek(){
+    int day = DateTime.now().weekday;
+    getDayOfTheWeek(DateTime.monday);
+  }
+
+  void getDayOfTheWeek(dayOfWeek){
+    DateTime date = DateTime.now();
+    var result = date.subtract(Duration(days: date.weekday - dayOfWeek)).toUtc();
+    var day = result.day;
+    var month = result.month;
+    var year = result.year;
+    print("Date: " + day.toString() + "." + month.toString() + "." + year.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
@@ -61,7 +75,7 @@ class ExpensesHistory extends StatelessWidget {
             child: SizedBox(
                 width: media.width,
                 height: media.height * .4,
-                child: ChartBar()),
+                child: ChartBar("ss")),
           ),
           Positioned(
             top: media.height * .38,
