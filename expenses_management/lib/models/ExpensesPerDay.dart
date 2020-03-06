@@ -5,9 +5,12 @@ class ExpensesPerDay {
   final String day;
   final int money;
   final charts.Color barColor;
+  final DateTime date;
 
   ExpensesPerDay(
       {@required this.day,
         @required this.money,
-        @required this.barColor});
+        @required this.barColor,
+        @required this.date,
+      });
 }
