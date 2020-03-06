@@ -1,23 +1,70 @@
 import 'package:flutter/material.dart';
 
+import 'package:charts_flutter/flutter.dart' as charts;
+
 import '../widgets/HistoryList.dart';
-import '../widgets/ChartBar.dart';
+import '../models/ExpensesPerDay.dart';
+import '../widgets/ExpensesChart.dart';
 
 class ExpensesHistory extends StatelessWidget {
 //  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  getThisWeek(){
+  final List<ExpensesPerDay> data = [
+    ExpensesPerDay(
+      day: "Mon",
+      money: 50,
+      barColor: charts.ColorUtil.fromDartColor(Colors.purpleAccent),
+    ),
+    ExpensesPerDay(
+      day: "Tue",
+      money: 30,
+      barColor: charts.ColorUtil.fromDartColor(Colors.indigo),
+    ),
+    ExpensesPerDay(
+      day: "Wen",
+      money: 40,
+      barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
+    ),
+    ExpensesPerDay(
+      day: "Thu",
+      money: 25,
+      barColor: charts.ColorUtil.fromDartColor(Colors.green),
+    ),
+    ExpensesPerDay(
+      day: "Fri",
+      money: 121,
+      barColor: charts.ColorUtil.fromDartColor(Colors.orange),
+    ),
+    ExpensesPerDay(
+      day: "Sat",
+      money: 15,
+      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+    ),
+    ExpensesPerDay(
+      day: "Sun",
+      money: 63,
+      barColor: charts.ColorUtil.fromDartColor(Colors.redAccent),
+    ),
+  ];
+
+  getThisWeek() {
     int day = DateTime.now().weekday;
     getDayOfTheWeek(DateTime.monday);
   }
 
-  void getDayOfTheWeek(dayOfWeek){
+  void getDayOfTheWeek(dayOfWeek) {
     DateTime date = DateTime.now();
-    var result = date.subtract(Duration(days: date.weekday - dayOfWeek)).toUtc();
+    var result =
+        date.subtract(Duration(days: date.weekday - dayOfWeek)).toUtc();
     var day = result.day;
     var month = result.month;
     var year = result.year;
-    print("Date: " + day.toString() + "." + month.toString() + "." + year.toString());
+    print("Date: " +
+        day.toString() +
+        "." +
+        month.toString() +
+        "." +
+        year.toString());
   }
 
   @override
@@ -73,9 +120,16 @@ class ExpensesHistory extends StatelessWidget {
           Positioned(
             top: 0,
             child: SizedBox(
-                width: media.width,
-                height: media.height * .4,
-                child: ChartBar("ss")),
+              width: media.width,
+              height: media.height * .4,
+              child: Container(
+                child: Center(
+                  child: ExpensesChart(
+                    data: data,
+                  ),
+                ),
+              ),
+            ),
           ),
           Positioned(
             top: media.height * .38,
