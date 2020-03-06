@@ -3,11 +3,20 @@ import 'package:flutter/material.dart';
 
 import '../models/ExpensesPerDay.dart';
 
+// ignore: must_be_immutable
+class ChartBarForWeek extends StatelessWidget {
+  List<ExpensesPerDay> data = List();
 
-class ExpensesChart extends StatelessWidget {
-  final List<ExpensesPerDay> data;
-
-  ExpensesChart({@required this.data});
+  ChartBarForWeek(Map dataMap) {
+    dataMap.forEach((k, v) {
+      data.add(ExpensesPerDay(
+        day: v['day'],
+        money: v['money'],
+        barColor: v['barColor'],
+        date: v['date'],
+      ));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +36,7 @@ class ExpensesChart extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-                child: charts.BarChart(series, animate: true),
+            child: charts.BarChart(series, animate: true),
           ),
         ),
       ),
