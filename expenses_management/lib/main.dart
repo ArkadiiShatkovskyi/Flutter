@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './screens/ExpensesHistory.dart';
+import './screens/ExpensesPerWeekScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: ExpensesHistory(),
+      home: ExpensesPerWeek(),
     );
   }
 }
