@@ -1,11 +1,21 @@
-import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
+
+import 'package:charts_flutter/flutter.dart' as charts;
 
 import '../models/ExpensesPerDay.dart';
 import '../models/ExpensesChart.dart';
 
-class ChartBar extends StatelessWidget {
-  final List<ExpensesPerDay> data = [
+class ChartBar extends StatefulWidget {
+  final data;
+
+  ChartBar(this.data);
+
+  @override
+  _ChartBarState createState() => _ChartBarState();
+}
+
+class _ChartBarState extends State<ChartBar> {
+  List<ExpensesPerDay> data = [
     ExpensesPerDay(
       day: "Mon",
       money: 50,
@@ -42,6 +52,11 @@ class ChartBar extends StatelessWidget {
       barColor: charts.ColorUtil.fromDartColor(Colors.redAccent),
     ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
