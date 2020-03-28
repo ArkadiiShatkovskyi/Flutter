@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './screens/ExpensesPerWeekScreen.dart';
+import './screens/SignUpScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,8 +14,8 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.orangeAccent,
       ),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: ExpensesPerWeek(),
+//      home: ExpensesPerWeek(),
+      home: SignUpScreen(),
     );
   }
 }
