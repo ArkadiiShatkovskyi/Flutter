@@ -39,6 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen>{
           Padding(
             padding: EdgeInsets.only(top: media.height * 0.05, bottom: media.height * 0.05, left: media.width * 0.12, right: media.width * 0.12,),
             child: TextField(
+              keyboardType: TextInputType.number,
               controller: phoneNumController,
               decoration: InputDecoration(labelText: "Phone Number", prefixText: "+48", border: OutlineInputBorder()),
             ),
@@ -46,6 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen>{
           Padding(
             padding: EdgeInsets.only(top: media.height * 0.1, bottom: media.height * 0.05,),
             child: FlatButton(
+//              shape: ShapeBorder,
               child: Text("Send code"),
               onPressed: () => verifyPhoneNumber(context),
             ),
@@ -73,6 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen>{
   /// will get an AuthCredential object that will help with logging into Firebase.
   void _verificationComplete(AuthCredential authCredential, BuildContext context) {
     FirebaseAuth.instance.signInWithCredential(authCredential).then((authResult) {
+      print("Complete!!!!!!!!!");
       final snackBar = SnackBar(content: Text("Success!!! UUID is: " + authResult.user.uid));
       Scaffold.of(context).showSnackBar(snackBar);
     });
@@ -80,10 +83,12 @@ class _SignUpScreenState extends State<SignUpScreen>{
 
   void _smsCodeSent(String verificationId, List<int> code) {
     // set the verification code so that we can use it to log the user in
+    print("Code was send!!!!!");
     _smsVerificationCode = verificationId;
   }
 
   void _verificationFailed(AuthException authException, BuildContext context) {
+    print("Failed!!!!!!!!!");
     final snackBar = SnackBar(content: Text("Exception!! message:" + authException.message.toString()));
     Scaffold.of(context).showSnackBar(snackBar);
   }
