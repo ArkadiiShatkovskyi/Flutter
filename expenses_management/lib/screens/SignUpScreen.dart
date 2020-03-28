@@ -81,10 +81,14 @@ class _SignUpScreenState extends State<SignUpScreen>{
     });
   }
 
-  void _smsCodeSent(String verificationId, List<int> code) {
+  PhoneCodeSent _smsCodeSent(String verificationId, List<int> code) {
     // set the verification code so that we can use it to log the user in
-    print("Code was send!!!!!");
+    print("Code was send!!!!!\n $verificationId");
     _smsVerificationCode = verificationId;
+    setState(() {
+      print('Code sent to $verificationId');
+//      status = "\nEnter the code sent to " + phone;
+    });
   }
 
   void _verificationFailed(AuthException authException, BuildContext context) {
