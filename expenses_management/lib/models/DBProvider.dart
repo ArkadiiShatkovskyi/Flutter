@@ -39,6 +39,13 @@ class DBProvider {
     });
   }
 
+ /*  createTestData() async {
+    final db = await database;
+    await db.insert("Expenses", Expense(id: 1, title: 'Test1', dateDay: 1, dateMonth: 3, dateYear: 2020, category: 1, amount: 14.5).toMap());
+    await db.insert("Expenses", Expense(id: 2, title: 'Test2', dateDay: 1, dateMonth: 3, dateYear: 2020, category: 1, amount: 14.5).toMap());
+    await db.insert("Expenses", Expense(id: 3, title: 'Test3', dateDay: 1, dateMonth: 3, dateYear: 2020, category: 1, amount: 14.5).toMap());
+  } */
+
   newExpense(Expense newExpense) async{
     final db = await database;
     var res = await db.insert("Expenses", newExpense.toMap());
@@ -53,8 +60,9 @@ class DBProvider {
 
   /* Geting List<Expense> of Expenses */
   getExpenses() async{
+    // createTestData();
     final db = await database;
-    var res = await db.query("Concerts");
+    var res = await db.query("Expenses");
     return res.isNotEmpty ? res.map((c) => Expense.fromMap(c)).toList() : [];
   }
 

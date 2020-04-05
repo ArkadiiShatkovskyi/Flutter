@@ -4,7 +4,7 @@ import './DBProvider.dart';
 import './Expense.dart';
 
 class ExpenseBloc{
-  final _expenseController = StreamController<List<Expense>>.broadcast();
+  final _expenseController = StreamController<List<dynamic>>.broadcast();
   get expenses => _expenseController.stream;
 
   ExpenseBloc(){
