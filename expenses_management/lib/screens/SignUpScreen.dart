@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SignUpScreen extends StatefulWidget{
@@ -49,56 +48,11 @@ class _SignUpScreenState extends State<SignUpScreen>{
             child: FlatButton(
 //              shape: ShapeBorder,
               child: Text("Send code"),
-              onPressed: () => verifyPhoneNumber(context),
+              onPressed: () => {},
             ),
           ), //FlatButton
         ], // Widget
       ),
     ); // Column
-  }
-
- //*** /// method to verify phone number and handle phone auth
-  void verifyPhoneNumber(BuildContext context) async {
-    String phoneNumber = "+48" + phoneNumController.text.toString();
-    print("Phone: " + phoneNumber);
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        timeout: Duration(seconds: 60),
-        verificationCompleted: (authCredential) => _verificationComplete(authCredential, context),
-        verificationFailed: (authException) => _verificationFailed(authException, context),
-        codeAutoRetrievalTimeout: (verificationId) => _codeAutoRetrievalTimeout(verificationId),
-        // called when the SMS code is sent
-        codeSent: (verificationId, [code]) => _smsCodeSent(verificationId, [code]));
-  }
-
-  /// will get an AuthCredential object that will help with logging into Firebase.
-  _verificationComplete(AuthCredential authCredential, BuildContext context) {
-    FirebaseAuth.instance.signInWithCredential(authCredential).then((authResult) {
-      print("Complete!!!!!!!!!");
-      final snackBar = SnackBar(content: Text("Success!!! UUID is: " + authResult.user.uid));
-      Scaffold.of(context).showSnackBar(snackBar);
-    });
-  }
-
-  _smsCodeSent(String verificationId, List<int> code) {
-    // set the verification code so that we can use it to log the user in
-    print("Code was send!!!!!\n $verificationId");
-    _smsVerificationCode = verificationId;
-    setState(() {
-      print('Code sent to $verificationId');
-//      status = "\nEnter the code sent to " + phone;
-    });
-  }
-
-  _verificationFailed(AuthException authException, BuildContext context) {
-    print("Failed!!!!!!!!!");
-    final snackBar = SnackBar(content: Text("Exception!! message:" + authException.message.toString()));
-    Scaffold.of(context).showSnackBar(snackBar);
-  }
-
-  _codeAutoRetrievalTimeout(String verificationId) {
-    // set the verification code so that we can use it to log the user in
-    _smsVerificationCode = verificationId;
   }
 }
