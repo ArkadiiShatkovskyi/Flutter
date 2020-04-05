@@ -24,8 +24,6 @@ dependencies:
   flutter_svg:
   cupertino_icons: ^0.1.2
   charts_flutter: ^0.8.1
-  cloud_firestore: ^0.13.0
-  firebase_auth: ^0.15.5
 
 dev_dependencies:
   flutter_test:
