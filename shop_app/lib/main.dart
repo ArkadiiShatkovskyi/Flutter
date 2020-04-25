@@ -11,10 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        accentColor: Colors.amberAccent,
+        fontFamily: 'Lato',
+      ),
       title: 'Shop app',
-      // theme: ThemeData(
-      //   visualDensity: VisualDensity.adaptivePlatformDensity,
-      // ),
       home: ProductOverviewScreen(),
     );
   }
