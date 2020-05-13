@@ -54,7 +54,7 @@ class _StopwatchScreenState extends State<StopwatchScreen>
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    color: Colors.amber,
+                    color: Colors.indigo,
                     height:
                         controller.value * MediaQuery.of(context).size.height,
                   ),
