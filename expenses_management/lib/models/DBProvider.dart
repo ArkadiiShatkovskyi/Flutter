@@ -39,12 +39,12 @@ class DBProvider {
     });
   }
 
- /*  createTestData() async {
+  createTestData() async {
     final db = await database;
     await db.insert("Expenses", Expense(id: 1, title: 'Test1', dateDay: 1, dateMonth: 3, dateYear: 2020, category: 1, amount: 14.5).toMap());
     await db.insert("Expenses", Expense(id: 2, title: 'Test2', dateDay: 1, dateMonth: 3, dateYear: 2020, category: 1, amount: 14.5).toMap());
     await db.insert("Expenses", Expense(id: 3, title: 'Test3', dateDay: 1, dateMonth: 3, dateYear: 2020, category: 1, amount: 14.5).toMap());
-  } */
+  }
 
   newExpense(Expense newExpense) async{
     final db = await database;

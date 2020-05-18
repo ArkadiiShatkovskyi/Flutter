@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.orangeAccent,
       ),
       debugShowCheckedModeBanner: false,
-//      home: ExpensesPerWeek(),
-      home: SignUpScreen(),
+     home: ExpensesPerWeek(),
+      // home: SignUpScreen(),
     );
   }
 }
