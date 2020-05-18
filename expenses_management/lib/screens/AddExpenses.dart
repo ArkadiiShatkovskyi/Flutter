@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+enum Category { none, coffee, restaurant, shop }
+
 class AddExpenses extends StatefulWidget {
   @override
   _AddExpensesState createState() => _AddExpensesState();
 }
 
 class _AddExpensesState extends State<AddExpenses> {
-  TextEditingController _nameConroller = TextEditingController();
+  TextEditingController _nameTextFieldConroller = TextEditingController();
+  TextEditingController _amountTextFieldController = TextEditingController();
   bool isCoffee = false;
   bool isRestaurant = false;
   bool isShop = false;
+  Category _category = Category.none;
 
   @override
   Widget build(BuildContext context) {
@@ -60,84 +64,106 @@ class _AddExpensesState extends State<AddExpenses> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: Padding(
-        padding: EdgeInsets.only(
-          left: media.width * .1,
-          right: media.width * .1,
-          top: media.height * .05,
-        ),
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Text("Name"),
-                SizedBox(
-                  height: media.height * 0.15,
-                  width: media.width * 0.35,
-                  child: TextFormField(
-                    controller: _nameConroller,
-                    maxLines: 1,
-                    maxLength: 30,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: media.width * .1,
+            right: media.width * .1,
+            top: media.height * .05,
+          ),
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Text("Name"),
+                  SizedBox(
+                    height: media.height * 0.1,
+                    width: media.width * 0.35,
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: _nameTextFieldConroller,
+                      maxLines: 1,
+                      maxLength: 30,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              width: media.width * .8,
-              height: media.height * .1,
-              child: SwitchListTile(
-                title: const Text("Coffee"),
-                value: isCoffee,
-                onChanged: (bool v) {
-                  setState(() {
-                    this.isCoffee = v;
-                  });
-                },
-                secondary: const Icon(
-                  Icons.fastfood,
-                ),
+                ],
               ),
-            ),
-            SizedBox(
-              width: media.width * .8,
-              height: media.height * .1,
-              child: SwitchListTile(
-                title: const Text("Restaurant"),
-                value: isRestaurant,
-                onChanged: (bool v) {
-                  setState(() {
-                    this.isRestaurant = v;
-                  });
-                },
-                secondary: const Icon(
-                  Icons.fastfood,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Text("Amount"),
+                  SizedBox(
+                    height: media.height * 0.1,
+                    width: media.width * 0.35,
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: _amountTextFieldController,
+                      maxLines: 1,
+                      maxLength: 30,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            SizedBox(
-              width: media.width * .8,
-              height: media.height * .1,
-              child: SwitchListTile(
-                title: const Text("Shop"),
-                value: isShop,
-                onChanged: (bool v) {
-                  setState(() {
-                    this.isShop = v;
-                  });
-                },
-                secondary: const Icon(
-                  Icons.shopping_cart,
-                ),
+              _radioButtonWidget(
+                media: media,
+                icon: Icons.fastfood,
+                radioButtonText: "Coffee",
+                value: Category.coffee,
               ),
-            ),
-          ],
+              _radioButtonWidget(
+                media: media,
+                icon: Icons.fastfood,
+                radioButtonText: "Restaurant",
+                value: Category.restaurant,
+              ),
+              _radioButtonWidget(
+                media: media,
+                icon: Icons.shopping_cart,
+                radioButtonText: "Shop",
+                value: Category.shop,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  void saveData(){
+  void saveData() {}
 
+  Widget _radioButtonWidget({
+    Size media,
+    Category value,
+    IconData icon,
+    String radioButtonText,
+  }) {
+    return SizedBox(
+      width: media.width * .8,
+      height: media.height * .1,
+      child: ListTile(
+        leading: Radio(
+          value: value,
+          groupValue: _category,
+          onChanged: (Category value) {
+            setState(() {
+              _category = value;
+            });
+          },
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            SizedBox(
+              width: media.width * .25,
+              child: Icon(
+                icon,
+              ),
+            ),
+            SizedBox(width: media.width * .25, child: Text(radioButtonText)),
+          ],
+        ),
+      ),
+    );
   }
 }
