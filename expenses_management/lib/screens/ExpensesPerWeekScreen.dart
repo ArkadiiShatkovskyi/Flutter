@@ -1,84 +1,16 @@
 import 'package:flutter/material.dart';
-
-import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:provider/provider.dart';
 
+import '../models/ExpensesProvider.dart';
 import '../widgets/HistoryList.dart';
 import '../widgets/ChartBarForWeek.dart';
-import '../models/ExpensesProvider.dart';
-import '../models/Expense.dart';
 import './AddExpenses.dart';
 
-class ExpensesPerWeek extends StatefulWidget {
-  @override
-  _ExpensesPerWeekState createState() => _ExpensesPerWeekState();
-}
-
-class _ExpensesPerWeekState extends State<ExpensesPerWeek> {
-  Map<int, Object> data = {};
-
-  @override
-  void initState() {
-    data = {
-      1: {
-        'day': "Mon",
-        'money': 0.0,
-        'barColor': charts.ColorUtil.fromDartColor(Colors.purpleAccent),
-        'date': _getDayOfTheWeek(DateTime.monday),
-      },
-      2: {
-        'day': "Tue",
-        'money': 0.0,
-        'barColor': charts.ColorUtil.fromDartColor(Colors.indigo),
-        'date': _getDayOfTheWeek(DateTime.tuesday),
-      },
-      3: {
-        'day': "Wen",
-        'money': 0.0,
-        'barColor': charts.ColorUtil.fromDartColor(Colors.yellow),
-        'date': _getDayOfTheWeek(DateTime.wednesday),
-      },
-      4: {
-        'day': "Thu",
-        'money': 0.0,
-        'barColor': charts.ColorUtil.fromDartColor(Colors.green),
-        'date': _getDayOfTheWeek(DateTime.thursday),
-      },
-      5: {
-        'day': "Fri",
-        'money': 0.0,
-        'barColor': charts.ColorUtil.fromDartColor(Colors.orange),
-        'date': _getDayOfTheWeek(DateTime.friday),
-      },
-      6: {
-        'day': "Sat",
-        'money': 0.0,
-        'barColor': charts.ColorUtil.fromDartColor(Colors.blue),
-        'date': _getDayOfTheWeek(DateTime.saturday),
-      },
-      7: {
-        'day': "Sun",
-        'money': 0.0,
-        'barColor': charts.ColorUtil.fromDartColor(Colors.redAccent),
-        'date': _getDayOfTheWeek(DateTime.sunday),
-      },
-    };
-
-    super.initState();
-  }
-
-  DateTime _getDayOfTheWeek(dayOfWeek) {
-    DateTime date = DateTime.now();
-    return date.subtract(Duration(days: date.weekday - dayOfWeek)).toUtc();
-  }
-
+class ExpensesPerWeek extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
-    // Data provider
-    final expensesDB = Provider.of<ExpensesProvider>(context);
-    final expenses = expensesDB.listOfExpenses;
-    _convertDataFromProvider(expenses);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Expenses app"),
@@ -134,7 +66,11 @@ class _ExpensesPerWeekState extends State<ExpensesPerWeek> {
               height: media.height * .4,
               child: Container(
                 child: Center(
-                  child: ChartBarForWeek(data),
+                  child: Consumer<ExpensesProvider>(
+                    builder: (BuildContext context, ExpensesProvider db, _) {
+                      return ChartBarForWeek(db.listOfExpenses);
+                    },
+                  ),
                 ),
               ),
             ),
@@ -146,22 +82,5 @@ class _ExpensesPerWeekState extends State<ExpensesPerWeek> {
         ],
       ),
     );
-  }
-
-  void _convertDataFromProvider(List<Expense> data) {
-    for (Expense e in data) {
-      int day = e.getDate().weekday;
-      this.data.update(day, (value) {
-        Map tempValue = value;
-        if (!_datesEquals(tempValue['date'], e.getDate()))
-          return value;
-        tempValue.update('money', (_) => (tempValue['money'] + e.amount));
-        return tempValue;
-      });
-    }
-  }
-
-  bool _datesEquals(DateTime date1, DateTime date2){
-    return (date1.day == date2.day && date1.month == date2.month && date1.year == date2.year);
   }
 }
