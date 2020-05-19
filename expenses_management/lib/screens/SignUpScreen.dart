@@ -40,10 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen>{
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
                 Expense item = snapshot.data[index];
-                return ListTile(
-                  title: Text(item.title),
-                  leading: Text(item.id.toString()),
-                );
+                return Text(item.toString());
               },
             );
           } else {
