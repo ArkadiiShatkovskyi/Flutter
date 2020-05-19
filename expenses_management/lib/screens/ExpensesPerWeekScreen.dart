@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:provider/provider.dart';
 
 import '../widgets/HistoryList.dart';
-import 'AddExpenses.dart';
 import '../widgets/ChartBarForWeek.dart';
+import '../models/ExpensesProvider.dart';
+import './AddExpenses.dart';
 
 class ExpensesPerWeek extends StatefulWidget {
   @override
@@ -78,6 +80,10 @@ class _ExpensesPerWeekState extends State<ExpensesPerWeek> {
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
+    // Data provider
+    final expensesDB = Provider.of<ExpensesProvider>(context);
+    final expenses = expensesDB.listOfExpenses;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Expenses app"),
