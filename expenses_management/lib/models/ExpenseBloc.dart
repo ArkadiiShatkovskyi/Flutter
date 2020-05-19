@@ -21,7 +21,7 @@ class ExpenseBloc{
   }
 
   addExpense(Expense expense){
-    DBProvider.db.newExpense(expense);
+    DBProvider.db.addNewExpense(expense);
     getExpenses();
   }
 
