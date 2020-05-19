@@ -14,7 +14,7 @@ String expenseToJson(Expense data){
 class Expense{
   final int id;
   final String title;
-  final int category;
+  final String category;
   final int dateDay;
   final int dateMonth;
   final int dateYear;
@@ -48,6 +48,6 @@ class Expense{
 
   @override
   String toString() {
-    return "Expense:[title: $title, category: $category, amount: $amount, date: $dateDay:$dateMonth:$dateYear]";
+    return "Expense:[Id: $id, title: $title, category: $category, amount: $amount, date: $dateDay:$dateMonth:$dateYear]";
   }
 }
