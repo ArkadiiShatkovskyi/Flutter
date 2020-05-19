@@ -21,8 +21,8 @@ dependencies:
     sdk: flutter
   sqflite:
   path_provider:
+  provider: ^3.0.0
   flutter_svg:
-  cupertino_icons: ^0.1.2
   charts_flutter: ^0.8.1
 
 dev_dependencies:
