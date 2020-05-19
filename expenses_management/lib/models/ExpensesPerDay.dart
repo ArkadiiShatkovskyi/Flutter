@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 
 class ExpensesPerDay {
   final String day;
-  int money;
+  final double money;
   final charts.Color barColor;
   final DateTime date;
 
