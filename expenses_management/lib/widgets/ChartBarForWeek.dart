@@ -8,6 +8,7 @@ class ChartBarForWeek extends StatelessWidget {
   List<ExpensesPerDay> data = List();
 
   ChartBarForWeek(Map dataMap) {
+
     dataMap.forEach((k, v) {
       data.add(ExpensesPerDay(
         day: v['day'],
