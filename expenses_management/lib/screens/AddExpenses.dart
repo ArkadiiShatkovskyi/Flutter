@@ -66,7 +66,14 @@ class _AddExpensesState extends State<AddExpenses> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _saveData(expensesDB),
+        onPressed: () {
+          expensesDB.addExpense(
+            date: DateTime.now(),
+            title: _nameTextFieldConroller.text,
+            amount: double.parse(_amountTextFieldController.text),
+            category: _category.toString(),
+          );
+        },
         child: const Icon(
           Icons.save,
           color: Colors.white,
