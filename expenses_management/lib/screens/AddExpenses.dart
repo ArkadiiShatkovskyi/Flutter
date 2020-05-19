@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
-enum Category { none, coffee, restaurant, shop }
+import '../models/ExpensesProvider.dart';
+
+enum Category {
+  none,
+  coffee,
+  restaurant,
+  shop,
+}
 
 class AddExpenses extends StatefulWidget {
   @override
@@ -19,6 +27,7 @@ class _AddExpensesState extends State<AddExpenses> {
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
+    final expensesDB = Provider.of<ExpensesProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Add expenses"),
@@ -57,8 +66,8 @@ class _AddExpensesState extends State<AddExpenses> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => saveData,
-        child: Icon(
+        onPressed: () => _saveData(expensesDB),
+        child: const Icon(
           Icons.save,
           color: Colors.white,
         ),
@@ -76,7 +85,7 @@ class _AddExpensesState extends State<AddExpenses> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text("Name"),
+                  Text("Title"),
                   SizedBox(
                     height: media.height * 0.1,
                     width: media.width * 0.35,
@@ -130,7 +139,14 @@ class _AddExpensesState extends State<AddExpenses> {
     );
   }
 
-  void saveData() {}
+  void _saveData(ExpensesProvider dbProvider) {
+    dbProvider.addExpense(
+      date: DateTime.now(),
+      title: _nameTextFieldConroller.text,
+      amount: double.parse(_amountTextFieldController.text),
+      category: _category.toString(),
+    );
+  }
 
   Widget _radioButtonWidget({
     Size media,
