@@ -46,6 +46,10 @@ class Expense{
     );
   }
 
+  DateTime getDate(){
+    return DateTime.utc(dateYear,dateMonth, dateDay);
+  }
+
   @override
   String toString() {
     return "Expense:[Id: $id, title: $title, category: $category, amount: $amount, date: $dateDay:$dateMonth:$dateYear]";
