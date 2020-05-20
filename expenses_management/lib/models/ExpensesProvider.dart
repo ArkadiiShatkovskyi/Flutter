@@ -19,13 +19,13 @@ class ExpensesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addExpense({
+  void addExpense ({
     DateTime date,
     String category,
     double amount,
     String title,
   }) async {
-    DBProvider.db.addNewExpense(
+    await DBProvider.db.addNewExpense(
       Expense(
         amount: amount,
         category: category,
