@@ -18,42 +18,10 @@ class _ExpensesPerWeekState extends State<ExpensesPerWeek> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Expenses app"),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Theme.of(context).primaryColor,
-        shape: const CircularNotchedRectangle(),
-        child: Container(
-          height: media.height * 0.08,
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: media.width * 0.05,
-              right: media.width * 0.05,
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.menu,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.search,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          ),
-        ),
+
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(
+        onPressed: () => Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => AddExpenses())),
         child: Icon(
           Icons.add,
@@ -65,7 +33,7 @@ class _ExpensesPerWeekState extends State<ExpensesPerWeek> {
         children: <Widget>[
           Positioned(
             top: 0.0,
-            bottom: media.height * .39,
+            bottom: media.height * .44,
             right: 0.0,
             left: 0.0,
             child: SizedBox(
@@ -83,7 +51,7 @@ class _ExpensesPerWeekState extends State<ExpensesPerWeek> {
             ),
           ),
           Positioned(
-            top: media.height * .39,
+            top: media.height * .44,
             bottom: 0.0,
             right: 0.0,
             left: 0.0,
