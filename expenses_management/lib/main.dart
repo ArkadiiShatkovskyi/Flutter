@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       create: (_) => ExpensesProvider(),
       child: MaterialApp(
         theme: ThemeData(
-          primaryColor: Colors.indigo,
+          primaryColor: Colors.indigoAccent,
           accentColor: Colors.orangeAccent,
         ),
         debugShowCheckedModeBanner: false,
