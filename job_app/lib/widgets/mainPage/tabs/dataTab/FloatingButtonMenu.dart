@@ -30,7 +30,7 @@ class _FloatingButtonMenuState extends State<FloatingButtonMenu>
   @override
   void initState() {
     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 200))
+        AnimationController(value: this, duration: Duration(milliseconds: 200))
           ..addListener(() {
             setState(() {});
           });
