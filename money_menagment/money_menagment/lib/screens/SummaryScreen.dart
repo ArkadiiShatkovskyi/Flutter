@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:money_menagment/components/StatisticElement.dart';
+import 'package:money_menagment/components/StatisticPieChart.dart';
 
 class SummaryScreen extends StatefulWidget {
   SummaryScreen({Key key}) : super(key: key);
@@ -15,8 +16,18 @@ class _SummaryScreen extends State<SummaryScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
+    Map<String, double> dataMap = {
+      "Saved": 700,
+      "Food": 400,
+      "Food delivery": 60,
+      "Electronics": 150,
+      "Gifts": 100,
+    };
+
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         onTap: onBNBClick,
@@ -52,6 +63,10 @@ class _SummaryScreen extends State<SummaryScreen> {
             StatisticElement(elementLabel: "Food delivery", elementValue: 0.0),
             StatisticElement(elementLabel: "Electronics", elementValue: 0.0),
             StatisticElement(elementLabel: "Gifts", elementValue: 0.0),
+            Padding(
+              padding: EdgeInsets.only(top: height * 0.1),
+              child: StatisticPieChart(dataMap: dataMap,),
+            ),
           ],
         ),
       ),
