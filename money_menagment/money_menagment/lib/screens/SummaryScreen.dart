@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:money_menagment/components/StatisticElement.dart';
-import 'package:money_menagment/components/StatisticPieChart.dart';
+import '../widgets/StatisticPieChart.dart';
+import '../widgets/StatisticElement.dart';
 
 class SummaryScreen extends StatefulWidget {
   SummaryScreen({Key key}) : super(key: key);
