@@ -197,7 +197,7 @@ class _AddTabState extends State<AddTab> {
             (_strTime.hour + _strTime.minute / 60.0)
         : (_endTime.hour + _endTime.minute / 60.0) -
             (_strTime.hour + _strTime.minute / 60.0);
-    await Firestore.instance.collection(_user).add({
+    await FirebaseFirestore.instance.collection(_user).add({
       'date': _date.toString().substring(5, 10),
       'strTime': _strTime.toString().substring(10, 15),
       'endTime': _endTime.toString().substring(10, 15),

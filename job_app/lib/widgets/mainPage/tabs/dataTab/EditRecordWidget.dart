@@ -166,10 +166,10 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
   }
 
   void editRecord() {
-    Firestore.instance
+    FirebaseFirestore.instance
         .collection(widget.user)
-        .document(widget.editItem.id)
-        .updateData({
+        .doc(widget.editItem.id)
+        .update({
       'date': _date,
       'strTime':
           _startTime.toString().substring(10, _startTime.toString().length - 1),

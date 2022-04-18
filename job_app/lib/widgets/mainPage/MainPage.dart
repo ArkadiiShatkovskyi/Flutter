@@ -46,15 +46,15 @@ class _MainPageState extends State<MainPage> {
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: const Icon(AntIcons.database_outline),
-                title: const Text('Home'),
+                label: 'Home',
               ),
               BottomNavigationBarItem(
                 icon: const Icon(Icons.assessment),
-                title: const Text('Summary'),
+                label: 'Summary',
               ),
               BottomNavigationBarItem(
                 icon: const Icon(AntIcons.file_add_outline),
-                title: const Text('Add work'),
+                label: 'Add work',
               ),
             ],
             currentIndex: _selectedTabIndex,
@@ -63,10 +63,16 @@ class _MainPageState extends State<MainPage> {
           appBar: AppBar(
             title: const Text("Your work"),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                   child:
                       const Icon(AntIcons.logout_outline, color: Colors.white),
                   onPressed: _signOut)
+              /**
+                  FlatButton(
+                  child:
+                  const Icon(AntIcons.logout_outline, color: Colors.white),
+                  onPressed: _signOut)
+               */
             ],
           ),
           body: _widgetOptions.elementAt(_selectedTabIndex),

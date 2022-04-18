@@ -32,12 +32,19 @@ class _SummaryTabState extends State<SummaryTab> {
 
   void _getValues(String user) {
     /*** GETTING DATA FROM DATA BASE AND SETTING UP VARIABLES ***/
-    Firestore.instance.collection(user).snapshots().listen((snapshot) {
-      double tempWorkTime = snapshot.documents.fold(0, (tot, doc) {
-        return tot + doc.data['workTime'];
+    FirebaseFirestore.instance.collection(user).snapshots().listen((snapshot) {
+      //Map<String, dynamic> data = snapshot.docs.
+      double tempWorkTime = snapshot.docs.fold(0, (tot, doc) {
+        var tempData = doc.data();
+        return tot + tempData["workTime"];
+        //return tot + doc.data["workTime"];
       });
-      double tempSalary = snapshot.documents
-          .fold(0, (tot, doc) => tot + doc.data['workTime'] * doc.data['rate']);
+      double tempSalary = snapshot.docs
+          .fold(0, (tot, doc) {
+            var tempData = doc.data();
+            return tot + tempData["workTime"] * tempData['rate'];
+            //return tot + doc.data['workTime'] * doc.data['rate']});
+          });
       if (mounted)
         setState(() {
           List<Map> result = [
@@ -66,7 +73,7 @@ class _SummaryTabState extends State<SummaryTab> {
 
   List<Map> _createListOfMonths(QuerySnapshot snapshot) {
     List<Map> months = List();
-    snapshot.documents.map((document) {
+    snapshot.docs.map((document) {
       String month = document['date'].toString().substring(0, 2);
       if (!itemIsOnTheList(months, 'month', month)) {
 //      if (months.indexOf({'month': month}) == -1) {
@@ -78,7 +85,7 @@ class _SummaryTabState extends State<SummaryTab> {
     for (int i = 0; i < months.length; i++) {
       months[i]['workTime'] = 0;
       months[i]['salary'] = 0;
-      months[i] = snapshot.documents
+      months[i] = snapshot.docs
           .where((doc) =>
               (doc['date'].toString().substring(0, 2) == months[i]['month']))
           .fold(months[i], (tot, doc) {
@@ -92,7 +99,7 @@ class _SummaryTabState extends State<SummaryTab> {
 
   List<Map> _createListOfWorkPerRate(QuerySnapshot snapshot) {
     List<Map> list = List();
-    snapshot.documents.map((doc) {
+    snapshot.docs.map((doc) {
       if (!itemIsOnTheList(list, 'rate', doc['rate'])) {
 //      if (list.indexOf({'rate': doc['rate']}) == -1) {
         list.add({'rate': doc['rate']});
@@ -103,7 +110,7 @@ class _SummaryTabState extends State<SummaryTab> {
     for (int index = 0; index < list.length; index++) {
       list[index]['workTime'] = 0;
       list[index]['salary'] = 0;
-      list[index] = snapshot.documents
+      list[index] = snapshot.docs
           .where((doc) => (doc['rate'] == list[index]['rate']))
           .fold(list[index], (tot, doc) {
         tot['workTime'] = tot['workTime'] + doc['workTime'];

@@ -79,11 +79,11 @@ class _DataTabState extends State<DataTab> {
 
   void _getData(user) async {
     /// GET DATA FROM DATABASE TO ROWS
-    Firestore.instance.collection(_user).snapshots().listen((snapshot) {
+    FirebaseFirestore.instance.collection(_user).snapshots().listen((snapshot) {
       List<Record> list =
-          snapshot.documents.map((DocumentSnapshot documentSnapshot) {
+          snapshot.docs.map((DocumentSnapshot documentSnapshot) {
         return Record(
-          id: documentSnapshot.documentID,
+          id: documentSnapshot.id,
           date: documentSnapshot['date'].toString(),
           startTime: documentSnapshot['strTime'].toString(),
           endTime: documentSnapshot['endTime'].toString(),
@@ -142,9 +142,9 @@ class _DataTabState extends State<DataTab> {
             Navigator.of(context).pop();
             if (_selectedItems.length > 0) {
               for (int index = 0; index < _selectedItems.length; index++) {
-                Firestore.instance
+                FirebaseFirestore.instance
                     .collection(_user)
-                    .document(_selectedItems[index])
+                    .doc(_selectedItems[index])
                     .delete()
                     .catchError((e) {
                   print(e);
