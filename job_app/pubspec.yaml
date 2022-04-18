@@ -19,20 +19,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_svg:
-
+  flutter_svg: ^0.21.0
   cupertino_icons: ^0.1.2
-  firebase_auth: ^0.15.1
+  firebase_auth: ^0.18.1 #^1.0.0
   path_provider: ^1.5.1
-  cloud_firestore:
+  cloud_firestore: ^0.14.1 #^1.0.0
+  #firebase_auth_web: ^1.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_calendar: ^0.0.8
   keyboard_avoider: ^0.1.2
   ant_icons: ^1.0.0
-  flutter_launcher_icons: "^0.7.4"
+  flutter_launcher_icons: ^0.9.0 #"^0.7.4"
 
 flutter_icons:
   android: "launcher_icon"
