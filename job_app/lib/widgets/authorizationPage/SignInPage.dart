@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:job_app/widgets/AppTheme.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
@@ -45,6 +46,7 @@ class _SignInPageBodyState extends State<SignInPageBody> {
   @override
   void initState() {
     super.initState();
+    Firebase.initializeApp();
     _db.getUser().then((user) {
       if (user != null) {
         Navigator.of(context)
