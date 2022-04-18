@@ -62,7 +62,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     if (_passwordTextController.text != _passwordRepeatTextController.text)
       return;
     try {
-      FirebaseUser user = (await FirebaseAuth.instance
+      User user = (await FirebaseAuth.instance
               .createUserWithEmailAndPassword(
                   email: _emailTextController.text,
                   password: _passwordTextController.text))
