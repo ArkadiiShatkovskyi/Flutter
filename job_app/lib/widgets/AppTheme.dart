@@ -11,12 +11,14 @@ Color _hexToColor(String code) {
 ThemeData get appTheme {
   return ThemeData(
     primaryColor: styleColor,
-    accentColor: styleColor,
-    buttonColor: styleColor,
+    colorScheme: ColorScheme.fromSwatch()
+        .copyWith(secondary: styleColor),
+    //accentColor: styleColor, //deprecated
+    //buttonColor: styleColor,
     inputDecorationTheme: InputDecorationTheme(focusColor: styleColor),
     iconTheme: IconThemeData(color: styleColor),
     textTheme: TextTheme(
-      title: TextStyle(
+      headline6: TextStyle( //title
 //        fontFamily: 'CourgetteRegular',
         fontSize: 20,
       ),
@@ -24,7 +26,7 @@ ThemeData get appTheme {
     appBarTheme: AppBarTheme(
       color: styleColor,
       textTheme: ThemeData.light().textTheme.copyWith(
-            title: TextStyle(
+        headline6: TextStyle( //title
               fontSize: 20,
 //              fontFamily: 'CourgetteRegular',
             ),
