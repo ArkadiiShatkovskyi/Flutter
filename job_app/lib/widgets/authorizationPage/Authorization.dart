@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
-
 import './SignInPage.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -15,9 +14,8 @@ class Authorization {
     User user;
     /**  NEW CODE **/
     //this._isLoading = false;
-
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email,
           password: password
       );
