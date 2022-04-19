@@ -134,7 +134,7 @@ class _SignInPageBodyState extends State<SignInPageBody> {
                 ),
               ),
             ),
-            FlatButton(
+            TextButton(
               child: Text("Create an account",
                   style:
                       TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300)),
