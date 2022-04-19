@@ -23,8 +23,8 @@ class _DataTabState extends State<DataTab> {
   @override
   void initState() {
     super.initState();
-    _selectedItems = List();
-    _listOfRecors = List();
+    _selectedItems = [];
+    _listOfRecors = [];
     _itemToEdit = null;
     _getUser();
   }
