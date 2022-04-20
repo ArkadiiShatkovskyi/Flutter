@@ -19,8 +19,6 @@ class _MainPageState extends State<MainPage> {
   int _selectedTabIndex = 0;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   Authorization _db = Authorization();
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions;
 
   @override
