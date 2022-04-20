@@ -11,7 +11,7 @@ class SummaryTab extends StatefulWidget {
 }
 
 class _SummaryTabState extends State<SummaryTab> {
-  List<dynamic> _listOfWork = List();
+  List<dynamic> _listOfWork = [];
   Authorization _authorization = Authorization();
 
   @override
@@ -72,11 +72,10 @@ class _SummaryTabState extends State<SummaryTab> {
   }
 
   List<Map> _createListOfMonths(QuerySnapshot snapshot) {
-    List<Map> months = List();
+    List<Map> months = [];
     snapshot.docs.map((document) {
       String month = document['date'].toString().substring(0, 2);
       if (!itemIsOnTheList(months, 'month', month)) {
-//      if (months.indexOf({'month': month}) == -1) {
         months.add({'month': month});
         return month;
       }
@@ -98,7 +97,7 @@ class _SummaryTabState extends State<SummaryTab> {
   }
 
   List<Map> _createListOfWorkPerRate(QuerySnapshot snapshot) {
-    List<Map> list = List();
+    List<Map> list = [];
     snapshot.docs.map((doc) {
       if (!itemIsOnTheList(list, 'rate', doc['rate'])) {
 //      if (list.indexOf({'rate': doc['rate']}) == -1) {
