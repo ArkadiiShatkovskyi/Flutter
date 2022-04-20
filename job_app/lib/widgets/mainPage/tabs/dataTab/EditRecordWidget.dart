@@ -178,7 +178,7 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
       'workTime': _workTime,
       'rate': double.parse(_rateController.text),
     });
-    Scaffold.of(context).showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 1),
         content: const Text('Record was edited'),

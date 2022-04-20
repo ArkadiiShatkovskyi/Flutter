@@ -160,12 +160,13 @@ class _SignInPageBodyState extends State<SignInPageBody> {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => MainPage()));
       } else {
-        Scaffold.of(context).showSnackBar(SnackBar(
-          duration: Duration(seconds: 2),
-          content: Text("Wrong password or email"),
-          backgroundColor: Theme.of(context).primaryColor,
-        ));
-        // SHOW MESSAGE TRY AGAIN
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              duration: Duration(seconds: 2),
+              content: Text("Wrong password or email"),
+              backgroundColor: Theme.of(context).primaryColor,
+            )
+        );
       }
     });
     if (this.mounted) {

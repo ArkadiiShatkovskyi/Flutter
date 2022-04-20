@@ -68,22 +68,26 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   password: _passwordTextController.text))
           .user;
       if (user != null) {
-        Scaffold.of(context).showSnackBar(SnackBar(
-          duration: Duration(seconds: 2),
-          content:
-          Text("Nice to meet you. By Arek :)"),
-          backgroundColor: Theme.of(context).primaryColor,
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              duration: Duration(seconds: 2),
+              content:
+              Text("Nice to meet you. Arek :)"),
+              backgroundColor: Theme.of(context).primaryColor,
+            )
+        );
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => MainPage()));
       }
     } catch (e) {
-      Scaffold.of(context).showSnackBar(SnackBar(
-        duration: Duration(seconds: 2),
-        content:
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            duration: Duration(seconds: 2),
+            content:
             Text("Wrong email format. Password must be at least 6 characters"),
-        backgroundColor: Theme.of(context).primaryColor,
-      ));
+            backgroundColor: Theme.of(context).primaryColor,
+          )
+      );
     }
   }
 }
