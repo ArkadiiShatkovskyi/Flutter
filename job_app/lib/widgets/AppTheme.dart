@@ -24,13 +24,15 @@ ThemeData get appTheme {
       ),
     ),
     appBarTheme: AppBarTheme(
-      color: styleColor,
-      textTheme: ThemeData.light().textTheme.copyWith(
+      color: styleColor, toolbarTextStyle: ThemeData.light().textTheme.copyWith(
         headline6: TextStyle( //title
               fontSize: 20,
-//              fontFamily: 'CourgetteRegular',
             ),
-          ),
+          ).bodyText2, titleTextStyle: ThemeData.light().textTheme.copyWith(
+        headline6: TextStyle( //title
+              fontSize: 20,
+            ),
+        ).headline6,
     ),
   );
 }
