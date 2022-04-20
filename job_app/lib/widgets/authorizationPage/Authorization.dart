@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './SignInPage.dart';
 
-//final FirebaseAuth _auth = FirebaseAuth.instance;
-
 class Authorization {
   String user;
   bool _isLoading = false;
@@ -12,8 +10,6 @@ class Authorization {
   Future<bool> signInWithEmail(email, password, navigatorKey) async {
     FirebaseAuth _auth = FirebaseAuth.instance;
     User user;
-    /**  NEW CODE **/
-    //this._isLoading = false;
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email,
@@ -31,19 +27,6 @@ class Authorization {
     }
     this._isLoading = false;
     return user != null;
-    /**
-    try {
-      user = (await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      )).user;
-    } catch (e) {
-      this._isLoading = false;
-      print(e.toString());
-    }
-    this._isLoading = false;
-    return user != null;
-    **/
   }
 
   void signOut(context) async {
@@ -58,14 +41,6 @@ class Authorization {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => SingInPage()));
       }
-      /**
-      FirebaseAuth.instance.currentUser().then((firebaseUser) {
-        if (firebaseUser == null) {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => SingInPage()));
-        }
-      });
-      **/
     }
   }
 
