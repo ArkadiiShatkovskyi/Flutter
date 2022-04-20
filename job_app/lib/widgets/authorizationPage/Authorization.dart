@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './SignInPage.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
+//final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Authorization {
   String user;
   bool _isLoading = false;
 
   Future<bool> signInWithEmail(email, password, navigatorKey) async {
-
+    FirebaseAuth _auth = FirebaseAuth.instance;
     User user;
     /**  NEW CODE **/
     //this._isLoading = false;
@@ -70,6 +70,7 @@ class Authorization {
   }
 
   Future<bool> signUpWithEmail(email, password) async {
+    FirebaseAuth _auth = FirebaseAuth.instance;
     User user;
     try {
       user = (await _auth.createUserWithEmailAndPassword(
@@ -83,6 +84,7 @@ class Authorization {
   }
 
   Future<User> getUser() async {
+    FirebaseAuth _auth = FirebaseAuth.instance;
     return _auth.currentUser;
   }
 
