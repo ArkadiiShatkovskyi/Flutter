@@ -46,10 +46,20 @@ class _ReciplesListState extends State<ReciplesList> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: ListView(
+        //padding: EdgeInsets.only(top: 10),
         children: <Widget>[
-          RecipeWidget(media),
-          RecipeWidget(media),
-          RecipeWidget(media),
+          Padding(
+            padding: EdgeInsets.only(top: 20.0),
+            child: RecipeWidget(media),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 20.0),
+            child: RecipeWidget(media),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 20.0),
+            child: RecipeWidget(media),
+          ),
         ],
       ),
     );
