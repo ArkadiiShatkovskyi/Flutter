@@ -45,21 +45,24 @@ class _ReciplesListState extends State<ReciplesList> {
         child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: ListView(
-        //padding: EdgeInsets.only(top: 10),
+      body: GridView.count(
+        crossAxisCount: 2,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+        padding: const EdgeInsets.only(top:35),
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: 20.0),
-            child: RecipeWidget(media),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 20.0),
-            child: RecipeWidget(media),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 20.0),
-            child: RecipeWidget(media),
-          ),
+          RecipeWidget(media),
+          RecipeWidget(media),
+          RecipeWidget(media),
+          RecipeWidget(media),
+          RecipeWidget(media),
+          RecipeWidget(media),
+          RecipeWidget(media),
+          RecipeWidget(media),
+          RecipeWidget(media),
+          RecipeWidget(media),
+          RecipeWidget(media),
+          RecipeWidget(media),
         ],
       ),
     );
