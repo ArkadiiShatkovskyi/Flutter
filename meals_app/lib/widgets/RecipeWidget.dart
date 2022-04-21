@@ -9,8 +9,8 @@ class RecipeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: size.width * 0.8,
-      height: size.height * 0.55,
-      padding: EdgeInsets.all(15),
+      height: size.height * 0.325,
+      padding: EdgeInsets.only(left:10, right: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(30),),
       ),
@@ -18,7 +18,7 @@ class RecipeWidget extends StatelessWidget {
         children: <Widget>[
           SizedBox(
             width: size.width * 0.8,
-            height: size.height * 0.45,
+            height: size.height * 0.3,
             child: ClipRRect(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30),
