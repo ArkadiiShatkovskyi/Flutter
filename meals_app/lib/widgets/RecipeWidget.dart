@@ -8,8 +8,8 @@ class RecipeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: size.width * 0.8,
-      height: size.height * 0.325,
+      width: size.width * 0.4,
+      height: size.height * 0.2,
       padding: EdgeInsets.only(left:10, right: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(30),),
@@ -17,12 +17,14 @@ class RecipeWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           SizedBox(
-            width: size.width * 0.8,
-            height: size.height * 0.3,
+            width: size.width * 0.4, //0.8
+            height: size.height * 0.2,//0.3
             child: ClipRRect(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30)
                 ),
                 child: recipeImage()),
           ),
