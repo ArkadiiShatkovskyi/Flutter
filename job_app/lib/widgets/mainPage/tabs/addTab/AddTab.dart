@@ -206,7 +206,7 @@ class _AddTabState extends State<AddTab> {
           ? _defaultRate
           : double.parse(_rateController.text),
     });
-    Scaffold.of(context).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       duration: const Duration(seconds: 1),
       content: const Text('Work was added.'),
       backgroundColor: Theme.of(context).primaryColor,
