@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ant_icons/ant_icons.dart';
@@ -62,32 +61,26 @@ class _RegistrationPageState extends State<RegistrationPage> {
     if (_passwordTextController.text != _passwordRepeatTextController.text)
       return;
     try {
-      User user = (await FirebaseAuth.instance
-              .createUserWithEmailAndPassword(
-                  email: _emailTextController.text,
-                  password: _passwordTextController.text))
+      User user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(
+              email: _emailTextController.text,
+              password: _passwordTextController.text))
           .user;
       if (user != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              duration: Duration(seconds: 2),
-              content:
-              Text("Nice to meet you. Arek :)"),
-              backgroundColor: Theme.of(context).primaryColor,
-            )
-        );
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          duration: Duration(seconds: 2),
+          content: Text("Nice to meet you. Arek :)"),
+          backgroundColor: Theme.of(context).primaryColor,
+        ));
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => MainPage()));
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            duration: Duration(seconds: 2),
-            content:
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        duration: Duration(seconds: 2),
+        content:
             Text("Wrong email format. Password must be at least 6 characters"),
-            backgroundColor: Theme.of(context).primaryColor,
-          )
-      );
+        backgroundColor: Theme.of(context).primaryColor,
+      ));
     }
   }
 }
