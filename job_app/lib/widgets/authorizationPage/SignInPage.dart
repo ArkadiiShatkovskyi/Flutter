@@ -122,12 +122,18 @@ class _SignInPageBodyState extends State<SignInPageBody> {
             Container(
               margin: EdgeInsets.only(
                   left: media.size.width * .25, right: media.size.width * .25),
-              child: RaisedButton(
-                textColor: Colors.white,
-                padding: const EdgeInsets.all(20.0),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0)),
+              child: ElevatedButton(
                 onPressed: _signInWithEmail,
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all(
+                    const EdgeInsets.all(20.0),
+                  ),
+                  backgroundColor: MaterialStateProperty.all(styleColor),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                  ),
+                ),
                 child: Text(
                   "Sign In",
                   style: TextStyle(fontSize: 15),
@@ -160,13 +166,11 @@ class _SignInPageBodyState extends State<SignInPageBody> {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => MainPage()));
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              duration: Duration(seconds: 2),
-              content: Text("Wrong password or email"),
-              backgroundColor: Theme.of(context).primaryColor,
-            )
-        );
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          duration: Duration(seconds: 2),
+          content: Text("Wrong password or email"),
+          backgroundColor: Theme.of(context).primaryColor,
+        ));
       }
     });
     if (this.mounted) {

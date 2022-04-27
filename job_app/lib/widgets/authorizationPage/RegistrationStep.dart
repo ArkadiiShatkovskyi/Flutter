@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './FieldWidget.dart';
+import '.././AppTheme.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -107,12 +108,18 @@ class RegistrationStep extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(
                 left: media.size.width * .25, right: media.size.width * .25),
-            child: RaisedButton(
-              textColor: Colors.white,
-              padding: const EdgeInsets.all(20.0),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0)),
+            child: ElevatedButton(
               onPressed: () => btnFunction(context),
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all(
+                  const EdgeInsets.all(20.0),
+                ),
+                backgroundColor: MaterialStateProperty.all(styleColor),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                ),
+              ),
               child: Text(
                 "Sign up",
                 style: TextStyle(fontSize: 15),
