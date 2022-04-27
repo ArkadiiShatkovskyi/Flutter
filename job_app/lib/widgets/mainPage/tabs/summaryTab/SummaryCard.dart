@@ -38,7 +38,9 @@ class SummaryCard extends StatelessWidget {
               Center(
                   child: Text(
                 month == ''
-                    ? rate.toString() == "Total" ? "Total" : "Job per rate: $rate"
+                    ? rate.toString() == "Total"
+                        ? "Total"
+                        : "Job per rate: $rate"
                     : "Per Month: $month",
                 style: const TextStyle(fontSize: 18),
               )),
