@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ant_icons/ant_icons.dart';
+import 'package:job_app/widgets/AppTheme.dart';
 
 class EditOption extends StatelessWidget {
   final Function function;
@@ -45,7 +46,10 @@ class EditOption extends StatelessWidget {
               padding: const EdgeInsets.only(
                 top: 10,
               ),
-              child: RaisedButton.icon(
+              child: ElevatedButton.icon(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(styleColor),
+                ),
                 onPressed: function,
                 icon: const Icon(
                   AntIcons.calendar_outline,

@@ -108,16 +108,20 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                RaisedButton.icon(
-                    onPressed: editRecord,
-                    icon: Icon(
-                      AntIcons.edit_outline,
-                      color: Colors.white,
-                    ),
-                    label: Text(
-                      'Edit record',
-                      style: TextStyle(color: Colors.white),
-                    )),
+                ElevatedButton.icon(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(styleColor),
+                  ),
+                  onPressed: editRecord,
+                  icon: const Icon(
+                    AntIcons.edit_outline,
+                    color: Colors.white,
+                  ),
+                  label: const Text(
+                    'Edit record',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
               ],
             ),
           )
