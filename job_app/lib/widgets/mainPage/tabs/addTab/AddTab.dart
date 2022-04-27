@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:ant_icons/ant_icons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:job_app/widgets/authorizationPage/Authorization.dart';
+import '../../../authorizationPage/Authorization.dart';
 import './RowWidget.dart';
-import 'package:job_app/models/RateReader.dart';
+import '../../../../models/RateReader.dart';
+import '../../../AppTheme.dart';
 
 class AddTab extends StatefulWidget {
   @override
@@ -252,7 +253,14 @@ class _AddTabState extends State<AddTab> {
                     ),
                   ),
                 ),
-                RaisedButton(
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(styleColor),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                    ),
+                  ),
                   child: const Text(
                     "Change",
                     style: TextStyle(color: Colors.white),
@@ -262,7 +270,7 @@ class _AddTabState extends State<AddTab> {
                     try {
                       double.parse(_defaultRateController.text);
                     } catch (e) {
-                      Scaffold.of(context).showSnackBar(SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         duration: const Duration(seconds: 1),
                         content: const Text('Rate must be a number'),
                         backgroundColor: Theme.of(context).primaryColor,
