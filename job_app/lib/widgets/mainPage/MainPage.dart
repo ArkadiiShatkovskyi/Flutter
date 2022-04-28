@@ -41,16 +41,17 @@ class _MainPageState extends State<MainPage> {
         child: Scaffold(
           drawer: DrawerMenu(),
           bottomNavigationBar: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
+            fixedColor: styleColor,
+            items: <BottomNavigationBarItem>[
+              const BottomNavigationBarItem(
                 icon: const Icon(AntIcons.database_outline),
                 label: 'Home',
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: const Icon(Icons.assessment),
                 label: 'Summary',
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: const Icon(AntIcons.file_add_outline),
                 label: 'Add work',
               ),
