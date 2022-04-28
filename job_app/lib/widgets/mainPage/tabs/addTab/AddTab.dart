@@ -59,7 +59,11 @@ class _AddTabState extends State<AddTab> {
               AntIcons.calendar_outline, _showDatePicker, media),
           RowWidget.textInput("Write your rate", _defaultRate.toString(),
               _rateController, 'Rate', media),
-          FlatButton(
+          TextButton(
+            style: ButtonStyle(
+              foregroundColor:  MaterialStateProperty.all(styleColor),
+            ),
+            onPressed: () => _updateRate(context),
             child: Text(
               'Change default rate',
               style: TextStyle(
@@ -67,7 +71,6 @@ class _AddTabState extends State<AddTab> {
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.normal),
             ),
-            onPressed: () => _updateRate(context),
           ),
           Center(
             child: IconButton(
