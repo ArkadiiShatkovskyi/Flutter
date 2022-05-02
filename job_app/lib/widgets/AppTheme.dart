@@ -11,28 +11,38 @@ Color _hexToColor(String code) {
 ThemeData get appTheme {
   return ThemeData(
     primaryColor: styleColor,
-    colorScheme: ColorScheme.fromSwatch()
-        .copyWith(secondary: styleColor),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: styleColor),
     //accentColor: styleColor, //deprecated
     //buttonColor: styleColor,
     inputDecorationTheme: InputDecorationTheme(focusColor: styleColor),
     iconTheme: IconThemeData(color: styleColor),
     textTheme: TextTheme(
-      headline6: TextStyle( //title
+      headline6: TextStyle(
+        //title
 //        fontFamily: 'CourgetteRegular',
         fontSize: 20,
       ),
     ),
     appBarTheme: AppBarTheme(
-      color: styleColor, toolbarTextStyle: ThemeData.light().textTheme.copyWith(
-        headline6: TextStyle( //title
+      color: styleColor,
+      toolbarTextStyle: ThemeData.light()
+          .textTheme
+          .copyWith(
+            headline6: TextStyle(
+              //title
               fontSize: 20,
             ),
-          ).bodyText2, titleTextStyle: ThemeData.light().textTheme.copyWith(
-        headline6: TextStyle( //title
+          )
+          .bodyText2,
+      titleTextStyle: ThemeData.light()
+          .textTheme
+          .copyWith(
+            headline6: TextStyle(
+              //title
               fontSize: 20,
             ),
-        ).headline6,
+          )
+          .headline6,
     ),
   );
 }
