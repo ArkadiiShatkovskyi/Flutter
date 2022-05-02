@@ -4,7 +4,17 @@ A new Flutter project.
 
 Project for managing working hours on the temporary work.
 
-This project does going to work, when you pull it, because you need 'google-services.json' file, which I can't share with you.
+This project does not going to work, when you pull it, because you need 'google-services.json' file for Firestore connection, which I can't share with you.
+
+Used plugins:
+<li>flutter_svg</li>
+<li>cupertino_icons</li>
+<li>firebase_auth</li>
+<li>cloud_firestore</li>
+<li>path_provider</li>
+<li>keyboard_avoider</li>
+<li>ant_icons</li>
+<li>flutter_launcher_icons</li>
 
 The preview of the app:
   Sign in page:
