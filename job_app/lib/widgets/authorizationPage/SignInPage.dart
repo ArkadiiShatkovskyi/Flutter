@@ -6,10 +6,10 @@ import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'package:job_app/widgets/AppTheme.dart';
 import 'package:job_app/widgets/authorizationPage/Authorization.dart';
 import 'package:job_app/widgets/authorizationPage/RegistrationPage.dart';
 import 'package:job_app/widgets/mainPage/MainPage.dart';
+import '../AppTheme.dart';
 
 class SingInPage extends StatelessWidget {
   final navigatorKey = GlobalKey<NavigatorState>();
@@ -88,6 +88,19 @@ class _SignInPageBodyState extends State<SignInPageBody> {
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20)),
                   labelText: 'Email',
+                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
                 ),
                 controller: _emailTextController,
               ),
@@ -109,8 +122,22 @@ class _SignInPageBodyState extends State<SignInPageBody> {
                     color: Theme.of(context).primaryColor,
                   ),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20)),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   labelText: 'Password',
+                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
                 ),
                 controller: _passwordTextController,
               ),
@@ -128,7 +155,8 @@ class _SignInPageBodyState extends State<SignInPageBody> {
                   padding: MaterialStateProperty.all(
                     const EdgeInsets.all(20.0),
                   ),
-                  backgroundColor: MaterialStateProperty.all(styleColor),
+                  backgroundColor:
+                      MaterialStateProperty.all(Theme.of(context).primaryColor),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
@@ -142,8 +170,10 @@ class _SignInPageBodyState extends State<SignInPageBody> {
             ),
             TextButton(
               child: Text("Create an account",
-                  style:
-                      TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300)),
+                  style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w300,
+                      color: Theme.of(context).primaryColor)),
               onPressed: _showRegistrationPage,
             ),
             _showCircularProgress(),
