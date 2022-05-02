@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:ant_icons/ant_icons.dart';
 
 import 'package:job_app/models/Record.dart';
-import 'package:job_app/widgets/AppTheme.dart';
 import './PreviewOfEditedRecord.dart';
 import './EditingOption.dart';
 
@@ -56,7 +55,7 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
     return SingleChildScrollView(
         child: Container(
       decoration: BoxDecoration(
-        border: Border.all(color: appTheme.primaryColor),
+        border: Border.all(color: Theme.of(context).primaryColor),
       ),
       width: media.size.width * 1,
       height: media.size.height * .65,
@@ -110,7 +109,7 @@ class _EditRecordWidgetState extends State<EditRecordWidget> {
               children: <Widget>[
                 ElevatedButton.icon(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(styleColor),
+                    backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
                   ),
                   onPressed: editRecord,
                   icon: const Icon(

@@ -41,7 +41,7 @@ class _MainPageState extends State<MainPage> {
         child: Scaffold(
           drawer: DrawerMenu(),
           bottomNavigationBar: BottomNavigationBar(
-            fixedColor: styleColor,
+            fixedColor: Theme.of(context).primaryColor,
             items: <BottomNavigationBarItem>[
               const BottomNavigationBarItem(
                 icon: const Icon(AntIcons.database_outline),
