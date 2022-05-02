@@ -7,7 +7,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../authorizationPage/Authorization.dart';
 import './RowWidget.dart';
 import '../../../../models/RateReader.dart';
-import '../../../AppTheme.dart';
 
 class AddTab extends StatefulWidget {
   @override
@@ -61,7 +60,7 @@ class _AddTabState extends State<AddTab> {
               _rateController, 'Rate', media),
           TextButton(
             style: ButtonStyle(
-              foregroundColor:  MaterialStateProperty.all(styleColor),
+              foregroundColor:  MaterialStateProperty.all(Theme.of(context).primaryColor),
             ),
             onPressed: () => _updateRate(context),
             child: Text(
@@ -258,7 +257,7 @@ class _AddTabState extends State<AddTab> {
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(styleColor),
+                    backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0)),
