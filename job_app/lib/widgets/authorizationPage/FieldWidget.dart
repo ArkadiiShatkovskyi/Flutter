@@ -23,6 +23,19 @@ class FieldWidget extends StatelessWidget {
           ),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
           labelText: labelText,
+          labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
         ),
         controller: textController,
       ),
