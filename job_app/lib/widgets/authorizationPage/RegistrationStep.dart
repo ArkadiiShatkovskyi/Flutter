@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import './FieldWidget.dart';
-import '.././AppTheme.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -82,6 +81,19 @@ class RegistrationStep extends StatelessWidget {
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                 labelText: labelText2,
+                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
               ),
             ),
           ),
@@ -101,6 +113,19 @@ class RegistrationStep extends StatelessWidget {
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                 labelText: "Repeat password",
+                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
               ),
             ),
           ),
@@ -114,7 +139,7 @@ class RegistrationStep extends StatelessWidget {
                 padding: MaterialStateProperty.all(
                   const EdgeInsets.all(20.0),
                 ),
-                backgroundColor: MaterialStateProperty.all(styleColor),
+                backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
