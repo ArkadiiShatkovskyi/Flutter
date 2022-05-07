@@ -46,9 +46,9 @@ class _ReciplesListState extends State<ReciplesList> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: GridView.count(
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
+        crossAxisCount: 1,
+        // mainAxisSpacing: 10,
+        // crossAxisSpacing: 10,
         padding: const EdgeInsets.only(top:35),
         children: <Widget>[
           RecipeWidget(media),
