@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/screens/categories_screen.dart';
 
 import './screens/ReciplesList.dart';
 
@@ -12,9 +13,21 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Meals application',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
+        canvasColor: Color.fromRGBO(255, 254, 229, 1),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.pink,
+        ).copyWith(
+          secondary: Colors.amber,
+        ),
+        textTheme: ThemeData.light().textTheme.copyWith(
+              titleMedium: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
       ),
-      home: ReciplesList(),
+      // home: ReciplesList(),
+      home: CategoriesScreen(),
     );
   }
 }
