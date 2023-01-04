@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snake_game/screens/HomePage.dart';
+import 'package:snake_game/screens/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(playGame: _playTheGame, exitGame: _exitFromTheGame),
+      home: HomePage(
+        playGame: _playTheGame,
+        exitGame: _exitFromTheGame,
+      ),
     );
   }
 
