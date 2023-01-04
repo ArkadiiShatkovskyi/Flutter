@@ -10,17 +10,32 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: const Color.fromARGB(255, 90, 114, 253),
-        onPrimary: Colors.amber,
-      ),
-      onPressed: () => onPressAction,
-      child: Text(
-        buttonText,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 20,
+    return Container(
+      width: 175,
+      height: 75,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(
+            const Color.fromARGB(255, 90, 114, 253),
+          ),
+          overlayColor: MaterialStateProperty.all<Color>(
+            Colors.amber,
+          ),
+          shape: MaterialStateProperty.all(
+            const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(35),
+              ),
+            ),
+          ),
+        ),
+        onPressed: () => onPressAction,
+        child: Text(
+          buttonText,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+          ),
         ),
       ),
     );
