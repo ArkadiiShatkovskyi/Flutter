@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:snake_game/widgets/button_widget.dart';
 
 import 'game_screen.dart';
@@ -40,5 +41,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void _exitFromTheGame() {}
+  void _exitFromTheGame(BuildContext context) {
+    SystemNavigator.pop();
+  }
 }
