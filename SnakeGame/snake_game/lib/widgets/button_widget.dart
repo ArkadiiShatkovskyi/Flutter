@@ -4,7 +4,7 @@ class ButtonWidget extends StatelessWidget {
   final String buttonText;
   final Function onPressAction;
 
-  ButtonWidget(
+  const ButtonWidget(
       {Key? key, required this.buttonText, required this.onPressAction})
       : super(key: key);
 
@@ -19,7 +19,7 @@ class ButtonWidget extends StatelessWidget {
             const Color.fromARGB(255, 90, 114, 253),
           ),
           overlayColor: MaterialStateProperty.all<Color>(
-            Colors.amber,
+            Colors.amberAccent,
           ),
           shape: MaterialStateProperty.all(
             const RoundedRectangleBorder(
@@ -29,7 +29,7 @@ class ButtonWidget extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () => onPressAction,
+        onPressed: () => onPressAction(context),
         child: Text(
           buttonText,
           style: const TextStyle(
