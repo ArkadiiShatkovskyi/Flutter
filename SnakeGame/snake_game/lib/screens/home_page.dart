@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:snake_game/widgets/button_widget.dart';
 
+import 'game_screen.dart';
+
 class HomePage extends StatelessWidget {
-  final Function playGame;
-  final Function exitGame;
 
   // ignore: prefer_const_constructors_in_immutables
-  const HomePage({Key? key, required this.playGame, required this.exitGame})
+  const HomePage({Key? key})
       : super(key: key);
 
   @override
@@ -18,14 +18,27 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ButtonWidget(buttonText: "Play", onPressAction: playGame),
+            ButtonWidget(buttonText: "Play", onPressAction: _playTheGame),
             const Padding(
               padding: EdgeInsets.all(20),
             ),
-            ButtonWidget(buttonText: "Exit", onPressAction: exitGame),
+            ButtonWidget(buttonText: "Exit", onPressAction: _exitFromTheGame),
           ],
         ),
       ),
     );
   }
+
+    void _playTheGame(BuildContext context) {
+     Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const GameScreen(
+          matrixWidth: 10,
+          matrixHeight: 20,
+        ),
+      ),
+    );
+  }
+
+  void _exitFromTheGame() {}
 }
