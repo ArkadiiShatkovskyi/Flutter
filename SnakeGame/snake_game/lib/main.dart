@@ -17,14 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(
-        playGame: _playTheGame,
-        exitGame: _exitFromTheGame,
-      ),
+      home: const HomePage(),
     );
   }
-
-  void _playTheGame() {}
-
-  void _exitFromTheGame() {}
 }
