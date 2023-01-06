@@ -1,4 +1,8 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:snake_game/models/matrix_element.dart';
 
 class GameScreen extends StatefulWidget {
   final int rows;
@@ -9,13 +13,16 @@ class GameScreen extends StatefulWidget {
   GameScreen({Key? key, required this.rows, required this.columns})
       : super(key: key) {
     _matrix = List.generate(
-        rows, (i) => List.generate(columns, (j) => 0, growable: false),
+        rows,
+        (i) => List.generate(
+            columns, (j) => MatrixElement(row: i, columns: j, value: 0),
+            growable: false),
         growable: false);
 
-    _matrix.forEach((row) {
-      //print("Row: " + row.toString());
-      print(row);
-    });
+    // _matrix.forEach((row) {
+    //   //print("Row: " + row.toString());
+    //   print(row);
+    // });
   }
 
   @override
@@ -24,14 +31,25 @@ class GameScreen extends StatefulWidget {
 
 // ignore: camel_case_types
 class _GameScreen_State extends State<GameScreen> {
+  int _strIndRow = 10;
+  int _strIndCol = 0;
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(Duration(milliseconds: 500), (Timer t) => _moveSnake());
+  }
+
   @override
   Widget build(BuildContext context) {
+    Size mediaQuerySize = MediaQuery.of(context).size;
     return Scaffold(
-      body: _getMatrixWidget(),
+      body: _getMatrixWidget(mediaQuerySize),
     );
   }
 
-  Widget _getMatrixWidget() {
+  Widget _getMatrixWidget(Size size) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: widget._matrix.map<Widget>(
@@ -40,14 +58,56 @@ class _GameScreen_State extends State<GameScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: row.map<Widget>(
               (column) {
-                return Container(
-                  child: Text(column.toString()),
-                );
+                return column.value == 0
+                    ? Container(
+                        height: size.height / widget.rows,
+                        width: size.width / widget.columns,
+                        child: const Text(""),
+                      )
+                    : Container(
+                        height: size.height / widget.rows,
+                        width: size.width / widget.columns,
+                        decoration: const BoxDecoration(
+                          color: Colors.black,
+                        ),
+                        child: Padding(padding: EdgeInsets.all(0)),
+                      );
               },
             ).toList(),
           );
         },
       ).toList(),
     );
+  }
+
+  void _moveSnake() {
+    print("Value 1 3: " + (_strIndCol + 1).toString());
+    setState(() {
+      if(_strIndCol == 1){
+        if(widget._matrix[_strIndRow][widget.columns - 1].value == 1){
+          widget._matrix[_strIndRow][widget.columns - 1].value = 0;
+        }
+        widget._matrix[_strIndRow][_strIndCol - 1].value = 0;
+
+        widget._matrix[_strIndRow][_strIndCol].value = 1;
+        widget._matrix[_strIndRow][_strIndCol + 1].value = 1;
+      }
+      else if (_strIndCol + 1 < widget.columns) {
+        if (_strIndCol - 1 >= 0) {
+          widget._matrix[_strIndRow][_strIndCol - 1].value = 0;
+        }
+
+        widget._matrix[_strIndRow][_strIndCol].value = 1;
+        widget._matrix[_strIndRow][_strIndCol + 1].value = 1;
+      }else if(_strIndCol + 1 >= widget.columns){
+        if (_strIndCol - 1 >= 0 && _strIndCol - 1 < widget.columns) {
+          widget._matrix[_strIndRow][_strIndCol - 1].value = 0;
+        }
+        
+        _strIndCol = 0;
+        widget._matrix[_strIndRow][_strIndCol].value = 1;
+      }
+      _strIndCol = _strIndCol + 1;
+    });
   }
 }
