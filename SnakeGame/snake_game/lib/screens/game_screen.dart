@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class GameScreen extends StatefulWidget {
   final int rows;
   final int columns;
+  //Matrix of the game
   var _matrix;
 
   GameScreen({Key? key, required this.rows, required this.columns})
