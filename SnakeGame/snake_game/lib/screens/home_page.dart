@@ -33,9 +33,9 @@ class HomePage extends StatelessWidget {
     void _playTheGame(BuildContext context) {
      Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => const GameScreen(
-          matrixWidth: 10,
-          matrixHeight: 20,
+        builder: (context) => GameScreen(
+          columns: 15,
+          rows: 25,
         ),
       ),
     );
