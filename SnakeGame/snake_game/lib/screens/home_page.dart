@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
       MaterialPageRoute(
         builder: (context) => GameScreen(
           columns: 15,
-          rows: 25,
+          rows: 30,
         ),
       ),
     );
