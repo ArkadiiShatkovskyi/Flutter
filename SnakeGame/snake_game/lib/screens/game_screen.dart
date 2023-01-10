@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:snake_game/models/game_movement.dart';
 import 'package:snake_game/models/matrix_element.dart';
 
 class GameScreen extends StatefulWidget {
@@ -83,31 +84,7 @@ class _GameScreen_State extends State<GameScreen> {
   void _moveSnake() {
     print("Value 1 3: " + (_strIndCol + 1).toString());
     setState(() {
-      if(_strIndCol == 1){
-        if(widget._matrix[_strIndRow][widget.columns - 1].value == 1){
-          widget._matrix[_strIndRow][widget.columns - 1].value = 0;
-        }
-        widget._matrix[_strIndRow][_strIndCol - 1].value = 0;
-
-        widget._matrix[_strIndRow][_strIndCol].value = 1;
-        widget._matrix[_strIndRow][_strIndCol + 1].value = 1;
-      }
-      else if (_strIndCol + 1 < widget.columns) {
-        if (_strIndCol - 1 >= 0) {
-          widget._matrix[_strIndRow][_strIndCol - 1].value = 0;
-        }
-
-        widget._matrix[_strIndRow][_strIndCol].value = 1;
-        widget._matrix[_strIndRow][_strIndCol + 1].value = 1;
-      }else if(_strIndCol + 1 >= widget.columns){
-        if (_strIndCol - 1 >= 0 && _strIndCol - 1 < widget.columns) {
-          widget._matrix[_strIndRow][_strIndCol - 1].value = 0;
-        }
-        
-        _strIndCol = 0;
-        widget._matrix[_strIndRow][_strIndCol].value = 1;
-      }
-      _strIndCol = _strIndCol + 1;
+      _strIndCol = moveSnakeRight(widget._matrix, _strIndRow, _strIndCol, widget.columns);
     });
   }
 }
