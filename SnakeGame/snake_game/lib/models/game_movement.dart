@@ -1,3 +1,5 @@
+import 'package:snake_game/models/matrix_element.dart';
+
 int moveSnakeRight(var matrix, int _strIndRow, int _strIndCol, int columns) {
   //print("Value 1 3: " + (_strIndCol + 1).toString());
   if (_strIndCol == 1) {
@@ -25,4 +27,29 @@ int moveSnakeRight(var matrix, int _strIndRow, int _strIndCol, int columns) {
   _strIndCol = _strIndCol + 1;
 
   return _strIndCol;
+}
+
+int moveSnakeLeft(var matrix, int _strIndRow, int _strIndCol, int columns) {
+  //print("Value 1 3: " + (_strIndCol + 1).toString());
+
+  //moveRight
+  if(_strIndCol == 0){
+
+  }
+  _strIndCol = _strIndCol + 1;
+
+  return _strIndCol;
+}
+
+List<MatrixElement> getSnakeElements(var matrix){
+  List<MatrixElement> list = [];
+  int ind = 0;
+  for(int i = 0; i < matrix[i].size; i++){
+    for(MatrixElement e in matrix[i]){
+      if(e.value == 1){
+        list.add(e);
+      }
+    }
+  }
+  return list;
 }
