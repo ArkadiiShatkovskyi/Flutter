@@ -23,7 +23,6 @@ class GameScreen extends StatefulWidget {
     // _matrix.forEach((row) {
     //   //print("Row: " + row.toString());
     //   print(row);
-    // });
   }
 
   @override
@@ -39,6 +38,7 @@ class _GameScreen_State extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
+    _startGame();   
     timer = Timer.periodic(Duration(milliseconds: 500), (Timer t) => _moveSnake());
   }
 
@@ -85,6 +85,12 @@ class _GameScreen_State extends State<GameScreen> {
     print("Value 1 3: " + (_strIndCol + 1).toString());
     setState(() {
       _strIndCol = moveSnakeRight(widget._matrix, _strIndRow, _strIndCol, widget.columns);
+    });
+  }
+
+  void _startGame(){
+    setState(() {
+      widget._matrix[_strIndCol][_strIndRow] = 1;
     });
   }
 }
