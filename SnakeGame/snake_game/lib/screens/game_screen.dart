@@ -16,7 +16,7 @@ class GameScreen extends StatefulWidget {
     _matrix = List.generate(
         rows,
         (i) => List.generate(
-            columns, (j) => MatrixElement(row: i, columns: j, value: 0),
+            columns, (j) =>  0,
             growable: false),
         growable: false);
 
@@ -34,12 +34,13 @@ class _GameScreen_State extends State<GameScreen> {
   int _strIndRow = 10;
   int _strIndCol = 0;
   Timer? timer;
+  List<MatrixElement> _snakeElements = []; 
 
   @override
   void initState() {
     super.initState();
     _startGame();   
-    timer = Timer.periodic(Duration(milliseconds: 500), (Timer t) => _moveSnake());
+    timer = Timer.periodic(Duration(milliseconds: 500), (Timer t) => _moveSnakeRight());
   }
 
   @override
@@ -59,7 +60,7 @@ class _GameScreen_State extends State<GameScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: row.map<Widget>(
               (column) {
-                return column.value == 0
+                return column == 0
                     ? Container(
                         height: size.height / widget.rows,
                         width: size.width / widget.columns,
@@ -81,16 +82,18 @@ class _GameScreen_State extends State<GameScreen> {
     );
   }
 
-  void _moveSnake() {
-    print("Value 1 3: " + (_strIndCol + 1).toString());
+  void _moveSnakeRight() {
     setState(() {
-      _strIndCol = moveSnakeRight(widget._matrix, _strIndRow, _strIndCol, widget.columns);
+      widget._matrix = moveSnakeRight(widget.columns, _snakeElements, widget._matrix);
     });
   }
 
   void _startGame(){
     setState(() {
-      widget._matrix[_strIndCol][_strIndRow] = 1;
+      _snakeElements.add(MatrixElement(row: _strIndRow, column: _strIndCol + 1, value: 1));
+      _snakeElements.add(MatrixElement(row: _strIndRow, column: _strIndCol, value: 1));
+      widget._matrix[_strIndRow][_strIndCol] = 1;
+      widget._matrix[_strIndRow][_strIndCol + 1] = 1;
     });
   }
 }
