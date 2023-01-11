@@ -1,7 +1,7 @@
 class MatrixElement{
-  final int row;
-  final int columns;
+  int row;
+  int column;
   int value;
 
-  MatrixElement({required this.row, required this.columns, required this.value});
+  MatrixElement({required this.row, required this.column, required this.value});
 }
