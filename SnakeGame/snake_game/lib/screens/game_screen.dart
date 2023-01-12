@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:snake_game/models/direction_point.dart';
 import 'package:snake_game/models/game_movement.dart';
 import 'package:snake_game/models/matrix_element.dart';
 
@@ -14,10 +15,7 @@ class GameScreen extends StatefulWidget {
   GameScreen({Key? key, required this.rows, required this.columns})
       : super(key: key) {
     _matrix = List.generate(
-        rows,
-        (i) => List.generate(
-            columns, (j) =>  0,
-            growable: false),
+        rows, (i) => List.generate(columns, (j) => 0, growable: false),
         growable: false);
 
     // _matrix.forEach((row) {
@@ -34,66 +32,157 @@ class _GameScreen_State extends State<GameScreen> {
   int _strIndRow = 10;
   int _strIndCol = 0;
   Timer? timer;
-  List<MatrixElement> _snakeElements = []; 
+  List<MatrixElement> _snakeElements = [];
+  List<DirectionPoint> _directionPoints = [];
+  int _direction = 0;
+  //  Direction
+  //  0 - Right
+  //  1 - Lelf
+  //  2 - Up
+  //  3 - Down
 
   @override
   void initState() {
     super.initState();
-    _startGame();   
-    timer = Timer.periodic(Duration(milliseconds: 500), (Timer t) => _moveSnakeRight());
+    _startGame();
+
+    timer = Timer.periodic(
+        Duration(milliseconds: 500),
+        (Timer t) {
+          setState(() {
+            widget._matrix =
+                moveSnakeUp(widget.rows, _snakeElements, widget._matrix);
+          });
+        },
+      );
+
+    // if (_direction == 0) {
+    //   timer = Timer.periodic(
+    //     Duration(milliseconds: 500),
+    //     (Timer t) {
+    //       setState(() {
+    //         widget._matrix =
+    //             moveSnakeRight(widget.columns, _snakeElements, widget._matrix);
+    //       });
+    //     },
+    //   );
+    // } else if (_direction == 1) {
+    //   timer = Timer.periodic(
+    //     Duration(milliseconds: 500),
+    //     (Timer t) {
+    //       setState(() {
+    //         widget._matrix =
+    //             moveSnakeLeft(widget.columns, _snakeElements, widget._matrix);
+    //       });
+    //     },
+    //   );
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
     Size mediaQuerySize = MediaQuery.of(context).size;
     return Scaffold(
-      body: _getMatrixWidget(mediaQuerySize),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_right,
+                color: Colors.purple,
+                size: 35,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_left,
+                color: Colors.purple,
+                size: 35,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_drop_up,
+                color: Colors.purple,
+                size: 35,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_drop_down,
+                color: Colors.purple,
+                size: 35,
+              ),
+            ),
+          ],
+        ),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: widget._matrix.map<Widget>(
+          (row) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: row.map<Widget>(
+                (column) {
+                  return column == 0
+                      ? Container(
+                          height: (mediaQuerySize.height / widget.rows) - 2,
+                          width: mediaQuerySize.width / widget.columns,
+                          child: const Text(""),
+                        )
+                      : Container(
+                          height: (mediaQuerySize.height / widget.rows) - 2,
+                          width: mediaQuerySize.width / widget.columns,
+                          decoration: const BoxDecoration(
+                            color: Colors.black,
+                          ),
+                          child: Padding(padding: EdgeInsets.all(0)),
+                        );
+                },
+              ).toList(),
+            );
+          },
+        ).toList(),
+      ),
     );
   }
 
-  Widget _getMatrixWidget(Size size) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: widget._matrix.map<Widget>(
-        (row) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: row.map<Widget>(
-              (column) {
-                return column == 0
-                    ? Container(
-                        height: size.height / widget.rows,
-                        width: size.width / widget.columns,
-                        child: const Text(""),
-                      )
-                    : Container(
-                        height: size.height / widget.rows,
-                        width: size.width / widget.columns,
-                        decoration: const BoxDecoration(
-                          color: Colors.black,
-                        ),
-                        child: Padding(padding: EdgeInsets.all(0)),
-                      );
-              },
-            ).toList(),
-          );
-        },
-      ).toList(),
-    );
-  }
-
-  void _moveSnakeRight() {
+  void _startGame() {
     setState(() {
-      widget._matrix = moveSnakeRight(widget.columns, _snakeElements, widget._matrix);
+      _snakeElements.add(
+          MatrixElement(row: _strIndRow, column: _strIndCol, value: 1));
+      _snakeElements
+          .add(MatrixElement(row: _strIndRow + 1, column: _strIndCol, value: 1));
+      widget._matrix[_strIndRow][_strIndCol] = 1;
+      widget._matrix[_strIndRow + 1][_strIndCol] = 1;
     });
   }
 
-  void _startGame(){
+  void _moveToTheRight() {
     setState(() {
-      _snakeElements.add(MatrixElement(row: _strIndRow, column: _strIndCol + 1, value: 1));
-      _snakeElements.add(MatrixElement(row: _strIndRow, column: _strIndCol, value: 1));
-      widget._matrix[_strIndRow][_strIndCol] = 1;
-      widget._matrix[_strIndRow][_strIndCol + 1] = 1;
+      _directionPoints.add(DirectionPoint(
+          column: _snakeElements[0].column,
+          direction: 0,
+          row: _snakeElements[0].row));
+      widget._matrix =
+          moveSnakeRight(widget.columns, _snakeElements, widget._matrix);
+    });
+  }
+
+  void _moveToTheLeft() {
+    setState(() {
+      _directionPoints.add(DirectionPoint(
+          column: _snakeElements[0].column,
+          direction: 0,
+          row: _snakeElements[0].row));
+      widget._matrix =
+          moveSnakeLeft(widget.columns, _snakeElements, widget._matrix);
     });
   }
 }
