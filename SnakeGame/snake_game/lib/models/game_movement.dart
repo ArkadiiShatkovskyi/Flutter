@@ -1,10 +1,13 @@
 import 'package:snake_game/models/matrix_element.dart';
 
-List<List<int>> moveSnakeRight(int columns, List<MatrixElement> list, var matrix) {
-  for(MatrixElement m in list){
-    if(m.column + 1 > columns - 1){
+import 'direction_point.dart';
+
+List<List<int>> moveSnakeRight(
+    int columns, List<MatrixElement> list, var matrix) {
+  for (MatrixElement m in list) {
+    if (m.column + 1 > columns - 1) {
       m.column = 0;
-    } else{
+    } else {
       m.column += 1;
     }
     matrix[m.row][m.column] = 1;
@@ -18,11 +21,12 @@ List<List<int>> moveSnakeRight(int columns, List<MatrixElement> list, var matrix
   return matrix;
 }
 
-List<List<int>> moveSnakeLeft(int columns, List<MatrixElement> list, var matrix) {
-  for(MatrixElement m in list){
-    if(m.column - 1 < 0){
+List<List<int>> moveSnakeLeft(
+    int columns, List<MatrixElement> list, var matrix) {
+  for (MatrixElement m in list) {
+    if (m.column - 1 < 0) {
       m.column = columns - 1;
-    } else{
+    } else {
       m.column -= 1;
     }
     matrix[m.row][m.column] = 1;
@@ -36,15 +40,71 @@ List<List<int>> moveSnakeLeft(int columns, List<MatrixElement> list, var matrix)
   return matrix;
 }
 
+List<List<int>> moveSnakeUp(
+    int rows, List<MatrixElement> list, var matrix) {
+  for (MatrixElement m in list) {
+    if (m.row - 1 < 0) {
+      m.row = rows - 1;
+    } else {
+      m.row -= 1;
+    }
+    matrix[m.row][m.column] = 1;
+  }
+  int col = list[list.length - 1].column;
+  int row = list[list.length - 1].row;
+  
+  row = row + 1 > rows - 1 ? 0 : row + 1;
+  matrix[row][col] = 0;
+
+  return matrix;
+}
+
+List<List<int>> moveSnakeDown(
+    int rows, List<MatrixElement> list, var matrix) {
+  for (MatrixElement m in list) {
+    if (m.row + 1 > rows - 1) {
+      m.row = 0;
+    } else {
+      m.row += 1;
+    }
+    matrix[m.row][m.column] = 1;
+  }
+  int col = list[list.length - 1].column;
+  int row = list[list.length - 1].row;
+
+  row = row - 1 < 0 ? rows - 1 : row - 1;
+  matrix[row][col] = 0;
+
+  return matrix;
+}
+
 List<MatrixElement> getSnakeElements(var matrix) {
   List<MatrixElement> list = [];
   int ind = 0;
-  for(int i = 0; i < matrix[i].size; i++){
-    for(MatrixElement e in matrix[i]){
-      if(e.value == 1){
+  for (int i = 0; i < matrix[i].size; i++) {
+    for (MatrixElement e in matrix[i]) {
+      if (e.value == 1) {
         list.add(e);
       }
     }
   }
   return list;
+}
+
+List<MatrixElement> moveSnake(int direction, int columns, int rows,
+    List<MatrixElement> list, var matrix, List<DirectionPoint> points) {
+  for (MatrixElement m in list) {
+    for (DirectionPoint p in points) {
+      if(p.column == m.column && p.row == m.row){
+        if (direction == 0) {
+          moveSnakeRight(columns, list, matrix);
+        } else if (direction == 1) {
+          moveSnakeLeft(columns, list, matrix);
+        } else if (direction == 2) {
+        } else {}
+      }
+    }
+  }
+
+  return matrix;
 }
