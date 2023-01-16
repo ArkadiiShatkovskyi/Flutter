@@ -47,14 +47,14 @@ class _GameScreen_State extends State<GameScreen> {
     _startGame();
 
     timer = Timer.periodic(
-        Duration(milliseconds: 500),
-        (Timer t) {
-          setState(() {
-            widget._matrix =
-                moveSnakeUp(widget.rows, _snakeElements, widget._matrix);
-          });
-        },
-      );
+      Duration(milliseconds: 500),
+      (Timer t) {
+        setState(() {
+          widget._matrix =
+              moveSnakeUp(widget.rows, _snakeElements, widget._matrix);
+        });
+      },
+    );
 
     // if (_direction == 0) {
     //   timer = Timer.periodic(
@@ -156,9 +156,21 @@ class _GameScreen_State extends State<GameScreen> {
   void _startGame() {
     setState(() {
       _snakeElements.add(
-          MatrixElement(row: _strIndRow, column: _strIndCol, value: 1));
-      _snakeElements
-          .add(MatrixElement(row: _strIndRow + 1, column: _strIndCol, value: 1));
+        MatrixElement(
+          row: _strIndRow,
+          column: _strIndCol,
+          value: 1,
+          direction: 0,
+        ),
+      );
+      _snakeElements.add(
+        MatrixElement(
+          row: _strIndRow + 1,
+          column: _strIndCol,
+          value: 1,
+          direction: 0,
+        ),
+      );
       widget._matrix[_strIndRow][_strIndCol] = 1;
       widget._matrix[_strIndRow + 1][_strIndCol] = 1;
     });
