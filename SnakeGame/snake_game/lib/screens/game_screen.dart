@@ -34,7 +34,7 @@ class _GameScreen_State extends State<GameScreen> {
   Timer? timer;
   List<MatrixElement> _snakeElements = [];
   List<DirectionPoint> _directionPoints = [];
-  int _direction = 0;
+  int _direction = 2;
   //  Direction
   //  0 - Right
   //  1 - Lelf
