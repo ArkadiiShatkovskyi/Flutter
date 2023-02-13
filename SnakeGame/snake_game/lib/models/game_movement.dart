@@ -1,8 +1,31 @@
+import 'package:flutter/material.dart';
 import 'package:snake_game/models/matrix_element.dart';
 
 import 'direction_point.dart';
 
-List<List<int>> moveSnakeRight(
+List<dynamic> moveSnake(int direction, int columns, int rows,
+    List<MatrixElement> listOfME, var matrix, List<DirectionPoint> points) {
+
+  if(points.length == 0){
+    for (int i = 0; i < listOfME.length; i++) {
+      if(direction == 0){
+        matrix = _moveSnakeRight(columns, listOfME, matrix);
+      }else if(direction == 1){
+        matrix = _moveSnakeLeft(columns, listOfME, matrix);
+      }else if(direction == 2){
+        matrix = _moveSnakeUp(columns, listOfME, matrix);
+      }else{
+        matrix = _moveSnakeDown(columns, listOfME, matrix);
+      }
+    }
+    return [matrix];
+  }else{
+    return _moveSnakeWithPoints(direction,columns,rows,listOfME,matrix,points);
+  }
+
+}
+
+List<List<int>> _moveSnakeRight(
     int columns, List<MatrixElement> list, var matrix) {
   for (MatrixElement m in list) {
     if (m.column + 1 > columns - 1) {
@@ -21,7 +44,7 @@ List<List<int>> moveSnakeRight(
   return matrix;
 }
 
-List<List<int>> moveSnakeLeft(
+List<List<int>> _moveSnakeLeft(
     int columns, List<MatrixElement> list, var matrix) {
   for (MatrixElement m in list) {
     if (m.column - 1 < 0) {
@@ -40,7 +63,7 @@ List<List<int>> moveSnakeLeft(
   return matrix;
 }
 
-List<List<int>> moveSnakeUp(int rows, List<MatrixElement> list, var matrix) {
+List<List<int>> _moveSnakeUp(int rows, List<MatrixElement> list, var matrix) {
   for (MatrixElement m in list) {
     if (m.row - 1 < 0) {
       m.row = rows - 1;
@@ -58,7 +81,7 @@ List<List<int>> moveSnakeUp(int rows, List<MatrixElement> list, var matrix) {
   return matrix;
 }
 
-List<List<int>> moveSnakeDown(int rows, List<MatrixElement> list, var matrix) {
+List<List<int>> _moveSnakeDown(int rows, List<MatrixElement> list, var matrix) {
   for (MatrixElement m in list) {
     if (m.row + 1 > rows - 1) {
       m.row = 0;
@@ -76,7 +99,7 @@ List<List<int>> moveSnakeDown(int rows, List<MatrixElement> list, var matrix) {
   return matrix;
 }
 
-List<dynamic> moveSnakeElementRight(
+List<dynamic> _moveSnakeElementRight(
     int columns, MatrixElement element, var matrix) {
   if (element.column + 1 > columns - 1) {
     element.column = 0;
@@ -88,7 +111,7 @@ List<dynamic> moveSnakeElementRight(
   return [matrix, element];
 }
 
-List<dynamic> moveSnakeElementLeft(
+List<dynamic> _moveSnakeElementLeft(
     int columns, MatrixElement element, var matrix) {
   if (element.column - 1 < 0) {
     element.column = columns - 1;
@@ -100,7 +123,7 @@ List<dynamic> moveSnakeElementLeft(
   return [matrix, element];
 }
 
-List<dynamic> moveSnakeElementUp(
+List<dynamic> _moveSnakeElementUp(
     int rows, MatrixElement element, var matrix) {
   if (element.row - 1 < 0) {
     element.row = rows - 1;
@@ -112,12 +135,12 @@ List<dynamic> moveSnakeElementUp(
   return [matrix, element];
 }
 
-List<dynamic> moveSnakeElementDown(
+List<dynamic> _moveSnakeElementDown(
     int rows, MatrixElement element, var matrix) {
   if (element.row + 1 > rows - 1) {
     element.row = 0;
   } else {
-    element.row += 1;
+    element.row = 1;
   }
   matrix[element.row][element.column] = 1;
 
@@ -137,36 +160,58 @@ List<MatrixElement> getSnakeElements(var matrix) {
   return list;
 }
 
-List<MatrixElement> moveSnake(int direction, int columns, int rows,
-    List<MatrixElement> list, var matrix, List<DirectionPoint> points) {
-  for (MatrixElement m in list) {
-    for (DirectionPoint p in points) {
-      if (p.column == m.column && p.row == m.row) {
-        MatrixElement tempEl = m;
-        if(p.direction == 0){
-          m.direction = 0;
-          List<dynamic> list = moveSnakeElementRight(columns, m, matrix);
+List<dynamic> _moveSnakeWithPoints(int direction, int columns, int rows,
+    List<MatrixElement> listOfME, var matrix, List<DirectionPoint> points){
+  bool lastElement = false;
+  for (int i = 0; i < listOfME.length; i++) {
+    for (int p = 0; p < points.length; p++) {
+      if (points[p].column == listOfME[i].column && points[p].row == listOfME[i].row) {
+        MatrixElement tempEl = listOfME[i];
+        if(points[p].direction == 0){
+          listOfME[i].direction = 0;
+          List<dynamic> list = _moveSnakeElementRight(columns, listOfME[i], matrix);
           matrix = list[0];
-          m = list[1];
-        } else if(p.direction == 1){
-          m.direction = 1;
-          List<dynamic> list = moveSnakeElementRight(columns, m, matrix);
+          listOfME[i] = list[1];
+
+          if(p == points.length - 1){
+            lastElement = true;
+          }
+        } else if(points[p].direction == 1){
+          listOfME[i].direction = 1;
+          List<dynamic> list = _moveSnakeElementLeft(columns, listOfME[i], matrix);
           matrix = list[0];
-          m = list[1];
-        } else if(p.direction == 2){
-          m.direction = 2;
-          List<dynamic> list = moveSnakeElementRight(columns, m, matrix);
+          listOfME[i] = list[1];
+
+          if(p == points.length - 1){
+            lastElement = true;
+          }
+        } else if(points[p].direction == 2){
+          listOfME[i].direction = 2;
+          List<dynamic> list = _moveSnakeElementUp(columns, listOfME[i], matrix);
           matrix = list[0];
-          m = list[1];
+          listOfME[i] = list[1];
+
+          if(p == points.length - 1){
+            lastElement = true;
+          }
         } else {
-          m.direction = 3;
-          List<dynamic> list = moveSnakeElementRight(columns, m, matrix);
+          listOfME[i].direction = 3;
+          List<dynamic> list = _moveSnakeElementDown(columns, listOfME[i], matrix);
           matrix = list[0];
-          m = list[1];
+          listOfME[i] = list[1];
+
+          if(p == points.length - 1){
+            lastElement = true;
+          }
         }
         matrix[tempEl.row][tempEl.column] = 0;
       }
     }
   }
-  return matrix;
+
+  if(lastElement){
+    points.removeLast();
+  }
+
+  return [matrix, points];
 }
