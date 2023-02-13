@@ -50,33 +50,10 @@ class _GameScreen_State extends State<GameScreen> {
       Duration(milliseconds: 500),
       (Timer t) {
         setState(() {
-          widget._matrix =
-              moveSnakeUp(widget.rows, _snakeElements, widget._matrix);
+          widget._matrix = moveSnake(_direction, widget.columns, widget.rows, _snakeElements, widget._matrix, _directionPoints)[0];
         });
       },
     );
-
-    // if (_direction == 0) {
-    //   timer = Timer.periodic(
-    //     Duration(milliseconds: 500),
-    //     (Timer t) {
-    //       setState(() {
-    //         widget._matrix =
-    //             moveSnakeRight(widget.columns, _snakeElements, widget._matrix);
-    //       });
-    //     },
-    //   );
-    // } else if (_direction == 1) {
-    //   timer = Timer.periodic(
-    //     Duration(milliseconds: 500),
-    //     (Timer t) {
-    //       setState(() {
-    //         widget._matrix =
-    //             moveSnakeLeft(widget.columns, _snakeElements, widget._matrix);
-    //       });
-    //     },
-    //   );
-    // }
   }
 
   @override
@@ -182,8 +159,7 @@ class _GameScreen_State extends State<GameScreen> {
           column: _snakeElements[0].column,
           direction: 0,
           row: _snakeElements[0].row));
-      widget._matrix =
-          moveSnakeRight(widget.columns, _snakeElements, widget._matrix);
+      //widget._matrix = moveSnakeRight(widget.columns, _snakeElements, widget._matrix);
     });
   }
 
@@ -193,8 +169,27 @@ class _GameScreen_State extends State<GameScreen> {
           column: _snakeElements[0].column,
           direction: 0,
           row: _snakeElements[0].row));
-      widget._matrix =
-          moveSnakeLeft(widget.columns, _snakeElements, widget._matrix);
+      //widget._matrix = moveSnakeLeft(widget.columns, _snakeElements, widget._matrix);
+    });
+  }
+
+  void _moveUp() {
+    setState(() {
+      _directionPoints.add(DirectionPoint(
+          column: _snakeElements[0].column,
+          direction: 2,
+          row: _snakeElements[0].row));
+      //widget._matrix = moveSnakeRight(widget.columns, _snakeElements, widget._matrix);
+    });
+  }
+
+  void _moveDown() {
+    setState(() {
+      _directionPoints.add(DirectionPoint(
+          column: _snakeElements[0].column,
+          direction: 3,
+          row: _snakeElements[0].row));
+      //widget._matrix = moveSnakeRight(widget.columns, _snakeElements, widget._matrix);
     });
   }
 }
