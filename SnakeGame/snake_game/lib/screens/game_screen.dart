@@ -11,7 +11,7 @@ class GameScreen extends StatefulWidget {
   final int columns;
 
   //Matrix of the game
-  var _matrix;
+  List<List<int>> _matrix = [];
 
   GameScreen({Key? key, required this.rows, required this.columns})
       : super(key: key) {
@@ -52,14 +52,16 @@ class _GameScreen_State extends State<GameScreen> {
       const Duration(milliseconds: 500),
       (Timer t) {
         setState(() {
+
           print("Running...");
           //print("Points: " + _directionPoints.length.toString());
           List list = moveSnake(_direction, widget.columns, widget.rows,
               _snakeElements, widget._matrix, _directionPoints);
-          widget._matrix = list[0];
-          if (list.length > 1) {
-            _directionPoints = list[1];
-          }
+
+            widget._matrix = list[0];
+            if (list.length > 1) {
+              _directionPoints = list[1];
+            }
         });
       },
     );
@@ -163,21 +165,21 @@ class _GameScreen_State extends State<GameScreen> {
   }
 
   void _moveToTheRight() {
-    //setState(() {
-    print("Points added: [c=" +
-        _snakeElements[0].column.toString() +
-        ",r:" +
-        _snakeElements[0].row.toString() +
-        "]");
-    _direction = 0;
-    _directionPoints.add(DirectionPoint(
-        column: _snakeElements[0].column,
-        direction: 0,
-        row: _snakeElements[0].row));
+    setState(() {
+      print("Points added: [c=" +
+          _snakeElements[0].column.toString() +
+          ",r:" +
+          _snakeElements[0].row.toString() +
+          "]");
+      _direction = 0;
+      _directionPoints.add(DirectionPoint(
+          column: _snakeElements[0].column,
+          direction: 0,
+          row: _snakeElements[0].row));
     //snakeMovement();
     //widget._matrix = moveSnakeRight(widget.columns, _snakeElements, widget._matrix);
 
-    //});
+    });
   }
 
   void _moveToTheLeft() {
