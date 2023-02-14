@@ -163,6 +163,7 @@ List<MatrixElement> getSnakeElements(var matrix) {
 List<dynamic> _moveSnakeWithPoints(int direction, int columns, int rows,
     List<MatrixElement> listOfME, var matrix, List<DirectionPoint> points){
   bool lastElement = false;
+
   for (int i = 0; i < listOfME.length; i++) {
     for (int p = 0; p < points.length; p++) {
       if (points[p].column == listOfME[i].column && points[p].row == listOfME[i].row) {
@@ -187,7 +188,7 @@ List<dynamic> _moveSnakeWithPoints(int direction, int columns, int rows,
           }
         } else if(points[p].direction == 2){
           listOfME[i].direction = 2;
-          List<dynamic> list = _moveSnakeElementUp(columns, listOfME[i], matrix);
+          List<dynamic> list = _moveSnakeElementUp(rows, listOfME[i], matrix);
           matrix = list[0];
           listOfME[i] = list[1];
 
@@ -196,7 +197,7 @@ List<dynamic> _moveSnakeWithPoints(int direction, int columns, int rows,
           }
         } else {
           listOfME[i].direction = 3;
-          List<dynamic> list = _moveSnakeElementDown(columns, listOfME[i], matrix);
+          List<dynamic> list = _moveSnakeElementDown(rows, listOfME[i], matrix);
           matrix = list[0];
           listOfME[i] = list[1];
 
@@ -210,8 +211,12 @@ List<dynamic> _moveSnakeWithPoints(int direction, int columns, int rows,
   }
 
   if(lastElement){
-    points.removeLast();
+    points.removeAt(0);
   }
 
+  // for(int c = 0; c < matrix.length; c++){
+  //   print(matrix[c].toString());
+  // }
+  //print(matrix.toString());
   return [matrix, points];
 }
