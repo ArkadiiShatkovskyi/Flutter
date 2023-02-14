@@ -13,9 +13,9 @@ List<dynamic> moveSnake(int direction, int columns, int rows,
       }else if(direction == 1){
         matrix = _moveSnakeLeft(columns, listOfME, matrix);
       }else if(direction == 2){
-        matrix = _moveSnakeUp(columns, listOfME, matrix);
+        matrix = _moveSnakeUp(rows, listOfME, matrix);
       }else if(direction == 3){
-        matrix = _moveSnakeDown(columns, listOfME, matrix);
+        matrix = _moveSnakeDown(rows, listOfME, matrix);
       }
     }
     return [matrix];
