@@ -173,7 +173,7 @@ List<dynamic> _moveSnakeWithPoints(int direction, int columns, int rows,
           matrix = list[0];
           listOfME[i] = list[1];
 
-          if(p == points.length - 1){
+          if(i == listOfME.length - 1){
             lastElement = true;
           }
         } else if(points[p].direction == 1){
@@ -182,7 +182,7 @@ List<dynamic> _moveSnakeWithPoints(int direction, int columns, int rows,
           matrix = list[0];
           listOfME[i] = list[1];
 
-          if(p == points.length - 1){
+          if(i == listOfME.length - 1){
             lastElement = true;
           }
         } else if(points[p].direction == 2){
@@ -191,7 +191,7 @@ List<dynamic> _moveSnakeWithPoints(int direction, int columns, int rows,
           matrix = list[0];
           listOfME[i] = list[1];
 
-          if(p == points.length - 1){
+          if(i == listOfME.length - 1){
             lastElement = true;
           }
         } else {
@@ -200,7 +200,7 @@ List<dynamic> _moveSnakeWithPoints(int direction, int columns, int rows,
           matrix = list[0];
           listOfME[i] = list[1];
 
-          if(p == points.length - 1){
+          if(i == listOfME.length - 1){
             lastElement = true;
           }
         }
