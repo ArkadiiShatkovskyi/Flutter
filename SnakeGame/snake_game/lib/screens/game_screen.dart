@@ -50,6 +50,7 @@ class _GameScreen_State extends State<GameScreen> {
       Duration(milliseconds: 500),
       (Timer t) {
         setState(() {
+          print("Points: " + _directionPoints.length.toString());
           widget._matrix = moveSnake(_direction, widget.columns, widget.rows, _snakeElements, widget._matrix, _directionPoints)[0];
         });
       },
@@ -65,7 +66,7 @@ class _GameScreen_State extends State<GameScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: _moveToTheRight,
               icon: const Icon(
                 Icons.arrow_right,
                 color: Colors.purple,
@@ -73,7 +74,7 @@ class _GameScreen_State extends State<GameScreen> {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: _moveToTheLeft,
               icon: const Icon(
                 Icons.arrow_left,
                 color: Colors.purple,
@@ -81,7 +82,7 @@ class _GameScreen_State extends State<GameScreen> {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: _moveUp,
               icon: const Icon(
                 Icons.arrow_drop_up,
                 color: Colors.purple,
@@ -89,7 +90,7 @@ class _GameScreen_State extends State<GameScreen> {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: _moveDown,
               icon: const Icon(
                 Icons.arrow_drop_down,
                 color: Colors.purple,
@@ -155,19 +156,22 @@ class _GameScreen_State extends State<GameScreen> {
 
   void _moveToTheRight() {
     setState(() {
+      _direction = 0;
       _directionPoints.add(DirectionPoint(
           column: _snakeElements[0].column,
           direction: 0,
           row: _snakeElements[0].row));
+      print("Points added? " + _directionPoints.length.toString());
       //widget._matrix = moveSnakeRight(widget.columns, _snakeElements, widget._matrix);
     });
   }
 
   void _moveToTheLeft() {
     setState(() {
+      _direction = 1;
       _directionPoints.add(DirectionPoint(
           column: _snakeElements[0].column,
-          direction: 0,
+          direction: 1,
           row: _snakeElements[0].row));
       //widget._matrix = moveSnakeLeft(widget.columns, _snakeElements, widget._matrix);
     });
@@ -175,6 +179,7 @@ class _GameScreen_State extends State<GameScreen> {
 
   void _moveUp() {
     setState(() {
+      _direction = 2;
       _directionPoints.add(DirectionPoint(
           column: _snakeElements[0].column,
           direction: 2,
@@ -185,6 +190,7 @@ class _GameScreen_State extends State<GameScreen> {
 
   void _moveDown() {
     setState(() {
+      _direction = 3;
       _directionPoints.add(DirectionPoint(
           column: _snakeElements[0].column,
           direction: 3,
