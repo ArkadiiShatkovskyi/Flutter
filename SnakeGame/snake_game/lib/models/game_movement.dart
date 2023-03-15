@@ -7,6 +7,8 @@ List<dynamic> moveSnake(int direction, int columns, int rows,
     List<MatrixElement> listOfME, var matrix, List<DirectionPoint> points) {
 
   if(points.length == 0){
+    //print("Points added: Points! :)");
+
     for (int i = 0; i < listOfME.length; i++) {
       if(direction == 0){
         matrix = _moveSnakeRight(columns, listOfME, matrix);
@@ -20,6 +22,7 @@ List<dynamic> moveSnake(int direction, int columns, int rows,
     }
     return [matrix];
   }else{
+    //print("No Points!");
     return _moveSnakeWithPoints(direction,columns,rows,listOfME,matrix,points);
   }
 
@@ -166,46 +169,68 @@ List<dynamic> _moveSnakeWithPoints(int direction, int columns, int rows,
 
   for (int i = 0; i < listOfME.length; i++) {
     for (int p = 0; p < points.length; p++) {
+      print("Element: " +  i.toString() + ", Point: " + p.toString());
       if (points[p].column == listOfME[i].column && points[p].row == listOfME[i].row) {
-        MatrixElement tempEl = listOfME[i];
+        final tempEl =  [listOfME[i].row, listOfME[i].column];
+
         if(points[p].direction == 0){
+          print("Moving right?");
           listOfME[i].direction = 0;
           List<dynamic> list = _moveSnakeElementRight(columns, listOfME[i], matrix);
           matrix = list[0];
           listOfME[i] = list[1];
 
-          if(i == listOfME.length - 1){
-            lastElement = true;
-          }
         } else if(points[p].direction == 1){
+          print("Moving left?");
           listOfME[i].direction = 1;
           List<dynamic> list = _moveSnakeElementLeft(columns, listOfME[i], matrix);
           matrix = list[0];
           listOfME[i] = list[1];
 
-          if(i == listOfME.length - 1){
-            lastElement = true;
-          }
         } else if(points[p].direction == 2){
+          print("Moving up?");
           listOfME[i].direction = 2;
           List<dynamic> list = _moveSnakeElementUp(rows, listOfME[i], matrix);
           matrix = list[0];
           listOfME[i] = list[1];
-
-          if(i == listOfME.length - 1){
-            lastElement = true;
-          }
         } else {
+          print("Moving down?");
           listOfME[i].direction = 3;
           List<dynamic> list = _moveSnakeElementDown(rows, listOfME[i], matrix);
           matrix = list[0];
           listOfME[i] = list[1];
-
-          if(i == listOfME.length - 1){
-            lastElement = true;
-          }
         }
-        matrix[tempEl.row][tempEl.column] = 0;
+
+        if(i == listOfME.length - 1){
+          lastElement = true;
+        }
+
+        matrix[tempEl[0]][tempEl[1]] = 0;
+      } else {
+        final tempEl =  [listOfME[i].row, listOfME[i].column];
+        if(listOfME[i].direction == 0) {
+          List<dynamic> list = _moveSnakeElementRight(columns, listOfME[i], matrix);
+          matrix = list[0];
+          listOfME[i] = list[1];
+        } else if(listOfME[i].direction == 1) {
+          List<dynamic> list = _moveSnakeElementLeft(columns, listOfME[i], matrix);
+          matrix = list[0];
+          listOfME[i] = list[1];
+        } else if(listOfME[i].direction == 2) {
+          List<dynamic> list = _moveSnakeElementUp(columns, listOfME[i], matrix);
+          matrix = list[0];
+          listOfME[i] = list[1];
+        } else if (listOfME[i].direction == 3){
+          List<dynamic> list = _moveSnakeElementDown(columns, listOfME[i], matrix);
+          matrix = list[0];
+          listOfME[i] = list[1];
+        }
+
+        matrix[tempEl[0]][tempEl[1]] = 0;
+
+        if(i == listOfME.length - 1){
+          lastElement = true;
+        }
       }
     }
   }
