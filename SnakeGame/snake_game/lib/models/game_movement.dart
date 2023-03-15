@@ -6,10 +6,11 @@ import 'direction_point.dart';
 List<dynamic> moveSnake(int direction, int columns, int rows,
     List<MatrixElement> listOfME, var matrix, List<DirectionPoint> points) {
 
+  print("Dir: " + direction.toString());
   if(points.length == 0){
     //print("Points added: Points! :)");
 
-    for (int i = 0; i < listOfME.length; i++) {
+    //for (int i = 0; i < listOfME.length; i++) {
       if(direction == 0){
         matrix = _moveSnakeRight(columns, listOfME, matrix);
       }else if(direction == 1){
@@ -19,7 +20,7 @@ List<dynamic> moveSnake(int direction, int columns, int rows,
       }else if(direction == 3){
         matrix = _moveSnakeDown(rows, listOfME, matrix);
       }
-    }
+    //}
     return [matrix];
   }else{
     //print("No Points!");
@@ -86,6 +87,7 @@ List<List<int>> _moveSnakeUp(int rows, List<MatrixElement> list, var matrix) {
 
 List<List<int>> _moveSnakeDown(int rows, List<MatrixElement> list, var matrix) {
   for (MatrixElement m in list) {
+
     if (m.row + 1 > rows - 1) {
       m.row = 0;
     } else {
@@ -142,8 +144,9 @@ List<dynamic> _moveSnakeElementDown(
     int rows, MatrixElement element, var matrix) {
   if (element.row + 1 > rows - 1) {
     element.row = 0;
-  } else {
-    element.row = 1;
+  }
+  else {
+    element.row += 1;
   }
   matrix[element.row][element.column] = 1;
 
