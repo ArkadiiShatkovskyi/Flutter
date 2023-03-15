@@ -53,7 +53,7 @@ class _GameScreen_State extends State<GameScreen> {
       (Timer t) {
         setState(() {
 
-          print("Running...");
+          //print("Running...");
           //print("Points: " + _directionPoints.length.toString());
           List list = moveSnake(_direction, widget.columns, widget.rows,
               _snakeElements, widget._matrix, _directionPoints);
@@ -148,7 +148,7 @@ class _GameScreen_State extends State<GameScreen> {
           row: _strIndRow,
           column: _strIndCol,
           value: 1,
-          direction: 0,
+          direction: 2,
         ),
       );
       _snakeElements.add(
@@ -156,7 +156,7 @@ class _GameScreen_State extends State<GameScreen> {
           row: _strIndRow + 1,
           column: _strIndCol,
           value: 1,
-          direction: 0,
+          direction: 2,
         ),
       );
       widget._matrix[_strIndRow][_strIndCol] = 1;
