@@ -52,7 +52,7 @@ class _GameScreen_State extends State<GameScreen> {
       const Duration(milliseconds: 500),
       (Timer t) {
         setState(() {
-
+          //_direction = _snakeElements[0].direction;
           //print("Running...");
           //print("Points: " + _directionPoints.length.toString());
           List list = moveSnake(_direction, widget.columns, widget.rows,
@@ -76,7 +76,7 @@ class _GameScreen_State extends State<GameScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: _moveToTheRight,
+              onPressed: _direction != 0 && _direction != 1 ? _moveToTheRight : (){},
               icon: const Icon(
                 Icons.arrow_right,
                 color: Colors.purple,
@@ -84,7 +84,7 @@ class _GameScreen_State extends State<GameScreen> {
               ),
             ),
             IconButton(
-              onPressed: _moveToTheLeft,
+              onPressed: _direction != 0 && _direction != 1 ? _moveToTheLeft : (){},
               icon: const Icon(
                 Icons.arrow_left,
                 color: Colors.purple,
@@ -92,7 +92,7 @@ class _GameScreen_State extends State<GameScreen> {
               ),
             ),
             IconButton(
-              onPressed: _moveUp,
+              onPressed: _direction != 3 && _direction != 2 ? _moveUp : (){},
               icon: const Icon(
                 Icons.arrow_drop_up,
                 color: Colors.purple,
@@ -100,7 +100,7 @@ class _GameScreen_State extends State<GameScreen> {
               ),
             ),
             IconButton(
-              onPressed: _moveDown,
+              onPressed: _direction != 3 && _direction != 2 ? _moveDown : (){},
               icon: const Icon(
                 Icons.arrow_drop_down,
                 color: Colors.purple,
@@ -142,25 +142,29 @@ class _GameScreen_State extends State<GameScreen> {
   }
 
   void _startGame() {
+
+    int column = _strIndCol;
+    int row = _strIndRow;
+
     setState(() {
       _snakeElements.add(
         MatrixElement(
-          row: _strIndRow,
-          column: _strIndCol,
+          row: row,
+          column: column,
           value: 1,
           direction: 2,
         ),
       );
       _snakeElements.add(
         MatrixElement(
-          row: _strIndRow + 1,
-          column: _strIndCol,
+          row: row + 1,
+          column: column,
           value: 1,
           direction: 2,
         ),
       );
-      widget._matrix[_strIndRow][_strIndCol] = 1;
-      widget._matrix[_strIndRow + 1][_strIndCol] = 1;
+      widget._matrix[row][column] = 1;
+      widget._matrix[row + 1][column] = 1;
     });
   }
 
