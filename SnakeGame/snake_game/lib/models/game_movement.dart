@@ -9,99 +9,38 @@ List<dynamic> moveSnake(int direction, int columns, int rows,
   print("Dir: " + direction.toString());
   if(points.length == 0){
     //print("Points added: Points! :)");
-
-    //for (int i = 0; i < listOfME.length; i++) {
-      if(direction == 0){
-        matrix = _moveSnakeRight(columns, listOfME, matrix);
-      }else if(direction == 1){
-        matrix = _moveSnakeLeft(columns, listOfME, matrix);
-      }else if(direction == 2){
-        matrix = _moveSnakeUp(rows, listOfME, matrix);
-      }else if(direction == 3){
-        matrix = _moveSnakeDown(rows, listOfME, matrix);
+    for (int i = 0; i < listOfME.length; i++) {
+      final tempEl = [listOfME[i].row, listOfME[i].column];
+      if (listOfME[i].direction == 0) {
+        List<dynamic> list = _moveSnakeElementRight(
+            columns, listOfME[i], matrix);
+        matrix = list[0];
+        listOfME[i] = list[1];
+      } else if (listOfME[i].direction == 1) {
+        List<dynamic> list = _moveSnakeElementLeft(
+            columns, listOfME[i], matrix);
+        matrix = list[0];
+        listOfME[i] = list[1];
+      } else if (listOfME[i].direction == 2) {
+        List<dynamic> list = _moveSnakeElementUp(rows, listOfME[i], matrix);
+        matrix = list[0];
+        listOfME[i] = list[1];
+      } else if (listOfME[i].direction == 3) {
+        List<dynamic> list = _moveSnakeElementDown(
+            rows, listOfME[i], matrix);
+        matrix = list[0];
+        listOfME[i] = list[1];
       }
-    //}
+
+      matrix[tempEl[0]][tempEl[1]] = 0;
+    }
+
     return [matrix];
   }else{
     //print("No Points!");
     return _moveSnakeWithPoints(direction,columns,rows,listOfME,matrix,points);
   }
 
-}
-
-List<List<int>> _moveSnakeRight(
-    int columns, List<MatrixElement> list, var matrix) {
-  for (MatrixElement m in list) {
-    if (m.column + 1 > columns - 1) {
-      m.column = 0;
-    } else {
-      m.column += 1;
-    }
-    matrix[m.row][m.column] = 1;
-  }
-  int col = list[list.length - 1].column;
-  int row = list[list.length - 1].row;
-
-  col = col - 1 < 0 ? columns - 1 : col - 1;
-  matrix[row][col] = 0;
-
-  return matrix;
-}
-
-List<List<int>> _moveSnakeLeft(
-    int columns, List<MatrixElement> list, var matrix) {
-  for (MatrixElement m in list) {
-    if (m.column - 1 < 0) {
-      m.column = columns - 1;
-    } else {
-      m.column -= 1;
-    }
-    matrix[m.row][m.column] = 1;
-  }
-  int col = list[list.length - 1].column;
-  int row = list[list.length - 1].row;
-
-  col = col + 1 > columns - 1 ? 0 : col + 1;
-  matrix[row][col] = 0;
-
-  return matrix;
-}
-
-List<List<int>> _moveSnakeUp(int rows, List<MatrixElement> list, var matrix) {
-  for (MatrixElement m in list) {
-    if (m.row - 1 < 0) {
-      m.row = rows - 1;
-    } else {
-      m.row -= 1;
-    }
-    matrix[m.row][m.column] = 1;
-  }
-  int col = list[list.length - 1].column;
-  int row = list[list.length - 1].row;
-
-  row = row + 1 > rows - 1 ? 0 : row + 1;
-  matrix[row][col] = 0;
-
-  return matrix;
-}
-
-List<List<int>> _moveSnakeDown(int rows, List<MatrixElement> list, var matrix) {
-  for (MatrixElement m in list) {
-
-    if (m.row + 1 > rows - 1) {
-      m.row = 0;
-    } else {
-      m.row += 1;
-    }
-    matrix[m.row][m.column] = 1;
-  }
-  int col = list[list.length - 1].column;
-  int row = list[list.length - 1].row;
-
-  row = row - 1 < 0 ? rows - 1 : row - 1;
-  matrix[row][col] = 0;
-
-  return matrix;
 }
 
 List<dynamic> _moveSnakeElementRight(
@@ -231,9 +170,9 @@ List<dynamic> _moveSnakeWithPoints(int direction, int columns, int rows,
 
         matrix[tempEl[0]][tempEl[1]] = 0;
 
-        if(i == listOfME.length - 1){
-          lastElement = true;
-        }
+        // if(i == listOfME.length - 1){
+        //   lastElement = true;
+        // }
       }
     }
   }
