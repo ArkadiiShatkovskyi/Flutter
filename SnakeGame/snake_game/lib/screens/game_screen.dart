@@ -52,7 +52,7 @@ class _GameScreen_State extends State<GameScreen> {
       const Duration(milliseconds: 500),
       (Timer t) {
         setState(() {
-          //_direction = _snakeElements[0].direction;
+          _direction = _snakeElements[0].direction;
           //print("Running...");
           //print("Points: " + _directionPoints.length.toString());
           List list = moveSnake(_direction, widget.columns, widget.rows,
